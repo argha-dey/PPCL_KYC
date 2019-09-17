@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+
+    <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+<!--
+    <ImageView
+            android:layout_weight="1"
+            android:src="@drawable/ortho"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="0dp"
+            />-->
+        <CheckBox
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/nursing_cb"/>
+    <TextView
+            android:paddingLeft="5dp"
+            android:maxLines="1"
+            android:textStyle="bold"
+            android:gravity="center|left"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tv_trained_help_in"
+
+            android:text="Demo"/>
+
+
+    />
+    </LinearLayout>
+    <TextView
+            android:id="@+id/tv_nursing_care_details"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorBlack"
+            android:text="Demo"
+            android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+
+</LinearLayout>

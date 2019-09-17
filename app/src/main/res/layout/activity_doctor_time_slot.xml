@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:background="@color/colorWhite"
+                android:layout_weight="0.8"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+            <ImageView
+                    android:onClick="onTimeSlotBackButton"
+                    android:layout_gravity="center"
+                    android:src="@drawable/arrow_left"
+                    android:background="?attr/selectableItemBackground"
+                    android:layout_weight="1.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+
+                    android:textColor="@color/colorPrimaryText"
+                    android:textStyle="normal"
+                    android:textAllCaps="false"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:text="Select Time Slot"
+                    android:layout_weight="9"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_marginTop="10dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                android:layout_weight="1.5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/profile_image"
+                    android:layout_weight="1"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"/>
+
+            <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_weight="6"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:id="@+id/doctorName"
+                        android:layout_marginTop="2dp"
+                        android:maxLines="1"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        android:singleLine="true"
+                        android:textColor="@color/colorBlack"
+                        android:text="Dr.Bhalandu Vaisanav"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                <TextView
+                        android:maxLines="1"
+                        android:id="@+id/doctorSpl"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:textAllCaps="false"
+                        android:text="MD (Medicine)"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                <TextView
+                        android:id="@+id/doctordepart"
+                        android:layout_marginTop="2dp"
+                        android:maxLines="1"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        android:textAllCaps="false"
+                        android:singleLine="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                <TextView
+                        android:id="@+id/doctorExp"
+                        android:layout_marginTop="2dp"
+                        android:maxLines="1"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        android:textAllCaps="false"
+                        android:singleLine="true"
+                        android:text="Exp : 29 years"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:background="@color/gray_color"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+        <LinearLayout
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+            <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/lovatiion_blue"
+                    android:layout_weight="4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:layout_marginRight="5dp"
+                    android:maxLines="2"
+                    android:gravity="center|left"
+                    android:text="Shree Krishna Hospital and Medical Research Center, Gokal Nagar, Karamsad - 388 325 Gujarat, INDIA"
+                    android:layout_weight="10"
+                    android:layout_width="0dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <View
+
+                android:background="@color/gray_color"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="4.5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+            <LinearLayout
+                    android:background="@color/divider"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                <android.support.design.widget.TabLayout
+                        android:layout_weight="0.8"
+                        android:id="@+id/tab_date"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:tabGravity="fill"
+                        app:tabMode="scrollable"
+                        app:tabIndicatorColor="@color/colorGreen"
+                        app:tabIndicatorHeight="2dp"
+                        app:tabTextAppearance="@style/TabLayoutStyle"
+                        app:tabSelectedTextColor="@color/colorGreen"
+                        app:tabTextColor="@color/colorPrimaryText"
+                        android:background="@color/tab_bg"/>
+                <LinearLayout
+                        android:onClick="onSelectDateFromCal"
+                        android:background="@color/colorWhite"
+                        android:layout_marginLeft="1dp"
+                        android:gravity="center"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="0.2"
+                        android:layout_width="0dp">
+                    <ImageView
+                            android:src="@drawable/monthlycalendar"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    <TextView
+                            android:layout_marginTop="2dp"
+                            android:textSize="10sp"
+                            android:gravity="center"
+                            android:textColor="@color/colorBlack"
+                            android:text="MONTHLY"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+
+                    android:background="@color/gray_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+            <LinearLayout
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical"
+                    android:layout_weight="3.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                <android.support.v4.view.ViewPager
+                        android:id="@+id/viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        android:background="@drawable/bg"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:onClick="onBookingClick"
+                android:layout_weight="0.7"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+            <TextView
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:background="@color/colorPrimary"
+                    android:text="BOOK"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activity.DoctorListActivity">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorWhite">
+
+        <ImageButton
+                android:id="@+id/ibtn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_left"
+                android:background="?attr/selectableItemBackground"
+                android:padding="12dp"
+                android:layout_centerVertical="true"
+                android:onClick="onBackButtonClick"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor List"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:textAllCaps="false"
+                android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+    <LinearLayout
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal">
+
+        <EditText
+                android:layout_marginLeft="10dp"
+                android:id="@+id/et_search_doctors"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:maxLength="10"
+                android:minLines="1"
+
+                android:hint="Search Doctors..."
+                android:textColorHint="@color/colorGreen"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimaryText"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:background="@color/colorPrimary"
+                android:drawableLeft="@drawable/search"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="8dp"/>
+
+        <Button
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Search"
+                android:textSize="14sp"
+                android:textColor="@color/colorGreen"
+                android:textAllCaps="false"
+                android:textStyle="normal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="onSearchClick"/>
+
+        <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorStroke"/>
+
+        <ImageButton
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/monthlycalendar"
+                android:background="?attr/selectableItemBackground"
+                android:padding="10dp"
+                android:onClick="onCalendarClick"/>
+
+        <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorStroke"/>
+
+        <ImageButton
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/filter"
+                android:background="?attr/selectableItemBackground"
+                android:padding="10dp"
+                android:onClick="onFilterClick"/>
+
+    </LinearLayout>
+    <android.support.design.widget.TabLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabGravity="fill"
+            app:tabMode="scrollable"
+            app:tabIndicatorColor="@color/colorGreen"
+            app:tabIndicatorHeight="2dp"
+            app:tabTextAppearance="@style/TabLayoutStyle"
+            app:tabSelectedTextColor="@color/colorGreen"
+            app:tabTextColor="@color/colorPrimaryText"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/colorWhite"/>
+
+    <!--app:tabBackground="@drawable/bg_top_bottom_border"-->
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:background="@drawable/bg"/>
+
+
+
+
+</LinearLayout>

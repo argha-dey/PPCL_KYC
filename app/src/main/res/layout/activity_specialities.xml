@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/background_light"
+        android:fitsSystemWindows="true">
+
+    <RelativeLayout
+
+            android:background="@color/design_default_color_primary_dark"
+            android:id="@+id/home_care_header"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+        <ImageButton
+                android:id="@+id/ibtn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_white"
+                android:background="?attr/selectableItemBackground"
+                android:padding="12dp"
+                android:layout_centerVertical="true"
+                android:onClick="onSpecialistDoctorBackButtonClick"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Specialist Doctor"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:textAllCaps="false"
+                android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+
+
+    <android.support.v4.widget.NestedScrollView
+            android:layout_below="@+id/home_care_header"
+            android:id="@+id/nested_scroll"
+            android:paddingBottom="52dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+            <LinearLayout
+                    android:id="@+id/ll_home_care_header_image"
+                    android:layout_below="@+id/iv_toolbar"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="170dp"
+                        android:layout_margin="1dp">
+
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/diy"
+                            android:padding="10dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="170dp"
+                        android:layout_margin="1dp"
+                >
+
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/women"
+                            android:padding="10dp"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <RelativeLayout
+
+                    android:id="@+id/rl_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="vertical">
+
+                    <LinearLayout
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@color/colorPrimary"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <EditText
+                                android:id="@+id/et_department_search"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:maxLines="1"
+                                android:maxLength="10"
+                                android:textCursorDrawable="@drawable/color_cursor"
+                                android:hint="Search Specialities..."
+                                android:textColorHint="@color/colorGreen"
+                                android:textSize="18sp"
+                                android:textColor="@color/colorWhite"
+                                android:textAllCaps="false"
+                                android:textStyle="normal"
+                                android:background="@android:color/transparent"
+                                android:drawableLeft="@drawable/search"
+                                android:drawablePadding="12dp"
+                                android:gravity="center|left"
+                                android:paddingLeft="14dp"/>
+
+                        <!--        <Button
+                                        android:visibility="gone"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="Search"
+                                        android:textSize="14sp"
+                                        android:textColor="#283682"
+                                        android:textAllCaps="false"
+                                        android:textStyle="normal"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:background="?attr/selectableItemBackground"
+                                />-->
+
+                        <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorStroke"/>
+
+
+
+                        <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorStroke"/>
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:visibility="gone"
+                        android:layout_marginLeft="15dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="18sp"
+                        android:gravity="center|left"
+                        android:text="Across Specialities"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="50dp"/>
+
+
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/specialistRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+
+
+</RelativeLayout>

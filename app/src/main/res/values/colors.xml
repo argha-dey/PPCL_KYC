@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="text_color">#040404</color>
+    <color name="text_hint_color">#79BE14</color>
+    <color name="gray_color">#A8A8A8</color>
+
+    <color name="colorPrimary">#283682</color>
+    <color name="colorPrimaryDark">#283682</color>
+    <color name="colorAccent">#283682</color>
+    <color name="colorAccentDark">#283682</color>
+    <color name="colorPrimarySuperLight">#FFE1EFEE</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+
+
+    <color name="colorGreyDark">#757575</color>
+    <color name="divider">#eaeaea</color>
+    <color name="tab_bg">#DBEAEAEA</color>
+
+    <color name="colorTransparent">#00000000</color>
+    <color name="colorTransparentHalf">#43030303</color>
+    <color name="colorTransparentQuarter">#431A1919</color>
+    <color name="colorYellow">#F5FA55</color>
+
+
+    <color name="colorPrimaryText">#222</color>
+    <color name="colorSecondaryText">#888</color>
+    <color name="colorButtonText">#fff</color>
+    <color name="colorGreen">#58aa47</color>
+    <color name="colorOrange">#f7931e</color>
+    <color name="colorStroke">#ddd</color>
+
+    <color name="colorGreyLight">#f4f4f4</color>
+    <color name="colorGreyMaxLight">#B1F4F4F4</color>
+    <color name="green_text_color">#58aa47</color>
+
+    <color name="colorGrey">#A8A8A8</color>
+    <color name="colorRed">#F60E0E</color>
+    <color name="colorOrangeLight">#f9b463</color>
+
+</resources>

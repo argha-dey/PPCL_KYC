@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorWhite"
+        tools:context=".activity.HealingHomeCareActivity">
+    <RelativeLayout
+            android:background="@color/design_default_color_primary_dark"
+            android:id="@+id/home_care_header"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+        <ImageButton
+                android:id="@+id/ibtn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_white"
+                android:background="?attr/selectableItemBackground"
+                android:padding="12dp"
+                android:layout_centerVertical="true"
+                android:onClick="onDiagnosticsAtHomeBackButtonClick"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Diagnostics at Home "
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:textAllCaps="false"
+                android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+            android:layout_below="@+id/home_care_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+
+
+            <LinearLayout
+                    android:id="@+id/ll_home_care_header_image"
+                    android:layout_below="@+id/iv_toolbar"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="170dp"
+                        android:layout_margin="1dp">
+
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/diy"
+                            android:padding="10dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="170dp"
+                        android:layout_margin="1dp"
+                >
+
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/women"
+                            android:padding="10dp"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/ll_home_care_header_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="8dp">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                    <LinearLayout
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:textStyle="normal"
+                                android:textColor="@color/colorBlack"
+                                android:text="@string/diagnostics_at_home_details"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                            android:layout_marginTop="20dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:textStyle="bold"
+                                android:textColor="@color/colorPrimary"
+                                android:text="Charges:"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:background="@color/colorPrimary"
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp">
+                            <TextView
+
+                                    android:gravity="center"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/colorWhite"
+                                    android:text="Item Code"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"/>
+                            <TextView
+                                    android:gravity="center"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/colorWhite"
+                                    android:text="Item name"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"/>
+                            <TextView
+                                    android:gravity="center"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/colorWhite"
+                                    android:text="Charges"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"/>
+
+                        </LinearLayout>
+                        <android.support.v7.widget.RecyclerView
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:id="@+id/diagnostics_charges_RecyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp">
+                        <TextView
+                                android:gravity="center"
+                                android:background="@color/colorPrimary"
+                                android:textColor="@color/colorGreen"
+                                android:text="Process"
+                                android:layout_width="0dp"
+                                android:layout_weight="1.2"
+                                android:layout_height="match_parent"/>
+                        <View
+                                android:background="@color/colorWhite"
+                                android:layout_width="3dp"
+                                android:layout_height="match_parent"/>
+                        <TextView
+                                android:gravity="center"
+                                android:background="@color/colorPrimary"
+                                android:textColor="@color/colorGreen"
+                                android:text="Call"
+                                android:layout_width="0dp"
+                                android:layout_weight="1.2"
+                                android:layout_height="match_parent"/>
+                        <View
+                                android:background="@color/colorWhite"
+                                android:layout_width="3dp"
+                                android:layout_height="match_parent"/>
+                        <TextView
+                                android:gravity="center"
+                                android:background="@color/colorPrimary"
+                                android:textColor="@color/colorGreen"
+                                android:text="Request call Back"
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="match_parent"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+
+</RelativeLayout>

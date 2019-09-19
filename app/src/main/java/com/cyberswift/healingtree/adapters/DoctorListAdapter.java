@@ -95,11 +95,11 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.My
         } else
             holder.tv_date.setVisibility(View.GONE);
 
-        if (doctorListModel.getTime() != null && !doctorListModel.getTime().equals("")) {
+      /*  if (doctorListModel.getTime() != null && !doctorListModel.getTime().equals("")) {
             holder.tv_dr_schedule.setText(doctorListModel.getTime());
             holder.tv_dr_schedule.setVisibility(View.VISIBLE);
         } else
-            holder.tv_dr_schedule.setVisibility(View.GONE);
+            holder.tv_dr_schedule.setVisibility(View.GONE);*/
 
         if (Utils.isSelectedDateBeforeCurrentDate(doctorListModel.getDate())) {
             holder.btn_book_via_app.setEnabled(false);

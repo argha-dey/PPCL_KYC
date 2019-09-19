@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.model.THCA_Model;
+import com.cyberswift.healingtree.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -17,15 +18,17 @@ public class MultiSelectionAdapter extends RecyclerView.Adapter<MultiSelectionAd
 
     private Context context;
     private ArrayList<THCA_Model> taineHomeCareAttendanceList;
+    private String servicesType;
 
     public MultiSelectionAdapter(Context context) {
         this.context = context;
         taineHomeCareAttendanceList = new ArrayList<>();
     }
 
-    public void setTrainedHomeCareAttendanceListData(ArrayList<THCA_Model> employees) {
+    public void setTrainedHomeCareAttendanceListData(ArrayList<THCA_Model> employees,String _servicesType) {
         this.taineHomeCareAttendanceList = new ArrayList<>();
         this.taineHomeCareAttendanceList = employees;
+        this.servicesType =_servicesType;
         notifyDataSetChanged();
     }
 
@@ -55,6 +58,13 @@ public class MultiSelectionAdapter extends RecyclerView.Adapter<MultiSelectionAd
             super(itemView);
             tv_trained_help_in = itemView.findViewById(R.id.tv_trained_help_in);
             cb = itemView.findViewById(R.id.cb);
+            if(servicesType.equals(Constants.MEDICALE_EQUIPMENT_SERVICE)){
+                cb.setVisibility(View.INVISIBLE);
+            }
+            else {
+                cb.setVisibility(View.VISIBLE);
+            }
+
         }
 
         void bind(final THCA_Model trainedHomeCareAttendanceList) {

@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class DoctorListModel implements Parcelable {
 
     @SerializedName("doc_id")
@@ -26,8 +28,8 @@ public class DoctorListModel implements Parcelable {
     private String day;
     @SerializedName("date")
     private String date;
-    @SerializedName("time")
-    private String time;
+    @SerializedName("time_slot")
+    private ArrayList<TimeSlotModel> time_slot;
 
     protected DoctorListModel(Parcel in) {
         docId = in.readString();
@@ -40,10 +42,8 @@ public class DoctorListModel implements Parcelable {
         docSchedule = in.readString();
         day = in.readString();
         date = in.readString();
-        time = in.readString();
     }
-    public DoctorListModel() {
-    }
+
     public static final Creator<DoctorListModel> CREATOR = new Creator<DoctorListModel>() {
         @Override
         public DoctorListModel createFromParcel(Parcel in) {
@@ -55,6 +55,17 @@ public class DoctorListModel implements Parcelable {
             return new DoctorListModel[size];
         }
     };
+
+    public ArrayList<TimeSlotModel> getTime_slot() {
+        return time_slot;
+    }
+
+    public void setTime_slot(ArrayList<TimeSlotModel> time_slot) {
+        this.time_slot = time_slot;
+    }
+
+    public DoctorListModel() {
+    }
 
     public String getDocId() {
         return docId;
@@ -136,14 +147,6 @@ public class DoctorListModel implements Parcelable {
         this.date = date;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -151,6 +154,7 @@ public class DoctorListModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+
         dest.writeString(docId);
         dest.writeString(docName);
         dest.writeString(qualification);
@@ -161,6 +165,6 @@ public class DoctorListModel implements Parcelable {
         dest.writeString(docSchedule);
         dest.writeString(day);
         dest.writeString(date);
-        dest.writeString(time);
     }
+
 }

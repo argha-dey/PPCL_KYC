@@ -9,43 +9,42 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.cyberswift.healingtree.R;
-import com.cyberswift.healingtree.model.SO_Model;
+import com.cyberswift.healingtree.model.TimeSlotModel;
 
 import java.util.ArrayList;
 
-public class HomeCareAttandanceSpacialOfferAdapter  extends  RecyclerView.Adapter<HomeCareAttandanceSpacialOfferAdapter.ViewHolder> {
+public class MorningTimeSlotAdapter extends  RecyclerView.Adapter<MorningTimeSlotAdapter.ViewHolder> {
 
-    private ArrayList<SO_Model> spacialOffersList;
+    private ArrayList<TimeSlotModel> timeSlotModels;
     private Context context;
 
     private int lastSelectedPosition = -1;
 
-    public HomeCareAttandanceSpacialOfferAdapter(Context _context, ArrayList<SO_Model> _spacialOffersList) {
-        spacialOffersList = _spacialOffersList;
+    public MorningTimeSlotAdapter(Context _context, ArrayList<TimeSlotModel> _spacialOffersList) {
+        this.timeSlotModels = _spacialOffersList;
         context = _context;
     }
 
     @Override
-    public HomeCareAttandanceSpacialOfferAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MorningTimeSlotAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_care_charges_spacial_offer_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.morning_time_slot_item, parent, false);
 
-        HomeCareAttandanceSpacialOfferAdapter.ViewHolder viewHolder =
-                new HomeCareAttandanceSpacialOfferAdapter.ViewHolder(view);
+        MorningTimeSlotAdapter.ViewHolder viewHolder =
+                new MorningTimeSlotAdapter.ViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(HomeCareAttandanceSpacialOfferAdapter.ViewHolder holder, int position) {
-        SO_Model offersModel = spacialOffersList.get(position);
-        holder.chargesAmount.setText(offersModel.getHomeCareServiceSpacialCharges()+"%");
-        holder.chargesDays.setText(offersModel.getHomeCareServiceSpacialDuration());
-        holder.selectionCharges.setChecked(lastSelectedPosition == position);
+    public void onBindViewHolder(MorningTimeSlotAdapter.ViewHolder holder, int position) {
+         String time = timeSlotModels.get(position).getTime();
+         holder.chargesDays.setText(time);
+      //   holder.selectionCharges.setChecked(lastSelectedPosition == position);
     }
 
     @Override
     public int getItemCount() {
-        return spacialOffersList.size();
+        return timeSlotModels.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -66,7 +65,7 @@ public class HomeCareAttandanceSpacialOfferAdapter  extends  RecyclerView.Adapte
                     lastSelectedPosition = getAdapterPosition();
                     notifyDataSetChanged();
 
-                    Toast.makeText(HomeCareAttandanceSpacialOfferAdapter.this.context,
+                    Toast.makeText(MorningTimeSlotAdapter.this.context,
                             "offer is " + chargesAmount.getText(),
                             Toast.LENGTH_LONG).show();
                 }

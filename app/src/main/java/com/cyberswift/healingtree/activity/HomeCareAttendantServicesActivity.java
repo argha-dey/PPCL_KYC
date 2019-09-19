@@ -24,6 +24,7 @@ import com.cyberswift.healingtree.model.HCAC_Model;
 import com.cyberswift.healingtree.model.THCA_Model;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
+import com.cyberswift.healingtree.utils.Constants;
 import com.cyberswift.healingtree.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -101,7 +102,7 @@ private ArrayList<SO_Model> homeCareAttendanceSpacialOfferList;
 
     public void fetchHomeCareData() {
         Map<String, String> requestBody = new HashMap<>();
-        requestBody.put("HHC_ID","18");
+        requestBody.put("HHC_ID", Constants.HOME_CARE_ATTENDANT);
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
         Call<HealthCareResponseModel> call = apiService.getHomeCareAttandanceData(requestBody);
         call.enqueue(new Callback<HealthCareResponseModel>() {
@@ -138,7 +139,7 @@ private ArrayList<SO_Model> homeCareAttendanceSpacialOfferList;
         home_care_attendants_help_RecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         home_care_attendants_help_RecyclerView.setItemAnimator(new DefaultItemAnimator());
         MultiSelectionAdapter multiSelectionAdapter = new MultiSelectionAdapter(mContext);
-        multiSelectionAdapter.setTrainedHomeCareAttendanceListData(trainedHomeCareAttendanceList);
+        multiSelectionAdapter.setTrainedHomeCareAttendanceListData(trainedHomeCareAttendanceList,Constants.HOME_CARE_ATTENDANT);
         home_care_attendants_help_RecyclerView.setAdapter(multiSelectionAdapter);
     }
 

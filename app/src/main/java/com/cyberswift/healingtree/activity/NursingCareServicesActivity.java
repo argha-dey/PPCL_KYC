@@ -22,6 +22,7 @@ import com.cyberswift.healingtree.model.HealthCareResponseModel;
 import com.cyberswift.healingtree.model.THCA_Model;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
+import com.cyberswift.healingtree.utils.Constants;
 import com.cyberswift.healingtree.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -92,7 +93,7 @@ private ArrayList<HCAC_Model> nursingCareChargesList;
 
     public void fetchNursingCareData() {
         Map<String, String> requestBody = new HashMap<>();
-        requestBody.put("HHC_ID","19");
+        requestBody.put("HHC_ID", Constants.NURSING_CARE);
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
         Call<HealthCareResponseModel> call = apiService.getHomeCareAttandanceData(requestBody);
         call.enqueue(new Callback<HealthCareResponseModel>() {

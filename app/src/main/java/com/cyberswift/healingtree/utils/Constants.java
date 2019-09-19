@@ -4,24 +4,23 @@ public interface Constants {
 
 
     boolean IS_DEVELOPMENT_MODE = true;
+/**
+* SERVICES LIST CONSTANT */
+
+    String HOME_CARE_ATTENDANT = "HHC0000000002";
+    String NURSING_CARE = "HHC0000000003";
+    String PHYSIOTHERAPIST_SERVICES = "HHC0000000004";
+    String MEDICALE_EQUIPMENT_SERVICE = "HHC0000000005";
+    String DIAGNOSTICS_AT_HOME = "HHC0000000006";
+
 
 
     int HOME_NAV_ID = 1;
     String HOME_NAV_NAME = "Home";
 
-    int SURVEY_LIST_NAV_ID = 2;
-    String SURVEY_LIST_NAV_NAME = "Survey List";
-
-    int ADD_SURVEY_NAV_ID = 3;
-    String ADD_SURVEY_NAV_NAME = "Add Survey";
-
-    int UPLOAD_SURVEY_NAV_ID = 4;
-    String UPLOAD_SURVEY_NAV_NAME = "Uploaded Survey List";
-
     int PROFILE_NAV_ID = 5;
     String PROFILE_NAV_NAME = "Profile";
-    int CHANGE_PASSWORD_NAV_ID = 6;
-    String CHANGE_PASSWORD_NAV_NAME = "Change Password";
+
     int LOGOUT_NAV_ID = 7;
     String LOGOUT_NAV_NAME = "Logout";
 

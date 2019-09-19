@@ -22,6 +22,7 @@ import com.cyberswift.healingtree.model.HealthCareResponseModel;
 import com.cyberswift.healingtree.model.THCA_Model;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
+import com.cyberswift.healingtree.utils.Constants;
 import com.cyberswift.healingtree.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -91,7 +92,7 @@ private RecyclerView rcv_physiotherapists_charges;
     }
     public void fetchPhysiotherapistData() {
         Map<String, String> requestBody = new HashMap<>();
-        requestBody.put("HHC_ID","20");
+        requestBody.put("HHC_ID", Constants.PHYSIOTHERAPIST_SERVICES);
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
         Call<HealthCareResponseModel> call = apiService.getHomeCareAttandanceData(requestBody);
         call.enqueue(new Callback<HealthCareResponseModel>() {
@@ -127,7 +128,7 @@ private RecyclerView rcv_physiotherapists_charges;
         rcv_type_of_injuries_disabilities.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         rcv_type_of_injuries_disabilities.setItemAnimator(new DefaultItemAnimator());
         MultiSelectionAdapter multiSelectionAdapter = new MultiSelectionAdapter(mContext);
-        multiSelectionAdapter.setTrainedHomeCareAttendanceListData(physiotherapistInjuriesTypeList);
+        multiSelectionAdapter.setTrainedHomeCareAttendanceListData(physiotherapistInjuriesTypeList, Constants.PHYSIOTHERAPIST_SERVICES);
         rcv_type_of_injuries_disabilities.setAdapter(multiSelectionAdapter);
 
     }

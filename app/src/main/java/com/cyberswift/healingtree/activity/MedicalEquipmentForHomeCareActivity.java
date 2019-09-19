@@ -22,6 +22,7 @@ import com.cyberswift.healingtree.model.HealthCareResponseModel;
 import com.cyberswift.healingtree.model.THCA_Model;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
+import com.cyberswift.healingtree.utils.Constants;
 import com.cyberswift.healingtree.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,7 +97,7 @@ private RecyclerView rcv_medical_equipment_charges;
 
     public void fetchMedicalEquipmentData() {
         Map<String, String> requestBody = new HashMap<>();
-        requestBody.put("HHC_ID","21");
+        requestBody.put("HHC_ID", Constants.MEDICALE_EQUIPMENT_SERVICE);
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
         Call<HealthCareResponseModel> call = apiService.getHomeCareAttandanceData(requestBody);
         call.enqueue(new Callback<HealthCareResponseModel>() {
@@ -137,11 +138,10 @@ private RecyclerView rcv_medical_equipment_charges;
     }
 
     private void setWeOfferInAdapter(ArrayList<THCA_Model> medicalWeOfferList) {
-
         rcv_we_offer.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
         rcv_we_offer.setItemAnimator(new DefaultItemAnimator());
         MultiSelectionAdapter multiSelectionAdapter = new MultiSelectionAdapter(mContext);
-        multiSelectionAdapter.setTrainedHomeCareAttendanceListData(medicalWeOfferList);
+        multiSelectionAdapter.setTrainedHomeCareAttendanceListData(medicalWeOfferList,Constants.MEDICALE_EQUIPMENT_SERVICE);
         rcv_we_offer.setAdapter(multiSelectionAdapter);
 
 

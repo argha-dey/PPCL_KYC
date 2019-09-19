@@ -23,6 +23,7 @@ import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.Constants;
 import com.cyberswift.healingtree.utils.Prefs;
 import com.cyberswift.healingtree.utils.Utils;
+import org.json.JSONObject;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -85,9 +86,13 @@ public class DoctorTimeSlot extends AppCompatActivity {
         weeklyTimeSlotHashMap = new HashMap<>();
         tabDateArrayList = new ArrayList<>();
         final Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("doc_id", doctorDetails.getDocId());
-        requestBody.put("date", doctorDetails.getDate());
+     //   requestBody.put("doc_id", doctorDetails.getDocId());
+     //   requestBody.put("date", doctorDetails.getDate());
+        requestBody.put("doc_id","1");
+        requestBody.put("date","2019-09-18");
+
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
+        System.out.println("request : "+new JSONObject(requestBody));
         Call<DoctorTimeslotResponceModel> call = apiService.doctorTimeSlot(requestBody);
         call.enqueue(new Callback<DoctorTimeslotResponceModel>() {
             @Override
@@ -128,7 +133,7 @@ public class DoctorTimeSlot extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<DoctorTimeslotResponceModel> call, Throwable t) {
-
+                System.out.println("Response Fail");
             }
         });
     }
@@ -144,7 +149,6 @@ public class DoctorTimeSlot extends AppCompatActivity {
         tabs.setupWithViewPager(this.viewPager);
         tabs.setTag(this.viewPager);
         tabs.getTabAt(0).select();
-
 
     }
 

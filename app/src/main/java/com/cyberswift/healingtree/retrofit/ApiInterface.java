@@ -27,8 +27,11 @@ public interface ApiInterface {
     @POST(Urls.DOCTOR_LIST_ALL)
     Call<AllDoctorListResponceModel> allDoctorList(@Body Map<String, String> body);
 
-    @POST(Urls.HOME_CARE_ATTENDANCE)
+    @POST(Urls.HOME_CARE_ATTENDANCE_LIST)
     Call<HealthCareResponseModel> getHomeCareAttandanceData(@Body Map<String, String> body);
+
+    @POST(Urls.HOME_CARE_ATTENDANCE_DATA_POST)
+    Call<HomeCareAttendantDataPostResponseModel> getHomeCareAttandanceDataPost(@Body Map<String, String> body);
 
 
 }

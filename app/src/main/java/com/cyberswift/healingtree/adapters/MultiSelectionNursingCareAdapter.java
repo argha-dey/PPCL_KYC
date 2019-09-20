@@ -67,7 +67,7 @@ public class MultiSelectionNursingCareAdapter extends RecyclerView.Adapter<Multi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    trainedHomeCareAttendanceList.setChecked(!trainedHomeCareAttendanceList.isChecked());
+                //    trainedHomeCareAttendanceList.setChecked(!trainedHomeCareAttendanceList.isChecked());
                    // cb.setVisibility(trainedHomeCareAttendanceList.isChecked() ? View.VISIBLE : View.GONE);
                 }
             });
@@ -78,7 +78,7 @@ public class MultiSelectionNursingCareAdapter extends RecyclerView.Adapter<Multi
         return taineHomeCareAttendanceList;
     }
 
-    public ArrayList<THCA_Model> getSelected() {
+/*    public ArrayList<THCA_Model> getSelected() {
         ArrayList<THCA_Model> selected = new ArrayList<>();
         for (int i = 0; i < taineHomeCareAttendanceList.size(); i++) {
             if (taineHomeCareAttendanceList.get(i).isChecked()) {
@@ -86,5 +86,5 @@ public class MultiSelectionNursingCareAdapter extends RecyclerView.Adapter<Multi
             }
         }
         return selected;
-    }
+    }*/
 }

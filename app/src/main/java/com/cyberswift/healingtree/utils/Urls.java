@@ -18,6 +18,8 @@ public interface Urls {
   /**
    * Api's Home care
    * */
-  String HOME_CARE_ATTENDANCE = "health_care/lists";
+  String HOME_CARE_ATTENDANCE_LIST = "health_care/lists";
+  String  HOME_CARE_ATTENDANCE_DATA_POST = "services/request_service/post";
+
 
 }

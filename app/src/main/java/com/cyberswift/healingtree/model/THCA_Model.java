@@ -11,7 +11,7 @@ public class THCA_Model {
     @SerializedName("HCS_DESCRIPTION")
     private String homeCareServiceDescribtion;
 
-    private boolean isChecked = false;
+    private boolean isChecked;
 
 
     public String getHomeCareServiceId() {
@@ -38,7 +38,7 @@ public class THCA_Model {
         this.homeCareServiceDescribtion = homeCareServiceDescribtion;
     }
 
-    public boolean isChecked() {
+    public boolean getChecked() {
         return isChecked;
     }
 

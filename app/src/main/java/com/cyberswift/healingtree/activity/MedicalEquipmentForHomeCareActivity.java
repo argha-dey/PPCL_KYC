@@ -140,8 +140,7 @@ private RecyclerView rcv_medical_equipment_charges;
     private void setWeOfferInAdapter(ArrayList<THCA_Model> medicalWeOfferList) {
         rcv_we_offer.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
         rcv_we_offer.setItemAnimator(new DefaultItemAnimator());
-        MultiSelectionAdapter multiSelectionAdapter = new MultiSelectionAdapter(mContext);
-        multiSelectionAdapter.setTrainedHomeCareAttendanceListData(medicalWeOfferList,Constants.MEDICALE_EQUIPMENT_SERVICE);
+        MultiSelectionAdapter multiSelectionAdapter = new MultiSelectionAdapter(mContext,medicalWeOfferList,Constants.MEDICALE_EQUIPMENT_SERVICE);
         rcv_we_offer.setAdapter(multiSelectionAdapter);
 
 

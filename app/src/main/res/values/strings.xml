@@ -45,4 +45,9 @@
         \n \n Home Health Care offers a wide range of medical equipment for rent or purchase to make health care more accessible and affordable for you
     </string>
 
+    <string name="gold_membership_text">"Gold Membership"</string>
+    <string name="platinum_membership_text">"Platinum Membership"</string>
+    <string name="diamond_membership_text">"Diamond Membership"</string>
+    <string name="privilage_club_packages_button_text">"Privilege Club Packages"</string>
+    <string name="privilage_explained_string">"For a small fee every year, we will take care of all your medical requirements. From priority appointments to home delivery of medicines, every aspect of treatment is looked after. And our coordinator will be available to you 24x7 for all your needs."</string>
 </resources>

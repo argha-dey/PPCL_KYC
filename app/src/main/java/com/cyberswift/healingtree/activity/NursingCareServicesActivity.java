@@ -54,7 +54,6 @@ private ArrayList<HCAC_Model> nursingCareChargesList;
         rcv_nursing_offer = findViewById(R.id.rcv_nursing_offer);
     }
 
-
     public void onNursingCareBackButtonClick(View view) {
         finish();
     }

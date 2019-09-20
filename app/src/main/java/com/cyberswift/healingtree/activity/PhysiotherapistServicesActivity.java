@@ -127,8 +127,7 @@ private RecyclerView rcv_physiotherapists_charges;
 
         rcv_type_of_injuries_disabilities.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         rcv_type_of_injuries_disabilities.setItemAnimator(new DefaultItemAnimator());
-        MultiSelectionAdapter multiSelectionAdapter = new MultiSelectionAdapter(mContext);
-        multiSelectionAdapter.setTrainedHomeCareAttendanceListData(physiotherapistInjuriesTypeList, Constants.PHYSIOTHERAPIST_SERVICES);
+        MultiSelectionAdapter multiSelectionAdapter = new MultiSelectionAdapter(mContext,physiotherapistInjuriesTypeList, Constants.PHYSIOTHERAPIST_SERVICES);
         rcv_type_of_injuries_disabilities.setAdapter(multiSelectionAdapter);
 
     }

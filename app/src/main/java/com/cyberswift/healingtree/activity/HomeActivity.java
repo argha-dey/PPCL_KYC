@@ -50,12 +50,16 @@ public class HomeActivity extends BaseActivity {
 
 
     public void OneHealingTreeMembershipClick(View view) {
-        goToUrl ( "http://thehealingtree.org/club");
+    //    goToUrl ( "http://thehealingtree.org/club");
+
+        Intent i = new Intent(activity, MembershipFacilityActivity.class);
+        startActivity(i);
     }
 
 
     public void onOrderMedicines(View view) {
-        Toast.makeText(activity,"Available Shortly",Toast.LENGTH_LONG).show();
+        Intent i = new Intent(activity, OrderMedicineActivity.class);
+        startActivity(i);
     }
 
     public void onHealthLibrary(View view) {

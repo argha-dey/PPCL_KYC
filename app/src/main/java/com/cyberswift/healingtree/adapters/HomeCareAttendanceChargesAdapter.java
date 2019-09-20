@@ -16,10 +16,10 @@ import java.util.ArrayList;
 
 public class HomeCareAttendanceChargesAdapter extends  RecyclerView.Adapter<HomeCareAttendanceChargesAdapter.ViewHolder> {
 
-private ArrayList<HCAC_Model> chargesList;
+public static ArrayList<HCAC_Model> chargesList;
 private Context context;
 
-private int lastSelectedPosition = -1;
+    public static  int lastSelectedPosition = -1;
 
 public HomeCareAttendanceChargesAdapter(Context _context, ArrayList<HCAC_Model> _chargesList) {
         chargesList = _chargesList;

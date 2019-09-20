@@ -15,10 +15,10 @@ import java.util.ArrayList;
 
 public class HomeCareAttandanceSpacialOfferAdapter  extends  RecyclerView.Adapter<HomeCareAttandanceSpacialOfferAdapter.ViewHolder> {
 
-    private ArrayList<SO_Model> spacialOffersList;
+    public static ArrayList<SO_Model> spacialOffersList;
     private Context context;
 
-    private int lastSelectedPosition = -1;
+    public static int lastSelectedPosition = -1;
 
     public HomeCareAttandanceSpacialOfferAdapter(Context _context, ArrayList<SO_Model> _spacialOffersList) {
         spacialOffersList = _spacialOffersList;

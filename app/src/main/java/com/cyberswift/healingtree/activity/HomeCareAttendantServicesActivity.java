@@ -100,7 +100,7 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity {
     }
 
     public void onBookViaAppForHomeCareAttendantSeries(View view) {
-        Toast.makeText(mContext, "Available Shortly ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, "Available on Shortly ", Toast.LENGTH_SHORT).show();
     }
 
     public void fetchHomeCareData() {

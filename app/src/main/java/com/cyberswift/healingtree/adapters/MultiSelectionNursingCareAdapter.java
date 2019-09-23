@@ -1,44 +1,65 @@
 package com.cyberswift.healingtree.adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.model.THCA_Model;
 
 import java.util.ArrayList;
 
-public class MultiSelectionNursingCareAdapter extends RecyclerView.Adapter<MultiSelectionNursingCareAdapter.MultiViewHolder> {
+public class MultiSelectionNursingCareAdapter extends RecyclerView.Adapter<MultiSelectionNursingCareAdapter.MyViewHolder> {
 
-    private Context context;
-    private ArrayList<THCA_Model> taineHomeCareAttendanceList;
+    private LayoutInflater inflater;
+    private String servicesType;
+    public static ArrayList<THCA_Model> taineHomeCareAttendanceList;
+    private Context ctx;
 
-    public MultiSelectionNursingCareAdapter(Context context) {
-        this.context = context;
-        taineHomeCareAttendanceList = new ArrayList<>();
-    }
-
-    public void setTrainedHomeCareAttendanceListData(ArrayList<THCA_Model> employees) {
-        this.taineHomeCareAttendanceList = new ArrayList<>();
-        this.taineHomeCareAttendanceList = employees;
-        notifyDataSetChanged();
-    }
-
-    @NonNull
-    @Override
-    public MultiViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.nursing_care_offer_item, viewGroup, false);
-        return new MultiViewHolder(view);
+    public MultiSelectionNursingCareAdapter(Context ctx, ArrayList<THCA_Model> _taineHomeCareAttendanceList,String _servicesType) {
+        inflater = LayoutInflater.from(ctx);
+        this.taineHomeCareAttendanceList = _taineHomeCareAttendanceList;
+        this.servicesType =_servicesType;
+        this.ctx = ctx;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MultiViewHolder multiViewHolder, int position) {
-        multiViewHolder.bind(taineHomeCareAttendanceList.get(position));
+    public MultiSelectionNursingCareAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        View view = inflater.inflate(R.layout.nursing_care_offer_item, parent, false);
+        MultiSelectionNursingCareAdapter.MyViewHolder holder = new MultiSelectionNursingCareAdapter.MyViewHolder(view);
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(final MultiSelectionNursingCareAdapter.MyViewHolder holder, int position) {
+
+
+        holder.nursing_cb.setChecked(taineHomeCareAttendanceList.get(position).getChecked());
+        holder.tv_trained_help_in.setText(taineHomeCareAttendanceList.get(position).getHomeCareServiceName());
+        holder.tv_nursing_care_details.setText(taineHomeCareAttendanceList.get(position).getHomeCareServiceDescribtion());
+        holder.nursing_cb.setTag(position);
+        holder.nursing_cb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Integer pos = (Integer) holder.nursing_cb.getTag();
+                Toast.makeText(ctx, taineHomeCareAttendanceList.get(pos).getHomeCareServiceName() + " clicked!", Toast.LENGTH_SHORT).show();
+
+                if (taineHomeCareAttendanceList.get(pos).getChecked()) {
+                    taineHomeCareAttendanceList.get(pos).setChecked(false);
+                } else {
+                    taineHomeCareAttendanceList.get(pos).setChecked(true);
+                }
+            }
+        });
+
+
     }
 
     @Override
@@ -46,45 +67,18 @@ public class MultiSelectionNursingCareAdapter extends RecyclerView.Adapter<Multi
         return taineHomeCareAttendanceList.size();
     }
 
-    class MultiViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tv_trained_help_in;
         private CheckBox nursing_cb;
         private TextView   tv_nursing_care_details;
 
-
-        MultiViewHolder(@NonNull View itemView) {
+        public MyViewHolder(View itemView) {
             super(itemView);
             tv_trained_help_in = itemView.findViewById(R.id.tv_trained_help_in);
             nursing_cb = itemView.findViewById(R.id.nursing_cb);
             tv_nursing_care_details = itemView.findViewById(R.id.tv_nursing_care_details);
         }
 
-        void bind(final THCA_Model trainedHomeCareAttendanceList) {
-          //  cb.setVisibility(trainedHomeCareAttendanceList.isChecked() ? View.VISIBLE : View.GONE);
-            tv_trained_help_in.setText(trainedHomeCareAttendanceList.getHomeCareServiceName());
-            tv_nursing_care_details.setText(trainedHomeCareAttendanceList.getHomeCareServiceDescribtion());
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                //    trainedHomeCareAttendanceList.setChecked(!trainedHomeCareAttendanceList.isChecked());
-                   // cb.setVisibility(trainedHomeCareAttendanceList.isChecked() ? View.VISIBLE : View.GONE);
-                }
-            });
-        }
     }
-
-    public ArrayList<THCA_Model> getAll() {
-        return taineHomeCareAttendanceList;
-    }
-
-/*    public ArrayList<THCA_Model> getSelected() {
-        ArrayList<THCA_Model> selected = new ArrayList<>();
-        for (int i = 0; i < taineHomeCareAttendanceList.size(); i++) {
-            if (taineHomeCareAttendanceList.get(i).isChecked()) {
-                selected.add(taineHomeCareAttendanceList.get(i));
-            }
-        }
-        return selected;
-    }*/
 }

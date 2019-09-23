@@ -11,6 +11,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 import com.cyberswift.healingtree.R;
@@ -23,9 +24,6 @@ import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.Constants;
 import com.cyberswift.healingtree.utils.Utils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +32,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.cyberswift.healingtree.adapters.HomeCareAttandanceSpacialOfferAdapter.lastSelectedPosition;
+import static com.cyberswift.healingtree.adapters.HomeCareAttandanceSpacialOfferAdapter.lastSelectedPositionSOA;
+import static com.cyberswift.healingtree.adapters.HomeCareAttendanceChargesAdapter.lastSelectedPositionOfACA;
 
 public class HomeCareAttendantServicesActivity extends AppCompatActivity {
     private Context mContext;
@@ -87,6 +86,13 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity {
 
 
     public void onHomeCareAttendanceBackButtonClick(View view) {
+        resetData();
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        resetData();
         finish();
     }
 
@@ -170,57 +176,70 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity {
     }
 
     public void onHomeCareAttendantServicesProcessToPay(View view) {
-        ArrayList<String> selectedTargetItemId = new ArrayList<>();
+        String service_id_list = "";
+                ArrayList<String> selectedTargetItemId = new ArrayList<>();
         for (int i = 0; i < MultiSelectionAdapter.taineHomeCareAttendanceList.size(); i++) {
             if (MultiSelectionAdapter.taineHomeCareAttendanceList.get(i).getChecked()) {
-                Toast.makeText(mContext,": "+ MultiSelectionAdapter.taineHomeCareAttendanceList.get(i).getHomeCareServiceId(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, ": " + MultiSelectionAdapter.taineHomeCareAttendanceList.get(i).getHomeCareServiceId(), Toast.LENGTH_SHORT).show();
                 selectedTargetItemId.add(MultiSelectionAdapter.taineHomeCareAttendanceList.get(i).getHomeCareServiceId());
             }
         }
-
-        String SpacialofferId = HomeCareAttandanceSpacialOfferAdapter.spacialOffersList.get(lastSelectedPosition).getHomeCareServiceSpacialId();
-        Toast.makeText(mContext," "+ SpacialofferId,Toast.LENGTH_SHORT).show();
-
-        String chargesAmountId = HomeCareAttendanceChargesAdapter.chargesList.get(lastSelectedPosition).getHomeCareAttandanceChargeId();
-        Toast.makeText(mContext,": "+ chargesAmountId,Toast.LENGTH_SHORT).show();
+         service_id_list =   TextUtils.join(",", selectedTargetItemId);
 
 
-        JSONArray array = new JSONArray();
-        for(int i=0;i<selectedTargetItemId.size();i++){
-            JSONObject obj=new JSONObject();
-            try {
-                obj.put(""+i,selectedTargetItemId.get(i));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            array.put(obj);
+        String SpacialofferId = "";
+        if(lastSelectedPositionSOA >= 0) {
+            SpacialofferId = HomeCareAttandanceSpacialOfferAdapter.spacialOffersList.get(lastSelectedPositionSOA).getHomeCareServiceSpacialId();
         }
 
-        Map<String, String> requestBody = new HashMap<>();
-        requestBody.put("user_id", "4");
-        requestBody.put("service_type_id", selectedTargetItemId.toString());
-        requestBody.put("charges", chargesAmountId);
-        requestBody.put("offer",SpacialofferId);
-        requestBody.put("service_date", "20-09-2019");
-        requestBody.put("marchant_name", "Admin");
-        requestBody.put("card_no", "41414141414141");
-        requestBody.put("date_of_expiry", "12-08-2025");
-        requestBody.put("cvv", "569");
-        System.out.println("JSON RESPONSE: "+new JSONObject(requestBody));
-        ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
-        Call<HomeCareAttendantDataPostResponseModel> call = apiService.getHomeCareAttandanceDataPost(requestBody);
-        call.enqueue(new Callback<HomeCareAttendantDataPostResponseModel>() {
-            @Override
-            public void onResponse(Call<HomeCareAttendantDataPostResponseModel> call, Response<HomeCareAttendantDataPostResponseModel> response) {
+        String chargesAmountId = "";
+        if(lastSelectedPositionOfACA >= 0) {
+            chargesAmountId =   HomeCareAttendanceChargesAdapter.chargesList.get(lastSelectedPositionOfACA).getHomeCareAttandanceChargeId();
+        }
 
+
+
+        if (selectedTargetItemId.size()>0){
+            if(!chargesAmountId.equals("")) {
+                final Map<String, String> requestBody = new HashMap<>();
+                requestBody.put("user_id", "4");
+                requestBody.put("service_type_id",Constants.HOME_CARE_ATTENDANT);
+                requestBody.put("service_id", service_id_list);
+                requestBody.put("charges", chargesAmountId);
+                requestBody.put("offer", SpacialofferId);
+                requestBody.put("service_date", "20-09-2019");
+                requestBody.put("marchant_name", "Admin");
+                requestBody.put("card_no", "41414141414141");
+                requestBody.put("date_of_expiry", "12-08-2025");
+                requestBody.put("cvv", "569");
+                ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
+                Call<HomeCareAttendantDataPostResponseModel> call = apiService.getHomeCareAttandanceDataPost(requestBody);
+                call.enqueue(new Callback<HomeCareAttendantDataPostResponseModel>() {
+                    @Override
+                    public void onResponse(Call<HomeCareAttendantDataPostResponseModel> call, Response<HomeCareAttendantDataPostResponseModel> response) {
+                        Toast.makeText(mContext, "Booking Successfully Done.", Toast.LENGTH_SHORT).show();
+                        resetData();
+                        Intent intentHome = new Intent(mContext, ConfirmationDoneActivity.class);
+                        startActivity(intentHome);
+                    }
+
+                    @Override
+                    public void onFailure(Call<HomeCareAttendantDataPostResponseModel> call, Throwable t) {
+                        System.out.println("Failure  : ");
+                    }
+                });
             }
+            else
+                Utils.showAlertDialogWithOkButton(mContext,"Alert!","Please Select Any  Home Care Attendance Charges");
+        }else
+            Utils.showAlertDialogWithOkButton(mContext,"Alert!","Please Select Any Trained Home Care Attendance Service.");
+    }
 
-            @Override
-            public void onFailure(Call<HomeCareAttendantDataPostResponseModel> call, Throwable t) {
-
-            }
-        });
-
-
+    private  void resetData(){
+        MultiSelectionAdapter.taineHomeCareAttendanceList.clear();
+        HomeCareAttandanceSpacialOfferAdapter.spacialOffersList.clear();
+        lastSelectedPositionSOA = -1;
+        HomeCareAttendanceChargesAdapter.chargesList.clear();
+        lastSelectedPositionOfACA = -1;
     }
 }

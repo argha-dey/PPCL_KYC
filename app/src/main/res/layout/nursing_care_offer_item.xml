@@ -42,7 +42,6 @@ android:orientation="vertical"
     <TextView
             android:id="@+id/tv_nursing_care_details"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             android:textColor="@color/colorBlack"
             android:text="Demo"
             android:layout_width="match_parent"

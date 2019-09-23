@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.model.TimeSlotModel;
 
@@ -65,9 +64,6 @@ public class MorningTimeSlotAdapter extends  RecyclerView.Adapter<MorningTimeSlo
                     lastSelectedPosition = getAdapterPosition();
                     notifyDataSetChanged();
 
-                    Toast.makeText(MorningTimeSlotAdapter.this.context,
-                            "offer is " + chargesAmount.getText(),
-                            Toast.LENGTH_LONG).show();
                 }
             });
         }

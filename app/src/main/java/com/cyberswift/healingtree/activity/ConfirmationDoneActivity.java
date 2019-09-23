@@ -19,7 +19,6 @@ public class ConfirmationDoneActivity  extends Activity {
     private void initViewsConfirmBooking() {
         activity = ConfirmationDoneActivity.this;
     }
-
     public  void onBookingDone(View view){
         Intent intentHome = new Intent(activity, HomeActivity.class);
         intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -28,4 +27,9 @@ public class ConfirmationDoneActivity  extends Activity {
     }
 
 
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }

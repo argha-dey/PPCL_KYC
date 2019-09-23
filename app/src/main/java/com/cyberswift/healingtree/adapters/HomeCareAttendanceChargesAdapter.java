@@ -7,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.model.HCAC_Model;
-
 
 import java.util.ArrayList;
 
@@ -19,7 +17,7 @@ public class HomeCareAttendanceChargesAdapter extends  RecyclerView.Adapter<Home
 public static ArrayList<HCAC_Model> chargesList;
 private Context context;
 
-    public static  int lastSelectedPosition = -1;
+    public static  int lastSelectedPositionOfACA = -1;
 
 public HomeCareAttendanceChargesAdapter(Context _context, ArrayList<HCAC_Model> _chargesList) {
         chargesList = _chargesList;
@@ -41,7 +39,7 @@ public void onBindViewHolder(HomeCareAttendanceChargesAdapter.ViewHolder holder,
     HCAC_Model offersModel = chargesList.get(position);
         holder.chargesAmount.setText("₹"+offersModel.getHomeCareAttandanceCharges());
         holder.chargesHour.setText(offersModel.getHomeCareAttandanceDuration());
-        holder.selectionCharges.setChecked(lastSelectedPosition == position);
+        holder.selectionCharges.setChecked(lastSelectedPositionOfACA == position);
         }
 
 @Override
@@ -64,12 +62,9 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         selectionCharges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lastSelectedPosition = getAdapterPosition();
+                lastSelectedPositionOfACA = getAdapterPosition();
                 notifyDataSetChanged();
 
-                Toast.makeText(HomeCareAttendanceChargesAdapter.this.context,
-                        "selected offer is " + chargesAmount.getText(),
-                        Toast.LENGTH_LONG).show();
             }
         });
     }

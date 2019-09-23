@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.model.SO_Model;
 
@@ -18,7 +17,7 @@ public class HomeCareAttandanceSpacialOfferAdapter  extends  RecyclerView.Adapte
     public static ArrayList<SO_Model> spacialOffersList;
     private Context context;
 
-    public static int lastSelectedPosition = -1;
+    public static int lastSelectedPositionSOA = -1;
 
     public HomeCareAttandanceSpacialOfferAdapter(Context _context, ArrayList<SO_Model> _spacialOffersList) {
         spacialOffersList = _spacialOffersList;
@@ -40,7 +39,7 @@ public class HomeCareAttandanceSpacialOfferAdapter  extends  RecyclerView.Adapte
         SO_Model offersModel = spacialOffersList.get(position);
         holder.chargesAmount.setText(offersModel.getHomeCareServiceSpacialCharges()+"%");
         holder.chargesDays.setText(offersModel.getHomeCareServiceSpacialDuration());
-        holder.selectionCharges.setChecked(lastSelectedPosition == position);
+        holder.selectionCharges.setChecked(lastSelectedPositionSOA == position);
     }
 
     @Override
@@ -63,12 +62,9 @@ public class HomeCareAttandanceSpacialOfferAdapter  extends  RecyclerView.Adapte
             selectionCharges.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    lastSelectedPosition = getAdapterPosition();
+                    lastSelectedPositionSOA = getAdapterPosition();
                     notifyDataSetChanged();
 
-                    Toast.makeText(HomeCareAttandanceSpacialOfferAdapter.this.context,
-                            "offer is " + chargesAmount.getText(),
-                            Toast.LENGTH_LONG).show();
                 }
             });
         }

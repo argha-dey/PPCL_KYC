@@ -178,6 +178,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp">
                         <TextView
+                                android:onClick="onNursingCareServicesProcess"
                                 android:gravity="center"
                                 android:background="@color/colorPrimary"
                                 android:textColor="@color/colorGreen"

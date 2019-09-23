@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.model.HCAC_Model;
 
@@ -15,10 +14,10 @@ import java.util.ArrayList;
 
 public class DiagnosticsAtHomeAdapter extends  RecyclerView.Adapter<DiagnosticsAtHomeAdapter.ViewHolder> {
 
-    private ArrayList<HCAC_Model> chargesList;
+    public static ArrayList<HCAC_Model> chargesList;
     private Context context;
 
-    private int lastSelectedPosition = -1;
+    public static int lastSelectedPositionDAH = -1;
 
     public DiagnosticsAtHomeAdapter (Context _context, ArrayList<HCAC_Model> _chargesList) {
         chargesList = _chargesList;
@@ -41,7 +40,7 @@ public class DiagnosticsAtHomeAdapter extends  RecyclerView.Adapter<DiagnosticsA
         holder.item_name.setText(offersModel.getHomeCareAttandanceDuration());
         holder.item_id.setText(offersModel.getHomeCareAttandanceChargeId());
         holder.charges_amount.setText("₹"+offersModel.getHomeCareAttandanceCharges());
-        holder.selectionCharges.setChecked(lastSelectedPosition == position);
+        holder.selectionCharges.setChecked(lastSelectedPositionDAH == position);
     }
 
     @Override
@@ -67,12 +66,9 @@ public class DiagnosticsAtHomeAdapter extends  RecyclerView.Adapter<DiagnosticsA
             selectionCharges.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    lastSelectedPosition = getAdapterPosition();
+                    lastSelectedPositionDAH = getAdapterPosition();
                     notifyDataSetChanged();
 
-                    Toast.makeText(DiagnosticsAtHomeAdapter.this.context,
-                            "selected offer is " + charges_amount.getText(),
-                            Toast.LENGTH_LONG).show();
                 }
             });
         }

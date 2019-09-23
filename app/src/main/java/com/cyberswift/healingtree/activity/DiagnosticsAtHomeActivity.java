@@ -15,12 +15,14 @@ import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.adapters.DiagnosticsAtHomeAdapter;
 import com.cyberswift.healingtree.interfaces.AlertDialogWithCancelAndRetryListener;
-import com.cyberswift.healingtree.model.HealthCareResponseModel;
 import com.cyberswift.healingtree.model.HCAC_Model;
+import com.cyberswift.healingtree.model.HealthCareResponseModel;
+import com.cyberswift.healingtree.model.HomeCareAttendantDataPostResponseModel;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.Constants;
 import com.cyberswift.healingtree.utils.Utils;
+import org.json.JSONObject;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,6 +30,8 @@ import retrofit2.Response;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.cyberswift.healingtree.adapters.DiagnosticsAtHomeAdapter.lastSelectedPositionDAH;
 
 public class DiagnosticsAtHomeActivity extends AppCompatActivity {
 private Context mContext;
@@ -48,6 +52,13 @@ private Context mContext;
 
 
     public void onDiagnosticsAtHomeBackButtonClick(View view) {
+        resetData();
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        resetData();
         finish();
     }
 
@@ -121,5 +132,51 @@ private Context mContext;
         DiagnosticsAtHomeAdapter homeCareAdapter = new DiagnosticsAtHomeAdapter(mContext, homeCareAttendantChargesList);
         diagnostics_charges_RecyclerView.setAdapter(homeCareAdapter);
 
+    }
+
+    public void onDiagnosticsProcess(View view) {
+        String chargesAmountId = "";
+        if(lastSelectedPositionDAH >= 0) {
+            chargesAmountId = DiagnosticsAtHomeAdapter.chargesList.get(lastSelectedPositionDAH).getHomeCareAttandanceChargeId();
+        }
+
+            if(!chargesAmountId.equals("")) {
+                final Map<String, String> requestBody = new HashMap<>();
+                requestBody.put("user_id", "4");
+                requestBody.put("service_type_id",Constants.DIAGNOSTICS_AT_HOME);
+                requestBody.put("service_id", "");
+                requestBody.put("charges", chargesAmountId);
+                requestBody.put("offer", "");
+                requestBody.put("service_date", "20-09-2019");
+                requestBody.put("marchant_name", "Admin");
+                requestBody.put("card_no", "41414141414141");
+                requestBody.put("date_of_expiry", "12-08-2025");
+                requestBody.put("cvv", "569");
+                System.out.println("response : "+new JSONObject(requestBody));
+                ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
+                Call<HomeCareAttendantDataPostResponseModel> call = apiService.getHomeCareAttandanceDataPost(requestBody);
+                call.enqueue(new Callback<HomeCareAttendantDataPostResponseModel>() {
+                    @Override
+                    public void onResponse(Call<HomeCareAttendantDataPostResponseModel> call, Response<HomeCareAttendantDataPostResponseModel> response) {
+                        Toast.makeText(mContext, "Booking Successfully Done.", Toast.LENGTH_SHORT).show();
+                        resetData();
+                        Intent intentHome = new Intent(mContext, ConfirmationDoneActivity.class);
+                        startActivity(intentHome);
+                    }
+
+                    @Override
+                    public void onFailure(Call<HomeCareAttendantDataPostResponseModel> call, Throwable t) {
+                        Toast.makeText(mContext, "Booking Failure.", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+            }
+            else
+                Utils.showAlertDialogWithOkButton(mContext,"Alert!","Please Select Any Charges");
+
+    }
+    protected void resetData(){
+        DiagnosticsAtHomeAdapter.chargesList.clear();
+        lastSelectedPositionDAH = -1;
     }
 }

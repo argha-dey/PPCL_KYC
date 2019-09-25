@@ -24,7 +24,7 @@ public class FragmentTimeSlot extends Fragment {
     private Activity activity;
     private ArrayList<DoctorListModel> doctorListModels;
     private LayoutInflater layoutInflater;
-    private LinearLayout ll_time_slot_list;
+    private LinearLayout ll_time_slot_container;
     private Prefs prefs;
     private ArrayList<TimeSlotModel> timeSlotModelArrayList;
     private RecyclerView rcv_morningTimeSlot;
@@ -52,24 +52,17 @@ public class FragmentTimeSlot extends Fragment {
     }
 
     private void initComponent(View v) {
-
-
-
         activity = getActivity();
         prefs = new Prefs(activity);
-        rcv_morningTimeSlot = getActivity().findViewById(R.id.rcv_morningTimeSlot);
-
-
-
-
-        this.ll_time_slot_list = (LinearLayout) v.findViewById(R.id.ll_time_slot_container);
+        rcv_morningTimeSlot =v.findViewById(R.id.rcv_morningTimeSlot);
+        //this.ll_time_slot_container = v.findViewById(R.id.ll_time_slot_container);
 
 
 // Static Data Set End
 
         if (doctorListModels != null) {
-                    setTimeSlotModelArrayList(timeSlotModelArrayList);
-
+            timeSlotModelArrayList = doctorListModels.get(0).getTime_slot();
+            setTimeSlotModelArrayList(timeSlotModelArrayList);
         }
     }
 
@@ -78,6 +71,14 @@ public class FragmentTimeSlot extends Fragment {
 
     // Set Home Care Attendance Trained Help Adapter
     private void setTimeSlotModelArrayList(ArrayList<TimeSlotModel> _morningTimeSlot) {
+        for(int pos =0 ; pos<_morningTimeSlot.size();pos++) {
+         /*   layoutInflater = (LayoutInflater) activity.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View viewlayout = layoutInflater.inflate(R.layout.time_slot_row, null);
+            TextView time_slot_button = viewlayout.findViewById(R.id.time_slot_button);
+            time_slot_button.setText(""+_morningTimeSlot.get(pos).getTime());
+            ll_time_slot_container.addView(viewlayout);*/
+        }
+
         rcv_morningTimeSlot.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rcv_morningTimeSlot.setItemAnimator(new DefaultItemAnimator());
         MorningTimeSlotAdapter morningTimeSlotAdapter = new MorningTimeSlotAdapter(getActivity(), _morningTimeSlot);

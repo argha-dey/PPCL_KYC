@@ -3,11 +3,11 @@ package com.cyberswift.healingtree.retrofit;
 
 import com.cyberswift.healingtree.model.*;
 import com.cyberswift.healingtree.utils.Urls;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Url;
+import retrofit2.http.*;
 
 import java.util.Map;
 
@@ -34,4 +34,21 @@ public interface ApiInterface {
     Call<HomeCareAttendantDataPostResponseModel> getHomeCareAttandanceDataPost(@Body Map<String, String> body);
 
 
+
+    @POST("prescription/upload_prepcription/post")
+    Call<PrescriptionUploadResponceModel> uploadMultiFile(@Body RequestBody file);
+
+    @Multipart
+    @POST("prescription/upload_prepcription/post")
+    Call<ResponseBody> upload(
+            @Part("user_id") RequestBody user_id,
+            @Part("reamrks") RequestBody reamrks,
+            @Part MultipartBody.Part file
+    );
+
+    @Multipart
+    @POST("prescription/upload_prepcription/post")
+    Call<PrescriptionUploadResponceModel> updateProfile(@Part("user_id") RequestBody id,
+                                                              @Part MultipartBody.Part image,
+                                                              @Part("reamrks") RequestBody other);
 }

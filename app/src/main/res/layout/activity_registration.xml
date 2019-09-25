@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent" xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:background="@color/colorWhite"
+        android:background="@color/colorPrimary"
         android:layout_height="match_parent"
         tools:context=".activity.RegistrationActivity">
 
@@ -12,7 +13,7 @@
             android:padding="10dp"
             android:gravity="right"
             android:textSize="16sp"
-            android:textColor="@color/green_text_color"
+            android:textColor="@color/colorGreen"
             android:text="Back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -35,9 +36,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"/>
                 <TextView
+                        android:textSize="18sp"
                         android:gravity="center"
                         android:text="REGISTER"
-                        android:textColor="#1B1A1A"
+                        android:textColor="@color/colorGreen"
                         android:textStyle="bold"
                         android:layout_weight="3"
                         android:layout_width="0dp"
@@ -56,10 +58,11 @@
                     android:paddingBottom="10dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginStart="15dp"
-                    android:background="@drawable/filed_edit_text_bg_border"
+                    android:background="@drawable/border_white_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <EditText
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:maxLength="30"
                         android:hint="First Name"
                         android:background="@android:color/transparent"
@@ -71,8 +74,8 @@
                         android:gravity="center|left"
                         android:maxLines="1"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/text_color"
-                       android:textColorHint="@color/text_hint_color"/>
+                        android:textColor="@color/colorWhite"
+                       android:textColorHint="@color/colorGreen"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -83,10 +86,11 @@
                     android:paddingBottom="10dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginStart="15dp"
-                    android:background="@drawable/filed_edit_text_bg_border"
+                    android:background="@drawable/border_white_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <EditText
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:maxLength="30"
                         android:hint="Last Name"
                         android:background="@android:color/transparent"
@@ -98,8 +102,8 @@
                         android:gravity="center|left"
                         android:maxLines="1"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/text_color"
-                        android:textColorHint="@color/text_hint_color"/>
+                         android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorGreen"/>
             </RelativeLayout>
 
 
@@ -111,10 +115,11 @@
                     android:paddingBottom="10dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginStart="15dp"
-                    android:background="@drawable/filed_edit_text_bg_border"
+                    android:background="@drawable/border_white_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <EditText
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:maxLength="30"
                         android:inputType="textEmailAddress"
                         android:hint="Email"
@@ -127,8 +132,8 @@
                         android:gravity="center|left"
                         android:maxLines="1"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/text_color"
-                        android:textColorHint="@color/text_hint_color"/>
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorGreen"/>
             </RelativeLayout>
 
             <LinearLayout
@@ -143,11 +148,12 @@
                         android:paddingBottom="10dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/filed_edit_text_bg_border"
+                        android:background="@drawable/border_white_box"
                         android:layout_width="0dp"
                         android:layout_weight="3"
                         android:layout_height="wrap_content">
                     <EditText
+                            android:textCursorDrawable="@drawable/color_cursor"
                             android:maxLength="2"
                             android:inputType="phone"
                             android:hint="Age"
@@ -160,19 +166,20 @@
                             android:gravity="center|left"
                             android:maxLines="1"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/text_color"
-                            android:textColorHint="@color/text_hint_color"/>
+                            android:textColor="@color/colorWhite"
+                            android:textColorHint="@color/colorGreen"/>
                 </RelativeLayout>
                 <RelativeLayout
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         android:layout_marginEnd="15dp"
                         android:layout_marginStart="5dp"
-                        android:background="@drawable/filed_edit_text_bg_border"
+                        android:background="@drawable/border_white_box"
                         android:layout_width="0dp"
                         android:layout_weight="7"
                         android:layout_height="wrap_content">
                     <EditText
+                            android:textCursorDrawable="@drawable/color_cursor"
                             android:maxLength="6"
                             android:inputType="phone"
                             android:hint="Zip Code"
@@ -185,8 +192,8 @@
                             android:gravity="center|left"
                             android:maxLines="1"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/text_color"
-                            android:textColorHint="@color/text_hint_color"/>
+                            android:textColor="@color/colorWhite"
+                            android:textColorHint="@color/colorGreen"/>
                 </RelativeLayout>
 
             </LinearLayout>
@@ -199,10 +206,11 @@
                     android:paddingBottom="10dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginStart="15dp"
-                    android:background="@drawable/filed_edit_text_bg_border"
+                    android:background="@drawable/border_white_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <EditText
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:maxLength="10"
                         android:inputType="phone"
                         android:hint="Phone No.1*"
@@ -215,8 +223,8 @@
                         android:gravity="center|left"
                         android:maxLines="1"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/text_color"
-                        android:textColorHint="@color/text_hint_color" />
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorGreen" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -227,10 +235,11 @@
                     android:paddingBottom="10dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginStart="15dp"
-                    android:background="@drawable/filed_edit_text_bg_border"
+                    android:background="@drawable/border_white_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <EditText
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:maxLength="10"
                         android:inputType="phone"
                         android:hint="Phone No.2"
@@ -243,8 +252,8 @@
                         android:gravity="center|left"
                         android:maxLines="1"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/text_color"
-                        android:textColorHint="@color/text_hint_color"/>
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorGreen"/>
             </RelativeLayout>
 
             <LinearLayout
@@ -259,7 +268,7 @@
                         android:paddingBottom="10dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/filed_edit_text_bg_border"
+                        android:background="@drawable/border_white_box"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content">
@@ -273,15 +282,15 @@
                             android:gravity="center|left"
                             android:maxLines="1"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/text_color"
-                            android:textColorHint="@color/text_hint_color" />
+                            android:textColor="@color/colorWhite"
+                            android:textColorHint="@color/colorGreen" />
                 </RelativeLayout>
                 <RelativeLayout
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         android:layout_marginEnd="15dp"
                         android:layout_marginStart="5dp"
-                        android:background="@drawable/filed_edit_text_bg_border"
+                        android:background="@drawable/border_white_box"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content">
@@ -296,8 +305,7 @@
                             android:gravity="center|left"
                             android:maxLines="1"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/text_color"
-                            android:textColorHint="@color/text_hint_color" />
+                            android:textColorHint="@color/colorGreen" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -310,11 +318,11 @@
                     android:paddingBottom="10dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginStart="15dp"
-                    android:background="@drawable/filed_edit_text_bg_border"
+                    android:background="@drawable/border_white_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <EditText
-
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:maxLength="60"
                         android:hint="Address"
                         android:background="@android:color/transparent"
@@ -323,28 +331,79 @@
                         android:layout_height="80dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
-                        android:gravity="left|center_vertical"
+                        android:gravity="left|top"
                         android:maxLines="3"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/text_color"
-                        android:textColorHint="@color/text_hint_color"/>
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorGreen"/>
             </RelativeLayout>
-            <RelativeLayout
-                    android:id="@+id/rl_user_name"
+<LinearLayout
+        android:id="@+id/ll_hospital_id"
+        android:layout_below="@+id/rl_address"
+        android:orientation="horizontal"
+        android:layout_width="match_parent" android:layout_height="40dp">
+            <TextView
+
+                    android:textSize="16sp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
-                    android:layout_below="@+id/rl_address"
+                    android:textColor="@color/colorGreen"
+                    android:text="Have you any Hospital Id? "
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="match_parent"/>
+
+            <RadioGroup
+                    android:layout_marginTop="15dp"
+
+                    android:id="@+id/rg_hospital_id_yes_no"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                <RadioButton
+                        android:onClick="onRadioButtonClicked"
+                        android:buttonTint="@color/colorWhite"
+                        android:textColor="@color/colorGreen"
+                        android:id="@+id/rb_no"
+                        android:checked="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NO" />
+
+                <RadioButton
+                        android:onClick="onRadioButtonClicked"
+                        android:buttonTint="@color/colorWhite"
+                        android:textColor="@color/colorGreen"
+                        android:id="@+id/rb_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="YES" />
+
+            </RadioGroup>
+</LinearLayout>
+
+            <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/rl_hospital_id"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/ll_hospital_id"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginStart="15dp"
-                    android:background="@drawable/filed_edit_text_bg_border"
+                    android:background="@drawable/border_white_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <EditText
+
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:maxLength="20"
-                        android:hint="User Id"
+                        android:hint="Hospital Id"
                         android:background="@android:color/transparent"
-                        android:id="@+id/tv_user_name"
+                        android:id="@+id/tv_hospital_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -352,21 +411,23 @@
                         android:gravity="center|left"
                         android:maxLines="1"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/text_color"
-                        android:textColorHint="@color/text_hint_color"/>
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorGreen"/>
             </RelativeLayout>
+
             <RelativeLayout
                     android:id="@+id/rl_password"
                     android:layout_marginTop="15dp"
-                    android:layout_below="@+id/rl_user_name"
+                    android:layout_below="@+id/rl_hospital_id"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginStart="15dp"
-                    android:background="@drawable/filed_edit_text_bg_border"
+                    android:background="@drawable/border_white_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <EditText
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:maxLength="20"
                         android:inputType="textPassword"
                         android:hint="Password"
@@ -379,8 +440,8 @@
                         android:gravity="left"
                         android:maxLines="1"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/text_color"
-                        android:textColorHint="@color/text_hint_color" />
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorGreen" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -391,10 +452,11 @@
                     android:paddingBottom="10dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginStart="15dp"
-                    android:background="@drawable/filed_edit_text_bg_border"
+                    android:background="@drawable/border_white_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <EditText
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:maxLength="20"
                         android:inputType="textPassword"
                         android:hint="Confirm Password"
@@ -407,8 +469,8 @@
                         android:gravity="left"
                         android:maxLines="1"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/text_color"
-                        android:textColorHint="@color/text_hint_color" />
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorGreen" />
             </RelativeLayout>
 
             <LinearLayout
@@ -423,7 +485,7 @@
                         android:paddingBottom="10dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/filed_edit_text_bg_border"
+                        android:background="@drawable/border_white_box"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content">
@@ -437,20 +499,20 @@
                             android:gravity="center"
                             android:maxLines="1"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/text_color" />
+                            android:textColor="@color/colorGreen" />
                 </RelativeLayout>
                 <RelativeLayout
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         android:layout_marginEnd="15dp"
                         android:layout_marginStart="5dp"
-                        android:background="@drawable/filed_edit_text_bg_border"
+                        android:background="@drawable/border_white_box"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content">
                     <TextView
 
-                            android:text="SAVE"
+                            android:text="SUBMIT"
                             android:background="@android:color/transparent"
                             android:id="@+id/tv_save"
                             android:layout_width="match_parent"
@@ -458,7 +520,7 @@
                             android:gravity="center"
                             android:maxLines="1"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/text_color"/>
+                            android:textColor="@color/colorGreen"/>
                 </RelativeLayout>
 
             </LinearLayout>

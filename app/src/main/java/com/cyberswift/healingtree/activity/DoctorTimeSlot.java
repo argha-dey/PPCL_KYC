@@ -75,7 +75,7 @@ public class DoctorTimeSlot extends AppCompatActivity {
                         sCalendar.set(year, monthOfYear, dayOfMonth);
                         SimpleDateFormat df =  new SimpleDateFormat("yyyy-MM-dd");
                         String surveyDate = df.format(sCalendar.getTime());
-                       // tv_date.setText(surveyDate);
+                        // tv_date.setText(surveyDate);
                     }
                 }, sCalendar.get(Calendar.YEAR), sCalendar.get(Calendar.MONTH), sCalendar.get(Calendar.DAY_OF_MONTH));
         sDatePickerDialog.show();
@@ -86,8 +86,8 @@ public class DoctorTimeSlot extends AppCompatActivity {
         weeklyTimeSlotHashMap = new HashMap<>();
         tabDateArrayList = new ArrayList<>();
         final Map<String, Object> requestBody = new HashMap<>();
-     //   requestBody.put("doc_id", doctorDetails.getDocId());
-     //   requestBody.put("date", doctorDetails.getDate());
+        //   requestBody.put("doc_id", doctorDetails.getDocId());
+        //   requestBody.put("date", doctorDetails.getDate());
         requestBody.put("doc_id","1");
         requestBody.put("date","2019-09-18");
 
@@ -111,7 +111,7 @@ public class DoctorTimeSlot extends AppCompatActivity {
                                     weeklyTimeSlotHashMap.put("TUE",doctorTimeslotResponceModel.getDoctorTimeSlotDayList().getTUE());
                                     break;
                                 case "WED":
-                                    weeklyTimeSlotHashMap.put("WEN",doctorTimeslotResponceModel.getDoctorTimeSlotDayList().getWED());
+                                    weeklyTimeSlotHashMap.put("WED",doctorTimeslotResponceModel.getDoctorTimeSlotDayList().getWED());
                                     break;
                                 case "THU":
                                     weeklyTimeSlotHashMap.put("THU",doctorTimeslotResponceModel.getDoctorTimeSlotDayList().getTHU());
@@ -138,19 +138,24 @@ public class DoctorTimeSlot extends AppCompatActivity {
         });
     }
 
+
+    // TODO: Time slot Set in Fragment Adapter ...
     private void setupViewPager(ArrayList<TabDateModel> tabDateArrayList, HashMap<String, ArrayList<DoctorListModel>> dataTimeSlot) {
-        this.adapter = new FragmentPagerAdapterForTimeSlot(getSupportFragmentManager());
+        adapter = new FragmentPagerAdapterForTimeSlot(getSupportFragmentManager());
         for (int i = 0; i < tabDateArrayList.size(); i++) {
             String date = Utils.changeDateNTimeFormat(tabDateArrayList.get(i).getT_Date(), Constants.DATE_TIME_FORMAT_1,Constants.DATE_TIME_FORMAT_10);
-            this.tab_header = tabDateArrayList.get(i).getT_Day()+"\n"+date;
-            this.adapter.addFragment(FragmentTimeSlot.newInstance(dataTimeSlot.get(tabDateArrayList.get(i).getT_Day())), this.tab_header);
+            tab_header = tabDateArrayList.get(i).getT_Day()+"\n"+date;
+            FragmentTimeSlot fragment = FragmentTimeSlot.newInstance(dataTimeSlot.get(tabDateArrayList.get(i).getT_Day()));
+            adapter.addFragment(fragment, tab_header);
         }
-        viewPager.setAdapter(this.adapter);
-        tabs.setupWithViewPager(this.viewPager);
-        tabs.setTag(this.viewPager);
+        viewPager.setAdapter(adapter);
+        tabs.setupWithViewPager(viewPager);
+        tabs.setTag(viewPager);
         tabs.getTabAt(0).select();
 
     }
+
+
 
     private void initViewsDoctorTimeSlot() {
         activity = DoctorTimeSlot.this;
@@ -166,29 +171,29 @@ public class DoctorTimeSlot extends AppCompatActivity {
     }
 
     public void onBookingClick(View view) {
-if(prefs.getDoctorBookSelectTime().isEmpty() || prefs.getDoctorBookSelectTime()==null) {
-    Utils.showCustomAlertDialog(activity, true, "Booking Info!", true, "Please choose a time slot before confirm your booking.",
-            true, "OK", false, "", true,
-            new CustomAlertDialogListener() {
-                @Override
-                public void positiveButtonWork() {
+        if(prefs.getDoctorBookSelectTime().isEmpty() || prefs.getDoctorBookSelectTime()==null) {
+            Utils.showCustomAlertDialog(activity, true, "Booking Info!", true, "Please choose a time slot before confirm your booking.",
+                    true, "OK", false, "", true,
+                    new CustomAlertDialogListener() {
+                        @Override
+                        public void positiveButtonWork() {
 
-                }
+                        }
 
-                @Override
-                public void negativeButtonWork() {
-                }
-            });
+                        @Override
+                        public void negativeButtonWork() {
+                        }
+                    });
 
-}else {
+        }else {
 
 
-    Intent intentHome = new Intent(activity, BookingActivity.class);
-    Bundle bundle = new Bundle();
-    bundle.putParcelable("DOCTOR_DETAILS", doctorDetails);
-    intentHome.putExtras(bundle);
-    startActivity(intentHome);
-}
+            Intent intentBooking = new Intent(activity, BookingActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("DOCTOR_DETAILS", doctorDetails);
+            intentBooking.putExtras(bundle);
+            startActivity(intentBooking);
+        }
     }
 
     public void onTimeSlotBackButton(View view) {

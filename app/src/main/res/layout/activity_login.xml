@@ -24,8 +24,8 @@
                     android:paddingTop="10dp"
                     android:id="@+id/tv_register_here"
                     android:gravity="right"
-                    android:textSize="15sp"
-                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorGreen"
                     android:text="Register Here"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -87,7 +87,7 @@
                             android:layout_centerVertical="true"
                             android:drawableStart="@drawable/user_normal"
                             android:drawablePadding="8dp"
-                            android:hint="USER NAME"
+                            android:hint="Mobile Number"
                             android:imeOptions="actionNext"
                             android:singleLine="true"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -121,7 +121,7 @@
                             android:layout_centerVertical="true"
                             android:drawablePadding="8dp"
                             android:drawableStart="@drawable/password_normal"
-                            android:hint="PASSWORD"
+                            android:hint="Password"
                             android:imeOptions="actionNext"
                             android:inputType="textPassword"
                             android:singleLine="true"
@@ -156,7 +156,7 @@
         android:layout_height="match_parent">
     <LinearLayout
             android:orientation="vertical"
-            android:paddingBottom="35dp"
+
             android:id="@+id/ll_forgot_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

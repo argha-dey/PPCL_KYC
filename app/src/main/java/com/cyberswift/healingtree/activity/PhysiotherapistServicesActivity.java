@@ -165,8 +165,6 @@ private RecyclerView rcv_physiotherapists_charges;
         }
         service_id_list =   TextUtils.join(",", selectedTargetItemId);
 
-
-
         String chargesAmountId = "";
         if(lastSelectedPositionOfACA >= 0) {
             chargesAmountId =   HomeCareAttendanceChargesAdapter.chargesList.get(lastSelectedPositionOfACA).getHomeCareAttandanceChargeId();

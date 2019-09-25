@@ -153,12 +153,16 @@ public class Prefs {
     public void setUserPhoneNumber(String val) {
         setString(Constants.USER_PHONE_NUMBER, val);
 
-
-
-
-
-
         }
+
+
+    public boolean getPermissionStatus() {
+        return getBoolean(Constants.PERMISSION_STATUS, false);
+    }
+
+    public void setPermissionStatus(boolean val) {
+        setBoolean(Constants.PERMISSION_STATUS, false);
+    }
 
 
         public void clearPrefdata () {

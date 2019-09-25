@@ -97,14 +97,13 @@ public class MembershipFacilityActivity extends BaseActivity implements View.OnC
     }
 
     private void openMembeShipDetailPdf() {
-        checkLocationPermission();
+        checkFileReadFromExternalPermission();
     }
 
 
     public static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 99;
 
-    private void checkLocationPermission() {
-        System.out.println("Simpi" + "4");
+    private void checkFileReadFromExternalPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
 

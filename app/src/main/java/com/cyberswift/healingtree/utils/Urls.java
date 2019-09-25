@@ -10,6 +10,8 @@ public interface Urls {
     String DOCTOR_TIME_SLOT ="doctor/info";
     String DOCTOR_APPOINTMENT ="appointment/add";
 
+    String FILE_UPLOAD_URL = "prescription/upload_prepcription/post";
+
     /**
      * Api's methods
      * */

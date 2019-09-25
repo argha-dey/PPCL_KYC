@@ -26,11 +26,8 @@ public class MorningTimeSlotAdapter extends  RecyclerView.Adapter<MorningTimeSlo
 
     @Override
     public MorningTimeSlotAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.morning_time_slot_item, parent, false);
-
-        MorningTimeSlotAdapter.ViewHolder viewHolder =
-                new MorningTimeSlotAdapter.ViewHolder(view);
+        MorningTimeSlotAdapter.ViewHolder viewHolder = new MorningTimeSlotAdapter.ViewHolder(view);
         return viewHolder;
     }
 
@@ -38,7 +35,7 @@ public class MorningTimeSlotAdapter extends  RecyclerView.Adapter<MorningTimeSlo
     public void onBindViewHolder(MorningTimeSlotAdapter.ViewHolder holder, int position) {
          String time = timeSlotModels.get(position).getTime();
          holder.chargesDays.setText(time);
-      //   holder.selectionCharges.setChecked(lastSelectedPosition == position);
+         holder.selectionCharges.setChecked(lastSelectedPosition == position);
     }
 
     @Override

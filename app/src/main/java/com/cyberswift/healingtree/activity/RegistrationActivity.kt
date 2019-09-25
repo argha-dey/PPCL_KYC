@@ -53,7 +53,7 @@ class RegistrationActivity : Activity() {
         mPrefs = Prefs(this@RegistrationActivity)
         val tv_first_name = findViewById<EditText>(R.id.tv_first_name) as EditText
         val tv_last_name = findViewById<EditText>(R.id.tv_last_name) as EditText
-        val tv_user_name = findViewById<EditText>(R.id.tv_user_name) as EditText
+        val tv_hospital_id = findViewById<EditText>(R.id.tv_hospital_id) as EditText
         val tv_email = findViewById<EditText>(R.id.tv_email) as EditText
         val tv_age = findViewById<EditText>(R.id.tv_age) as EditText
         val tv_Zip_code = findViewById<EditText>(R.id.tv_Zip_code) as EditText
@@ -64,6 +64,12 @@ class RegistrationActivity : Activity() {
         val tv_password = findViewById<EditText>(R.id.tv_password) as EditText
         val tv_confirm_password = findViewById<EditText>(R.id.tv_confirm_password) as EditText
         val tv_cancel = findViewById<TextView>(R.id.tv_cancel) as TextView
+
+        val rg_hospital_id_yes_no = findViewById<RadioGroup>(R.id.rg_hospital_id_yes_no) as RadioGroup
+        val rb_no = findViewById<RadioButton>(R.id.rb_no) as RadioButton
+        val rb_yes = findViewById<RadioButton>(R.id.rb_yes) as RadioButton
+        val rl_hospital_id = findViewById<RelativeLayout>(R.id.rl_hospital_id) as RelativeLayout
+
 
         tv_cancel.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -127,6 +133,7 @@ class RegistrationActivity : Activity() {
         }
     }
 
+
     private fun goToHomePage() {
         val intentBack = Intent(applicationContext, LoginActivity::class.java)
         intentBack.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -134,7 +141,24 @@ class RegistrationActivity : Activity() {
         startActivity(intentBack)
     }
 
+    fun onRadioButtonClicked(view: View) {
+        if (view is RadioButton) {
+            // Is the button now checked?
+            val checked = view.isChecked
 
+            // Check which radio button was clicked
+            when (view.getId()) {
+                R.id.rb_no ->
+                    if (checked) {
+                        rl_hospital_id.visibility = View.GONE
+                    }
+                R.id.rb_yes ->
+                    if (checked) {
+                        rl_hospital_id.visibility = View.VISIBLE
+                    }
+            }
+        }
+    }
 
 
     private fun registrationApiCall() {
@@ -169,9 +193,9 @@ class RegistrationActivity : Activity() {
             tv_address.error = "Required"
             Toast.makeText(applicationContext, "Address Required ", Toast.LENGTH_SHORT).show()
         }
-        else if (tv_user_name.text.toString().trim().isEmpty()) {
-            tv_user_name.error = "Required"
-            Toast.makeText(applicationContext, "User Id Required ", Toast.LENGTH_SHORT).show()
+        else if (tv_hospital_id.text.toString().trim().isEmpty()) {
+            tv_hospital_id.error = "Required"
+            Toast.makeText(applicationContext, "Hospital Id Required ", Toast.LENGTH_SHORT).show()
         }
         else if (tv_password.text.toString().trim().isEmpty()) {
             tv_password.error = "Required"
@@ -186,7 +210,7 @@ class RegistrationActivity : Activity() {
             val requestBody = HashMap<String, String>()
             requestBody.put("first_name", tv_first_name.text.toString())
             requestBody.put("last_name", tv_last_name.text.toString())
-            requestBody.put("user_id", tv_user_name.text.toString())
+            requestBody.put("user_id", tv_phone_one.text.toString())
             requestBody.put("email",tv_email.text.toString())
             requestBody.put("age",tv_age.text.toString())
             requestBody.put("zip_code", tv_Zip_code.text.toString())
@@ -195,6 +219,7 @@ class RegistrationActivity : Activity() {
             requestBody.put("state", statename)
             requestBody.put("city",cityname)
             requestBody.put("address",tv_address.text.toString())
+            requestBody.put("hospital_id",tv_hospital_id.text.toString())
             requestBody.put("password",tv_password.text.toString())
             requestBody.put("confirm_password", tv_confirm_password.text.toString())
 
@@ -210,8 +235,9 @@ class RegistrationActivity : Activity() {
                         if (pDialog != null && pDialog!!.isShowing()) {
                             pDialog.dismiss()
                         }
-                        goToHomePage()
-                        Toast.makeText(applicationContext, "Registration Successfully Done ", Toast.LENGTH_SHORT).show()
+
+                        Toast.makeText(applicationContext, "Registration Successfully Done ", Toast.LENGTH_LONG).show()
+                            goToHomePage()
                     }
                         else{
                             if (pDialog != null && pDialog.isShowing()) {
@@ -244,6 +270,9 @@ class RegistrationActivity : Activity() {
         pDialog!!.show()
     }
 
+    override fun onBackPressed() {
+
+    }
 }
 
 

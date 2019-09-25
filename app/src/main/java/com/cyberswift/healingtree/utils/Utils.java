@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +16,8 @@ import android.graphics.Typeface;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -34,6 +37,7 @@ import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.interfaces.AlertDialogWithCancelAndRetryListener;
 import com.cyberswift.healingtree.interfaces.CustomAlertDialogListener;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -421,4 +425,87 @@ public class Utils {
             return true;
         }*/
     }
+    public static String getDefaultFilePathForImg() {
+        File prntFile = new File(Environment.getExternalStorageDirectory().getPath() + "/HealingTreePatientDoc/Img/");
+        prntFile.mkdirs();
+        String getDestinationFileFortakePic = prntFile.getAbsolutePath() + "/prescribing_" + System.currentTimeMillis() + ".jpg";
+        return getDestinationFileFortakePic;
+    }
+
+
+    //check if choose file is image or video
+    @SuppressLint("DefaultLocale")
+    public static int checkFileExtension(Context context, Uri selectedFile) {
+        int type = -1;
+        try {
+            ContentResolver cR = context.getContentResolver();
+            String extention = cR.getType(selectedFile);
+
+
+            if (extention != null) {
+                //checking for  extention
+                for (String extensionval : Constants.imageDocFileTypes) {
+                    if (extention.toLowerCase().contains(extensionval)) {
+                        type = 1;
+                        break;
+                    }
+                }
+            } else {
+                String extention1 = selectedFile.getPath();
+                //checking for image extention
+                for (String extensionval : Constants.imageDocFileTypes) {
+                    if (extention1.toLowerCase().contains(extensionval)) {
+                        type = 1;
+                        break;
+                    }
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return type;
+    }
+    public static boolean isExist(String[] array, String val) {
+
+        for (String s : array) {
+            if (s.equalsIgnoreCase(val)) {
+                return true;
+            }
+
+        }
+        return false;
+
+    }
+    public static void showCallBackMessageWithOkCancelCustomButton(final Context mContext, final String message,
+                                                                   final String positiveButton, final String negativeButton, final AlertDialogCallBack callBack) {
+        ((Activity) mContext).runOnUiThread(new Runnable() {
+
+            public void run() {
+                final AlertDialog.Builder alert = new AlertDialog.Builder(
+                        mContext);
+                alert.setTitle(R.string.app_name);
+                alert.setCancelable(false);
+                alert.setMessage(message);
+                alert.setPositiveButton(positiveButton,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int whichButton) {
+                                callBack.onSubmit();
+                            }
+                        });
+                alert.setNegativeButton(negativeButton,
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int whichButton) {
+                                callBack.onCancel();
+                            }
+                        });
+                alert.show();
+            }
+        });
+    }
+
 }

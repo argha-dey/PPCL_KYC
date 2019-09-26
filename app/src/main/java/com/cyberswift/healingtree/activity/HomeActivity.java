@@ -34,7 +34,9 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void onBookHealthCheck (View view) {
-        goToUrl ( "http://thehealingtree.org/hello_health");
+        Intent i = new Intent(activity, HelloHealthActivity.class);
+        startActivity(i);
+    //   goToUrl ( "http://thehealingtree.org/hello_health");
     }
 
     private void goToUrl (String url) {
@@ -67,7 +69,9 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void onHealthRecordHealingTree(View view) {
-        Toast.makeText(activity,"Available Shortly",Toast.LENGTH_LONG).show();
+        Intent i = new Intent(activity, HealthRecordActivity.class);
+        startActivity(i);
+      //  Toast.makeText(activity,"Available Shortly",Toast.LENGTH_LONG).show();
     }
 
 

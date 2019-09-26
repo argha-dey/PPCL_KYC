@@ -149,9 +149,12 @@ public class DoctorTimeSlot extends AppCompatActivity {
             adapter.addFragment(fragment, tab_header);
         }
         viewPager.setAdapter(adapter);
+        int limit = (adapter.getCount() > 1 ? 0 : 1);
+        viewPager.setOffscreenPageLimit(limit);
         tabs.setupWithViewPager(viewPager);
         tabs.setTag(viewPager);
         tabs.getTabAt(0).select();
+
 
     }
 

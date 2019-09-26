@@ -78,6 +78,8 @@
         <activity android:name=".activity.MembershipFacilityActivity"/>
         <activity android:name=".document_download_manager.PdfViewerActivity"/>
         <activity android:name=".activity.OrderMedicineActivity"/>
+        <activity android:name=".activity.HealthRecordActivity"/>
+        <activity android:name=".activity.HelloHealthActivity"/>
 
 
         <provider

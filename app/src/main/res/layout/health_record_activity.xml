@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+
+            <TextView
+                android:id="@+id/doctors_booking_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/backgraound_for_headings"
+                android:gravity="center"
+                android:text="Doctors Booking History"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/doctors_booking_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_below="@+id/doctors_booking_textview"
+                android:background="@color/colorPrimarySuperLight">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/home_care_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/doctors_booking_recyclerview"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/backgraound_for_headings"
+                android:gravity="center"
+                android:text="Home Care History"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/home_care_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_below="@+id/home_care_textview"
+                android:background="@color/colorPrimarySuperLight">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/medicine_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/home_care_recyclerview"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/backgraound_for_headings"
+                android:gravity="center"
+                android:text="Medicine Booking History"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/medicine_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_below="@+id/medicine_textview"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorPrimarySuperLight">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

@@ -33,10 +33,15 @@ public interface ApiInterface {
     @POST(Urls.HOME_CARE_ATTENDANCE_DATA_POST)
     Call<HomeCareAttendantDataPostResponseModel> getHomeCareAttandanceDataPost(@Body Map<String, String> body);
 
+    @POST(Urls.HEALTH_RECORD)
+    Call<AppointmentListResponseModel> getAppointmentList(@Body Map<String, String> body);
+
+    @POST(Urls.HELLO_HEALTH_PACKAGE)
+    Call<HelloHealthPackageResponseModel> getHelloHealthPackage(@Body Map<String, String> body);
 
 
-    @POST("prescription/upload_prepcription/post")
-    Call<PrescriptionUploadResponceModel> uploadMultiFile(@Body RequestBody file);
+ /*   @POST("prescription/upload_prepcription/post")
+    Call<PrescriptionUploadResponceModel> uploadMultiFile(@Body RequestBody file);*/
 
     @Multipart
     @POST("prescription/upload_prepcription/post")
@@ -46,9 +51,9 @@ public interface ApiInterface {
             @Part MultipartBody.Part file
     );
 
-    @Multipart
+ /*   @Multipart
     @POST("prescription/upload_prepcription/post")
     Call<PrescriptionUploadResponceModel> updateProfile(@Part("user_id") RequestBody id,
                                                               @Part MultipartBody.Part image,
-                                                              @Part("reamrks") RequestBody other);
+                                                              @Part("reamrks") RequestBody other);*/
 }

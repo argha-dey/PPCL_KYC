@@ -38,6 +38,7 @@ import com.cyberswift.healingtree.interfaces.AlertDialogWithCancelAndRetryListen
 import com.cyberswift.healingtree.interfaces.CustomAlertDialogListener;
 
 import java.io.File;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -507,5 +508,17 @@ public class Utils {
             }
         });
     }
+    public static String changeDateTimeWithMonthInStringFormat(String date) {
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy");
 
+        try {
+            Date scheduleDte = inputFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String outputDateStr = outputFormat.format(date);
+
+        return outputDateStr;
+    }
 }

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+
+            android:id="@+id/sc_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:id="@+id/privilage_heading_layout"
+                    android:layout_below="@+id/iv_toolbar"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="170dp"
+                        android:layout_margin="1dp">
+
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/diy"
+                            android:padding="10dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="170dp"
+                        android:layout_margin="1dp"
+                >
+
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/women"
+                            android:padding="10dp"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/header_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/privilage_heading_layout"
+                android:layout_margin="20dp">
+
+                <TextView
+                    android:id="@+id/book_health_check_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/book_health_check_text"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12dp" />
+
+
+
+
+
+            </RelativeLayout>
+            <LinearLayout
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_below="@+id/header_text_layout"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Hello Health Packages : "
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold" />
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/field_text_bg">
+
+                    <com.cyberswift.healingtree.dropdown.DropDownViewForXML
+                            android:id="@+id/dropDown_hello_health_packages"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center_vertical"
+                            android:hint="Select"
+                            android:textStyle="bold"
+                            android:paddingLeft="13dp"
+                            android:textColor="@color/colorGreen"
+                            android:textColorHint="@color/colorGreen" />
+
+                    <ImageView
+                            android:paddingRight="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/down_dropdown" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/sc_view"
+            android:gravity="bottom"
+            android:id="@+id/button_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        <Button
+                android:id="@+id/hello_health_package_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:layout_weight="3.5"
+                android:background="@color/colorPrimary"
+                android:text="Hello Health Packages"
+                android:textAllCaps="false"
+                android:textColor="@color/green_text_color"
+                android:textSize="12dp" />
+
+        <Button
+                android:id="@+id/talk_to_us_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_weight="1.5"
+                android:background="@color/colorPrimary"
+                android:text="Talk To Us"
+                android:textAllCaps="false"
+                android:textColor="@color/green_text_color"
+                android:textSize="12dp" />
+
+
+    </LinearLayout>
+</RelativeLayout>

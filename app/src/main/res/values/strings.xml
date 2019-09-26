@@ -46,8 +46,11 @@
     </string>
 
     <string name="gold_membership_text">"Gold Membership"</string>
+    <string name="please_wait_msg">"Please Wait..."</string>
     <string name="platinum_membership_text">"Platinum Membership"</string>
     <string name="diamond_membership_text">"Diamond Membership"</string>
     <string name="privilage_club_packages_button_text">"Privilege Club Packages"</string>
     <string name="privilage_explained_string">"For a small fee every year, we will take care of all your medical requirements. From priority appointments to home delivery of medicines, every aspect of treatment is looked after. And our coordinator will be available to you 24x7 for all your needs."</string>
+
+    <string name="book_health_check_text">"<p>Hello Health is a personalised health care programme, which provides luxury accommodation in our Silver, Gold, Diamond or Platinum suites and also takes care of your meals the day before your check-up.</p>\n\nSign up and check in so you are well-rested and ready to take on the next day!"</string>
 </resources>

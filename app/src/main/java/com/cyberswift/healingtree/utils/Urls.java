@@ -23,5 +23,7 @@ public interface Urls {
   String HOME_CARE_ATTENDANCE_LIST = "health_care/lists";
   String  HOME_CARE_ATTENDANCE_DATA_POST = "services/request_service/post";
 
-
+    String HOME_CARE_ATTENDANCE = "health_care/lists";
+    String HEALTH_RECORD="appointment/lists";
+    String HELLO_HEALTH_PACKAGE ="hello_health/package_type";
 }

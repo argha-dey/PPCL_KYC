@@ -31,7 +31,7 @@
                     <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/diy"
+                            android:background="@color/colorPrimary"
                             android:padding="10dp"/>
 
                 </LinearLayout>
@@ -45,7 +45,7 @@
                     <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/women"
+                            android:background="@drawable/hello_health_header_image"
                             android:padding="10dp"/>
 
                 </LinearLayout>

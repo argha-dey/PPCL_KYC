@@ -1,9 +1,11 @@
 package com.cyberswift.healingtree.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.dropdown.DropDownViewForXML;
@@ -23,6 +25,9 @@ public class HelloHealthActivity extends BaseActivity implements View.OnClickLis
     private RecyclerView mCheckUpListRecyclerView;
     private Button mHelloHeathCheckButton;
     private Button mTalkToUsButton;
+    private String helloHealthPackagename;
+    private String helloHealthPackageId;
+    private  ArrayList<PackageModel> packageList;
     private DropDownViewForXML dropDown_hello_health_packages;
     private Context mContext;
 
@@ -54,7 +59,7 @@ public class HelloHealthActivity extends BaseActivity implements View.OnClickLis
                             if (appointListResponse.isStatus()) {
                                 if (appointListResponse.getData() != null) {
                                     LocalModel.getInstance().cancelProgressDialog();
-                                    ArrayList<PackageModel> packageList = appointListResponse.getData();
+                                    packageList = appointListResponse.getData();
                                     populateHelloHealthPackageList(packageList);
 
                                 }
@@ -85,10 +90,20 @@ public class HelloHealthActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void initViews() {
-
+        packageList = new ArrayList<>();
         mHelloHeathCheckButton = (Button) findViewById(R.id.hello_health_package_button);
         mTalkToUsButton = (Button) findViewById(R.id.talk_to_us_button);
         dropDown_hello_health_packages = findViewById(R.id.dropDown_hello_health_packages);
+
+        dropDown_hello_health_packages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                helloHealthPackageId = packageList.get(position).getHLO_ID();
+                helloHealthPackagename = packageList.get(position).getHLO_PACKAGE_NAME();//    DistrictName = districtArrayList.get(position).getDistrictName();
+            //    subDistrictDropDownApiCall(districtId);
+
+            }
+        });
     }
 
     @Override
@@ -108,7 +123,10 @@ public class HelloHealthActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void onClickOnHelloHealthCheckButton() {
-
+        Intent intentHome = new Intent(mContext, HelloHealthPackageBookingActivity.class);
+        intentHome.putExtra("HelloHealthPackageName",helloHealthPackagename);
+        intentHome.putExtra("HelloHealthPackageId",helloHealthPackageId);
+        startActivity(intentHome);
     }
 
 

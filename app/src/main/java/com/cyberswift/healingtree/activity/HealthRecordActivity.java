@@ -59,6 +59,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
                                 LocalModel.getInstance().cancelProgressDialog();
                                 ArrayList<AppointmentDataDo> appointmentDataDos = appointListResponse.getData();
                                 setAdapterToDoctorBookingRecyclerView(appointmentDataDos);
+
                             }
                         }
                     } else {

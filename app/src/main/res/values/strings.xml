@@ -36,13 +36,21 @@
     <string name="health_records_healing_tree">Health Records \nHealing tree</string>
     <string name="default_notification_channel_id">102030405060</string>
 
-    <string name="diagnostics_at_home_details">For collection of a blood,stool or urine sample,lab technicians will visit your home and reports will be submitted by lab technician in the evening or on the next day.It will also
-    be updated to you via our Mobile Application</string>
+    <string name="diagnostics_at_home_details">For collection of a blood,stool or urine sample,lab technicians will
+        visit your home and reports will be submitted by lab technician in the evening or on the next day.It will also
+        be updated to you via our Mobile Application
+    </string>
 
-    <string name="physiotherapist_details_text">Physiotherapist also helps in the rehabilitation of patients suffering from Parkinsons, Paralysis, Stroke, Multiple Sclerosis and Cerebral Palsy. Furthermore,Physiotherapist can heal both chronic and acute problems by treating patient at home</string>
+    <string name="physiotherapist_details_text">Physiotherapist also helps in the rehabilitation of patients suffering
+        from Parkinsons, Paralysis, Stroke, Multiple Sclerosis and Cerebral Palsy. Furthermore,Physiotherapist can heal
+        both chronic and acute problems by treating patient at home
+    </string>
 
-    <string name="medical_equipment_at_home_details">Getting medical equipment on rent purchase at your doorstep has never been this convenient. During difficult phase of life, you or your loved ones might need to rely on various medical equipment to get back to normal lifestyle
-        \n \n Home Health Care offers a wide range of medical equipment for rent or purchase to make health care more accessible and affordable for you
+    <string name="medical_equipment_at_home_details">Getting medical equipment on rent purchase at your doorstep has
+        never been this convenient. During difficult phase of life, you or your loved ones might need to rely on various
+        medical equipment to get back to normal lifestyle
+        \n \n Home Health Care offers a wide range of medical equipment for rent or purchase to make health care more
+        accessible and affordable for you
     </string>
 
     <string name="gold_membership_text">"Gold Membership"</string>
@@ -50,7 +58,13 @@
     <string name="platinum_membership_text">"Platinum Membership"</string>
     <string name="diamond_membership_text">"Diamond Membership"</string>
     <string name="privilage_club_packages_button_text">"Privilege Club Packages"</string>
-    <string name="privilage_explained_string">"For a small fee every year, we will take care of all your medical requirements. From priority appointments to home delivery of medicines, every aspect of treatment is looked after. And our coordinator will be available to you 24x7 for all your needs."</string>
+    <string name="privilage_explained_string">"For a small fee every year, we will take care of all your medical
+        requirements. From priority appointments to home delivery of medicines, every aspect of treatment is looked
+        after. And our coordinator will be available to you 24x7 for all your needs."
+    </string>
 
-    <string name="book_health_check_text">"<p>Hello Health is a personalised health care programme, which provides luxury accommodation in our Silver, Gold, Diamond or Platinum suites and also takes care of your meals the day before your check-up.</p>\n\nSign up and check in so you are well-rested and ready to take on the next day!"</string>
+    <string name="book_health_check_text">"<p>Hello Health is a personalised health care programme, which provides
+        luxury accommodation in our Silver, Gold, Diamond or Platinum suites and also takes care of your meals the day
+        before your check-up.</p>\n\nSign up and check in so you are well-rested and ready to take on the next day!"
+    </string>
 </resources>

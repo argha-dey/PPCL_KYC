@@ -23,6 +23,7 @@ import com.cyberswift.healingtree.model.*;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.Constants;
+import com.cyberswift.healingtree.utils.LocalModel;
 import com.cyberswift.healingtree.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -110,6 +111,8 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity {
     }
 
     public void fetchHomeCareData() {
+
+        LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("HHC_ID", Constants.HOME_CARE_ATTENDANT);
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
@@ -127,7 +130,10 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity {
                         setHomeCareAttendanceChargesInAdapter(homeCareAttendantChargeslist);
                         setHomeCareAttendanceChargesOfferInAdapter(homeCareAttendanceSpacialOfferList);
                         setHomeCareAttendanceTrainHelpInAdapter(trainedHomeCareAttendanceList);
-
+                        LocalModel.getInstance().cancelProgressDialog();
+                    }
+                    else{
+                        LocalModel.getInstance().cancelProgressDialog();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -136,7 +142,7 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<HealthCareResponseModel> call, Throwable t) {
-
+                LocalModel.getInstance().cancelProgressDialog();
             }
         });
 

@@ -68,4 +68,7 @@ public interface Constants {
     public static final String[] imageDocMimeTypes = {"application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/pdf", "image/jpeg", "image/png", "text/plain", "application/msword", "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"};
 
 
+
+    String ARTICLE_ID_CONSTANTS = "id";
+
 }

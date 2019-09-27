@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:id="@+id/privilage_heading_layout"
+                    android:layout_below="@+id/iv_toolbar"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="170dp"
+                        android:layout_margin="1dp">
+
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/diy"
+                            android:padding="10dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="170dp"
+                        android:layout_margin="1dp"
+                >
+
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/women"
+                            android:padding="10dp"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                  android:layout_marginTop="10dp"
+                  android:layout_marginLeft="5dp"
+                  android:layout_marginRight="5dp"
+                android:id="@+id/middle_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/privilage_heading_layout"
+          >
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/health_library_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

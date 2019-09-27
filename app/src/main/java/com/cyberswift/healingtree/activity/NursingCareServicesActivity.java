@@ -25,6 +25,7 @@ import com.cyberswift.healingtree.model.THCA_Model;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.Constants;
+import com.cyberswift.healingtree.utils.LocalModel;
 import com.cyberswift.healingtree.utils.Utils;
 import org.json.JSONObject;
 import retrofit2.Call;
@@ -103,6 +104,7 @@ private ArrayList<HCAC_Model> nursingCareChargesList;
     }
 
     public void fetchNursingCareData() {
+        LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("HHC_ID", Constants.NURSING_CARE);
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
@@ -119,8 +121,11 @@ private ArrayList<HCAC_Model> nursingCareChargesList;
 
                         setNursingCareTypeInAdapter(nursingCareTypeList);
                         setNursingCareChargesInAdapter(nursingCareChargesList);
+                        LocalModel.getInstance().cancelProgressDialog();
 
-
+                    }
+                    else{
+                        LocalModel.getInstance().cancelProgressDialog();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

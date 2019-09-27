@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/doctors_booking_appointmnet_item_background"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/library_image_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/detail_rl"
+            android:layout_alignTop="@+id/detail_rl"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/library_image"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/detail_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/library_image_rl"
+            android:layout_toLeftOf="@+id/arrow_image_rl"
+            android:layout_weight="2.5">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:id="@+id/heading_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sourav Dey"
+                    android:maxLines="1"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/provider_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/heading_tv"
+                    android:layout_marginRight="5dp"
+                    android:text="Provider:"
+                    android:maxLines="1"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12dp" />
+
+
+                <TextView
+                    android:id="@+id/content_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/provider_tv"
+                    android:layout_marginRight="5dp"
+                    android:text="Request Type:"
+                    android:maxLines="3"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12dp" />
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/arrow_image_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/detail_rl"
+            android:layout_alignTop="@+id/detail_rl"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="1dp"
+            android:layout_weight="0.5"
+            android:background="@color/colorWhite"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:id="@+id/arrow_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+
+                android:scaleType="fitXY"
+                android:src="@drawable/accrodian_drop" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

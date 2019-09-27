@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.utils.Constants;
 
@@ -65,7 +64,8 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void onHealthLibrary(View view) {
-        Toast.makeText(activity,"Available Shortly",Toast.LENGTH_LONG).show();
+        Intent i = new Intent(activity, HealthLibraryActivity.class);
+        startActivity(i);
     }
 
     public void onHealthRecordHealingTree(View view) {

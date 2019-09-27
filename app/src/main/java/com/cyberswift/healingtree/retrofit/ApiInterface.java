@@ -39,6 +39,19 @@ public interface ApiInterface {
     @POST(Urls.HELLO_HEALTH_PACKAGE)
     Call<HelloHealthPackageResponseModel> getHelloHealthPackage(@Body Map<String, String> body);
 
+    @POST(Urls.HELLO_HEALTH_SUB_PACKAGE_TYPE)
+    Call<HelloHealthSubPackageTypeResponseModel> getHelloHealthSubPackage(@Body Map<String, String> body);
+
+    @POST(Urls.HELLO_HEALTH_PACKAGE_COST)
+    Call<HelloHealthPackageCostResponseModel> getHelloHealthPackageCost(@Body Map<String, String> body);
+
+
+    @GET(Urls.HEALTH_LIBRARY)
+    Call<HealthLibraryResponseDo> getHealthLibraryResponse();
+
+    @POST(Urls.AWARNESS_ARTICLE)
+    Call<AwarnessArticleResponseDo> getAwarnessArticle(@Body Map<String, String> requestBody);
+
 
  /*   @POST("prescription/upload_prepcription/post")
     Call<PrescriptionUploadResponceModel> uploadMultiFile(@Body RequestBody file);*/

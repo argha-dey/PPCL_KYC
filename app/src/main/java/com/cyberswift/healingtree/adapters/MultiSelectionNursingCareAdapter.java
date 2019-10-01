@@ -1,14 +1,12 @@
 package com.cyberswift.healingtree.adapters;
 
 import android.content.Context;
-
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.model.THCA_Model;
 
@@ -49,7 +47,7 @@ public class MultiSelectionNursingCareAdapter extends RecyclerView.Adapter<Multi
             public void onClick(View v) {
 
                 Integer pos = (Integer) holder.nursing_cb.getTag();
-                Toast.makeText(ctx, taineHomeCareAttendanceList.get(pos).getHomeCareServiceName() + " clicked!", Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(ctx, taineHomeCareAttendanceList.get(pos).getHomeCareServiceName() + " clicked!", Toast.LENGTH_SHORT).show();
 
                 if (taineHomeCareAttendanceList.get(pos).getChecked()) {
                     taineHomeCareAttendanceList.get(pos).setChecked(false);

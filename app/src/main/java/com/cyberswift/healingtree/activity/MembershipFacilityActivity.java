@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.document_download_manager.PdfDownloadManager;
-import com.cyberswift.healingtree.document_download_manager.PdfViewerActivity;
 
 public class MembershipFacilityActivity extends BaseActivity implements View.OnClickListener {
 
@@ -24,13 +23,13 @@ public class MembershipFacilityActivity extends BaseActivity implements View.OnC
     private ImageView mPlatinumMemberShipIv;
     private ImageView mDiamonMemberShipIv;
     private Button mClubPackageButton;
+    private String memberShipClubName = "";
+    private  String memberShipClubId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentLayout(R.layout.activity_membership_facility);
-
         initViews();
         registerEvents();
 
@@ -55,27 +54,28 @@ public class MembershipFacilityActivity extends BaseActivity implements View.OnC
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.gold_mem_iv:
-             //   openPdfActivity();
-              onClickOnGoldMembership();
+                memberShipClubName = "Gold";
+                openMemberShipClubBookingActivity();
                 break;
             case R.id.platinum_mem_iv:
-             //   openPdfActivity();
-                onClickOnPlatinumMembership();
+                memberShipClubName = "Platinum";
+                openMemberShipClubBookingActivity();
                 break;
             case R.id.diamond_mem_iv:
-              //  openPdfActivity();
-                onClickOnDiamondMemberShip();
+                memberShipClubName = "Diamond";
+                openMemberShipClubBookingActivity();
                 break;
             case R.id.privilage_club_package_button:
-               // openPdfActivity();
                 onClickOnClubPackageButton();
                 break;
         }
     }
 
-    private void openPdfActivity(){
+    private void openMemberShipClubBookingActivity(){
 
-        Intent i = new Intent(activity, PdfViewerActivity.class);
+        Intent i = new Intent(MembershipFacilityActivity.this, MemberShipFacilityBookingActivity.class);
+        i.putExtra("MemberShipClubName",memberShipClubName);
+        i.putExtra("MemberShipClubId","");
         startActivity(i);
     }
     private void onClickOnClubPackageButton() {
@@ -121,7 +121,7 @@ public class MembershipFacilityActivity extends BaseActivity implements View.OnC
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //Prompt the user once explanation has been shown
-                                ActivityCompat.requestPermissions(activity,
+                                ActivityCompat.requestPermissions(MembershipFacilityActivity.this,
                                         new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                                         MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
                             }
@@ -151,3 +151,4 @@ public class MembershipFacilityActivity extends BaseActivity implements View.OnC
         pdfDownloader.showPDFUrl(this, pdfDownloadUrl);
     }
 }
+//http://192.168.1.63/healingtree/assets/files/membership/Healing_tree_club_membership.pdf

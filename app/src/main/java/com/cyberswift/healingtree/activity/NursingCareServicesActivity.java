@@ -13,11 +13,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.adapters.HomeCareAttendanceChargesAdapter;
 import com.cyberswift.healingtree.adapters.MultiSelectionNursingCareAdapter;
 import com.cyberswift.healingtree.interfaces.AlertDialogWithCancelAndRetryListener;
+import com.cyberswift.healingtree.interfaces.OnChargesDataChangeListener;
 import com.cyberswift.healingtree.model.HCAC_Model;
 import com.cyberswift.healingtree.model.HealthCareResponseModel;
 import com.cyberswift.healingtree.model.HomeCareAttendantDataPostResponseModel;
@@ -26,6 +28,7 @@ import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.Constants;
 import com.cyberswift.healingtree.utils.LocalModel;
+import com.cyberswift.healingtree.utils.Prefs;
 import com.cyberswift.healingtree.utils.Utils;
 import org.json.JSONObject;
 import retrofit2.Call;
@@ -38,12 +41,14 @@ import java.util.Map;
 
 import static com.cyberswift.healingtree.adapters.HomeCareAttendanceChargesAdapter.lastSelectedPositionOfACA;
 
-public class NursingCareServicesActivity extends AppCompatActivity {
+public class NursingCareServicesActivity extends AppCompatActivity implements OnChargesDataChangeListener {
 private Context mContext;
 private RecyclerView rcv_nursing_care_charges;
 private  RecyclerView rcv_nursing_offer;
     private ArrayList<THCA_Model> nursingCareTypeList;
 private ArrayList<HCAC_Model> nursingCareChargesList;
+private Prefs mPrefs;
+private TextView tv_total_payable_amount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +59,12 @@ private ArrayList<HCAC_Model> nursingCareChargesList;
 
     private void initViews() {
         mContext = NursingCareServicesActivity.this;
+        mPrefs = new Prefs(mContext);
         nursingCareChargesList = new ArrayList<>();
         nursingCareTypeList = new ArrayList<>();
         rcv_nursing_care_charges = findViewById(R.id.rcv_nursing_care_charges);
         rcv_nursing_offer = findViewById(R.id.rcv_nursing_offer);
+        tv_total_payable_amount = findViewById(R.id.tv_total_payable_amount);
     }
 
     public void onNursingCareBackButtonClick(View view) {
@@ -184,7 +191,7 @@ private ArrayList<HCAC_Model> nursingCareChargesList;
         if (selectedTargetItemId.size()>0){
             if(!chargesAmountId.equals("")) {
                 final Map<String, String> requestBody = new HashMap<>();
-                requestBody.put("user_id", "4");
+                requestBody.put("user_id", mPrefs.getUserID());
                 requestBody.put("service_type_id",Constants.NURSING_CARE);
                 requestBody.put("service_id", service_id_list);
                 requestBody.put("charges", chargesAmountId);
@@ -222,5 +229,10 @@ private ArrayList<HCAC_Model> nursingCareChargesList;
         MultiSelectionNursingCareAdapter.taineHomeCareAttendanceList.clear();
         HomeCareAttendanceChargesAdapter.chargesList.clear();
         lastSelectedPositionOfACA = -1;
+    }
+
+    @Override
+    public void onChargesDataChanged(String amount) {
+        tv_total_payable_amount.setText("₹"+amount);
     }
 }

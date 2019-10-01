@@ -24,6 +24,8 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning"
             tools:targetApi="n">
+        <activity android:name=".activity.MemberShipFacilityBookingActivity">
+        </activity>
         <activity android:name=".activity.HelloHealthPackageBookingActivity">
         </activity>
         <activity android:name=".activity.UserProfileActivity">
@@ -44,8 +46,8 @@
         </activity>
         <activity
                 android:name=".activity.SpecialitiesActivity"
-                android:windowSoftInputMode="stateHidden"
-                android:screenOrientation="portrait">
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
                 android:name=".activity.DoctorTimeSlot"
@@ -61,8 +63,8 @@
         </activity>
         <activity
                 android:name=".activity.DoctorListActivity"
-                android:windowSoftInputMode="stateHidden"
-                android:screenOrientation="portrait">
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
                 android:name=".activity.SplashScreen"

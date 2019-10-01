@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import com.cyberswift.healingtree.R;
+import com.cyberswift.healingtree.interfaces.OnSpacialOfferDataChange;
 import com.cyberswift.healingtree.model.SO_Model;
 
 import java.util.ArrayList;
@@ -63,6 +64,7 @@ public class HomeCareAttandanceSpacialOfferAdapter  extends  RecyclerView.Adapte
                 @Override
                 public void onClick(View v) {
                     lastSelectedPositionSOA = getAdapterPosition();
+                    ((OnSpacialOfferDataChange)context).onSpacialOfferDataChange(spacialOffersList.get(lastSelectedPositionSOA).getHomeCareServiceSpacialCharges());
                     notifyDataSetChanged();
 
                 }

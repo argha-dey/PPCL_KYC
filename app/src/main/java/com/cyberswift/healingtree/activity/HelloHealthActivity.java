@@ -47,7 +47,7 @@ public class HelloHealthActivity extends BaseActivity implements View.OnClickLis
             LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
             Map<String, String> requestBody = new HashMap<>();
 //        requestBody.put("USER_ID", new Prefs(this).getUserID());
-            requestBody.put("USER_ID", "4");
+          //  requestBody.put("USER_ID", "4");
             ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
             Call<HelloHealthPackageResponseModel> call = apiService.getHelloHealthPackage(requestBody);
             call.enqueue(new Callback<HelloHealthPackageResponseModel>() {

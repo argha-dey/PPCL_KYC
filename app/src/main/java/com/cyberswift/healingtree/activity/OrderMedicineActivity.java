@@ -34,10 +34,7 @@ import com.cyberswift.healingtree.document_download_manager.FileUtils;
 import com.cyberswift.healingtree.model.FileDetails;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
-import com.cyberswift.healingtree.utils.AlertDialogCallBack;
-import com.cyberswift.healingtree.utils.Constants;
-import com.cyberswift.healingtree.utils.Prefs;
-import com.cyberswift.healingtree.utils.Utils;
+import com.cyberswift.healingtree.utils.*;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -365,30 +362,34 @@ public class OrderMedicineActivity extends BaseActivity {
 
                         @Override
                         public void onClick(View v) {
-                            final Dialog imgDialog = new Dialog(mContext);
-                            imgDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                            imgDialog.setContentView(R.layout.dialog_image_fullimage);
-                            imgDialog.show();
-                            ImageView iv_imageFile = (ImageView) imgDialog.findViewById(R.id.imageViewFull);
-                            String fileType = arrayFile.get(position).getFileName().substring(arrayFile.get(position).getFileName().lastIndexOf(".") + 1);
-                            if (fileType.equalsIgnoreCase("jpg") || fileType.equalsIgnoreCase("png")) {
-                                AppController.getInstance().displayUniversalImg(arrayFile.get(position).getFilePath(), iv_imageFile, R.drawable.no_image);
-                            } else {
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(arrayFile.get(position).getFilePath()));
-                              //  startActivity(browserIntent);
-                                if (browserIntent.resolveActivity(mContext.getPackageManager()) != null) {
-                                    mContext.startActivity(browserIntent);
-                                    if (imgDialog != null && imgDialog.isShowing())
-                                        imgDialog.dismiss();
+                            if (imageDocFileList.size() > 0) {
+                                final Dialog imgDialog = new Dialog(mContext);
+                                imgDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                imgDialog.setContentView(R.layout.dialog_image_fullimage);
+                                imgDialog.show();
+                                ImageView iv_imageFile = (ImageView) imgDialog.findViewById(R.id.imageViewFull);
+                                String fileType = arrayFile.get(position).getFileName().substring(arrayFile.get(position).getFileName().lastIndexOf(".") + 1);
+                                if (fileType.equalsIgnoreCase("jpg") || fileType.equalsIgnoreCase("png")) {
+                                    AppController.getInstance().displayUniversalImg(arrayFile.get(position).getFilePath(), iv_imageFile, R.drawable.no_image);
                                 } else {
-                                    Toast.makeText(mContext, "Can't view the document.", Toast.LENGTH_LONG).show();
-                                    if (imgDialog != null && imgDialog.isShowing())
-                                        imgDialog.dismiss();
+                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(arrayFile.get(position).getFilePath()));
+                                    //  startActivity(browserIntent);
+                                    if (browserIntent.resolveActivity(mContext.getPackageManager()) != null) {
+                                        mContext.startActivity(browserIntent);
+                                        if (imgDialog != null && imgDialog.isShowing())
+                                            imgDialog.dismiss();
+                                    } else {
+                                        Toast.makeText(mContext, "Can't view the document.", Toast.LENGTH_LONG).show();
+                                        if (imgDialog != null && imgDialog.isShowing())
+                                            imgDialog.dismiss();
+                                    }
+
                                 }
 
+
                             }
-
-
+                            else
+                                Toast.makeText(mContext, "You are not select any document for preview!", Toast.LENGTH_LONG).show();
                         }
                     });
 
@@ -421,10 +422,18 @@ public class OrderMedicineActivity extends BaseActivity {
 
     }
     public void onUploadOderMedicineFile(View view){
-       String file_path =  imageDocFileList.get(0).getSelectedFilePath();
-       String file_name = imageDocFileList.get(0).getFileName();
-      File file = new File(file_path);
-       uploadFile(file,tv_description.getText().toString());
+        if (imageDocFileList.size() > 0) {
+            String file_path = imageDocFileList.get(0).getSelectedFilePath();
+            String file_name = imageDocFileList.get(0).getFileName();
+            File file = new File(file_path);
+            if(!tv_description.getText().equals("")) {
+                uploadFile(file, tv_description.getText().toString());
+            }
+            else
+                Toast.makeText(mContext, "Please add any short description!", Toast.LENGTH_LONG).show();
+        }
+        else
+            Toast.makeText(mContext, "You are not select any document for upload!", Toast.LENGTH_LONG).show();
        // new UploadVideoViaMultipartATask(file_path, file_name,"").execute();
     }
 
@@ -433,7 +442,7 @@ public class OrderMedicineActivity extends BaseActivity {
     private void uploadFile(File file, String desc) {
 
             // create upload service client
-
+        LocalModel.getInstance().showProgressDialog(this, "Upload...", false);
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
             // create RequestBody instance from file
             RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
@@ -444,7 +453,7 @@ public class OrderMedicineActivity extends BaseActivity {
             // add another part within the multipart request
 
             RequestBody description = RequestBody.create(okhttp3.MultipartBody.FORM, desc);
-            RequestBody userId= RequestBody.create(okhttp3.MultipartBody.FORM, "4");
+            RequestBody userId= RequestBody.create(okhttp3.MultipartBody.FORM, mPrefs.getUserID());
 
             // finally, execute the request
             Call<ResponseBody> call = apiService.upload(userId,description, body);
@@ -453,11 +462,31 @@ public class OrderMedicineActivity extends BaseActivity {
                 public void onResponse(Call<ResponseBody> call,
                                        Response<ResponseBody> response) {
                     Log.v("Upload", "success");
+                    imageDocFileList.clear();
+                    delete_btn.setVisibility(View.GONE);
+                    tv_no_file_chosen.setText("");
+                    LocalModel.getInstance().cancelProgressDialog();
+
+                    Utils.showCallBackMessageWithOkCancelCustomButton(mContext, "Your prescription is successfully uploaded", "OK", "", new AlertDialogCallBack() {
+                        @Override
+                        public void onSubmit() {
+                            finish();
+                        }
+
+                        @Override
+                        public void onCancel() {
+
+                        }
+                    });
+
+
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
                     Log.e("Upload error:", t.getMessage());
+                    LocalModel.getInstance().cancelProgressDialog();
+                    Utils.showAlertDialogWithOkButton(mContext,"Alert!"," Fail to uploaded");
                 }
             });
         }

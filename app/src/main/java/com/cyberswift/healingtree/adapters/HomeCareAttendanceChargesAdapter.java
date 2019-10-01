@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import com.cyberswift.healingtree.R;
+import com.cyberswift.healingtree.interfaces.OnChargesDataChangeListener;
 import com.cyberswift.healingtree.model.HCAC_Model;
 
 import java.util.ArrayList;
 
 public class HomeCareAttendanceChargesAdapter extends  RecyclerView.Adapter<HomeCareAttendanceChargesAdapter.ViewHolder> {
-
 public static ArrayList<HCAC_Model> chargesList;
 private Context context;
 
@@ -63,11 +63,15 @@ public class ViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 lastSelectedPositionOfACA = getAdapterPosition();
+                ((OnChargesDataChangeListener)context).onChargesDataChanged(chargesList.get(lastSelectedPositionOfACA).getHomeCareAttandanceCharges());
                 notifyDataSetChanged();
 
             }
         });
     }
+
 }
+
+
 }
 

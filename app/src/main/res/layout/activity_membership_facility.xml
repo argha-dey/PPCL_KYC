@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
             <LinearLayout
                     android:id="@+id/privilage_heading_layout"
@@ -29,7 +29,7 @@
                     <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@color/colorPrimary"
+                            android:background="@drawable/club_level"
                             android:padding="10dp"/>
 
                 </LinearLayout>
@@ -43,7 +43,7 @@
                     <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/privilege_club_header_image"
+                            android:background="@drawable/privilege_club"
                             android:padding="10dp"/>
 
                 </LinearLayout>
@@ -53,87 +53,106 @@
 
 
             <RelativeLayout
-                android:id="@+id/middle_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/privilage_heading_layout"
-                android:layout_margin="20dp">
+                    android:id="@+id/middle_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/privilage_heading_layout"
+                    android:layout_margin="20dp">
 
                 <TextView
-                    android:id="@+id/privilage_explained_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/privilage_explained_string"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="12dp" />
+                        android:id="@+id/privilage_explained_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/privilage_explained_string"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp" />
 
 
                 <LinearLayout
-                    android:id="@+id/memership_type_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/privilage_explained_layout"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:orientation="vertical">
+                        android:id="@+id/memership_type_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/privilage_explained_layout"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="vertical">
 
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="160dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
 
                         <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="7dp"
-                            android:layout_weight="1">
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="7dp"
+                                android:layout_weight="1">
 
                             <TextView
                                     android:textStyle="bold"
-                                android:id="@+id/gold_mem_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/gold_membership_text"
-                                android:textColor="@color/colorBlack"
-                                android:textSize="12dp" />
+                                    android:id="@+id/gold_mem_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/gold_membership_text"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="12dp" />
 
                             <ImageView
-                                android:id="@+id/gold_mem_iv"
-                                android:layout_width="260dp"
-                                android:layout_height="match_parent"
-                                android:layout_below="@+id/gold_mem_text"
-                                android:layout_marginTop="5dp"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/gold_club" />
+                                    android:id="@+id/gold_mem_iv"
+                                    android:layout_width="260dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_below="@+id/gold_mem_text"
+                                    android:layout_marginTop="5dp"
+                                    app:srcCompat="@drawable/gold" />
+                  <!--          <LinearLayout
+                                    android:background="@color/colorPrimary"
+                                    android:orientation="horizontal"
+                                    android:layout_below="@+id/gold_mem_iv"
+                                    android:layout_width="260dp"
+                                    android:layout_height="wrap_content">
+                                <TextView
+                                        android:textColor="@color/colorGreen"
+                                        android:text="View"
+                                        android:layout_weight="1"
+                                        android:layout_width="0dp"
+                                        android:layout_height="10dp"/>
+                                <TextView
+                                        android:textColor="@color/colorGreen"
+                                        android:text="Book"
+                                        android:layout_weight="1"
+                                        android:layout_width="0dp"
+                                        android:layout_height="10dp"/>
+                            </LinearLayout>-->
 
                         </RelativeLayout>
 
+
                         <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="7dp"
-                            android:layout_weight="1">
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:layout_weight="1">
 
                             <TextView
                                     android:textStyle="bold"
-                                android:id="@+id/platinum_mem_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/platinum_membership_text"
-                                android:textColor="@color/colorBlack"
-                                android:textSize="12dp" />
+                                    android:id="@+id/platinum_mem_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/platinum_membership_text"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="12dp" />
 
                             <ImageView
-                                android:id="@+id/platinum_mem_iv"
-                                android:layout_width="260dp"
-                                android:layout_height="160dp"
-                                android:layout_below="@+id/platinum_mem_text"
-                                android:layout_marginTop="5dp"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/platinam_club" />
+                                    android:id="@+id/platinum_mem_iv"
+                                    android:layout_width="260dp"
+                                    android:layout_height="160dp"
+                                    android:layout_below="@+id/platinum_mem_text"
+                                    android:layout_marginTop="5dp"
+                                    android:scaleType="fitCenter"
+                                    app:srcCompat="@drawable/platinam" />
 
 
                         </RelativeLayout>
@@ -141,44 +160,45 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="160dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
+
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
                         <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="7dp"
-                            android:layout_weight="1">
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="7dp"
+                                android:layout_weight="1">
 
                             <TextView
                                     android:textStyle="bold"
-                                android:id="@+id/diamond_mem_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/diamond_membership_text"
-                                android:textColor="@color/colorBlack"
-                                android:textSize="12dp" />
+                                    android:id="@+id/diamond_mem_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/diamond_membership_text"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="12dp" />
 
                             <ImageView
-                                android:id="@+id/diamond_mem_iv"
-                                android:layout_width="260dp"
-                                android:layout_height="match_parent"
-                                android:layout_below="@+id/diamond_mem_text"
-                                android:layout_marginTop="5dp"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/diamond_club" />
+                                    android:id="@+id/diamond_mem_iv"
+                                    android:layout_width="260dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_below="@+id/diamond_mem_text"
+                                    android:layout_marginTop="5dp"
+                                    android:scaleType="fitCenter"
+                                    app:srcCompat="@drawable/diamond" />
 
 
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="7dp"
-                            android:layout_weight="1">
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:layout_weight="1">
 
 
                         </RelativeLayout>
@@ -189,24 +209,24 @@
 
 
                 <RelativeLayout
-                    android:id="@+id/button_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/memership_type_layout"
-                    android:layout_alignParentBottom="true"
+                        android:id="@+id/button_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/memership_type_layout"
+                        android:layout_alignParentBottom="true"
 
-                   >
+                >
 
 
                     <Button
-                        android:id="@+id/privilage_club_package_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/colorPrimary"
-                        android:gravity="center"
-                        android:text="@string/privilage_club_packages_button_text"
-                        android:textColor="@color/green_text_color"
-                        android:textSize="12dp" />
+                            android:id="@+id/privilage_club_package_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center"
+                            android:text="@string/privilage_club_packages_button_text"
+                            android:textColor="@color/green_text_color"
+                            android:textSize="12dp" />
                 </RelativeLayout>
 
             </RelativeLayout>

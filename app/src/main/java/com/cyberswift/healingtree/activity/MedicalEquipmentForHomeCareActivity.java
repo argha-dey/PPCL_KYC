@@ -12,11 +12,13 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.adapters.HomeCareAttendanceChargesAdapter;
 import com.cyberswift.healingtree.adapters.MultiSelectionAdapter;
 import com.cyberswift.healingtree.interfaces.AlertDialogWithCancelAndRetryListener;
+import com.cyberswift.healingtree.interfaces.OnChargesDataChangeListener;
 import com.cyberswift.healingtree.model.HCAC_Model;
 import com.cyberswift.healingtree.model.HealthCareResponseModel;
 import com.cyberswift.healingtree.model.THCA_Model;
@@ -32,10 +34,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MedicalEquipmentForHomeCareActivity extends AppCompatActivity {
+public class MedicalEquipmentForHomeCareActivity extends AppCompatActivity  implements OnChargesDataChangeListener {
 private Context mContext;
 private  RecyclerView rcv_we_offer;
 private RecyclerView rcv_medical_equipment_charges;
+private TextView tv_total_payable_amount;
 
     private ArrayList<THCA_Model> medicalWeOfferList;
     private ArrayList<HCAC_Model> medicalEquipmentChargeslist;
@@ -54,6 +57,7 @@ private RecyclerView rcv_medical_equipment_charges;
         medicalEquipmentChargeslist = new ArrayList<>();
         rcv_we_offer = findViewById(R.id.rcv_we_offer);
         rcv_medical_equipment_charges = findViewById(R.id.rcv_medical_equipment_charges);
+        tv_total_payable_amount = findViewById(R.id.tv_total_payable_amount);
     }
 
 
@@ -143,7 +147,10 @@ private RecyclerView rcv_medical_equipment_charges;
         MultiSelectionAdapter multiSelectionAdapter = new MultiSelectionAdapter(mContext,medicalWeOfferList,Constants.MEDICALE_EQUIPMENT_SERVICE);
         rcv_we_offer.setAdapter(multiSelectionAdapter);
 
-
     }
 
+    @Override
+    public void onChargesDataChanged(String amount) {
+        tv_total_payable_amount.setText("₹"+amount);
+    }
 }

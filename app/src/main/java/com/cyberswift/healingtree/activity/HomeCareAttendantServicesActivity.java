@@ -13,12 +13,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.adapters.HomeCareAttandanceSpacialOfferAdapter;
 import com.cyberswift.healingtree.adapters.HomeCareAttendanceChargesAdapter;
 import com.cyberswift.healingtree.adapters.MultiSelectionAdapter;
 import com.cyberswift.healingtree.interfaces.AlertDialogWithCancelAndRetryListener;
+import com.cyberswift.healingtree.interfaces.OnChargesDataChangeListener;
+import com.cyberswift.healingtree.interfaces.OnSpacialOfferDataChange;
 import com.cyberswift.healingtree.model.*;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
@@ -36,7 +39,7 @@ import java.util.Map;
 import static com.cyberswift.healingtree.adapters.HomeCareAttandanceSpacialOfferAdapter.lastSelectedPositionSOA;
 import static com.cyberswift.healingtree.adapters.HomeCareAttendanceChargesAdapter.lastSelectedPositionOfACA;
 
-public class HomeCareAttendantServicesActivity extends AppCompatActivity {
+public class HomeCareAttendantServicesActivity extends AppCompatActivity implements OnChargesDataChangeListener, OnSpacialOfferDataChange {
     private Context mContext;
     private RecyclerView home_care_attendants_charges_RecyclerView;
     private RecyclerView home_care_attendants_special_offers_RecyclerView;
@@ -45,6 +48,10 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity {
     private ArrayList<THCA_Model> trainedHomeCareAttendanceList;
     private ArrayList<HCAC_Model> homeCareAttendantChargeslist;
     private ArrayList<SO_Model> homeCareAttendanceSpacialOfferList;
+
+    private TextView tv_total_payable_amount;
+   private int chargeAmount = 0;
+   private int spacialOffer = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +85,7 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity {
         home_care_attendants_charges_RecyclerView = findViewById(R.id.home_care_attendants_charges_RecyclerView);
         home_care_attendants_special_offers_RecyclerView = findViewById(R.id.home_care_attendants_special_offers_RecyclerView);
         home_care_attendants_help_RecyclerView = findViewById(R.id.rcv_home_care_attendants_help);
-
+        tv_total_payable_amount = findViewById(R.id.tv_total_payable_amount);
 
         trainedHomeCareAttendanceList = new ArrayList<>();
         homeCareAttendantChargeslist = new ArrayList<>();
@@ -247,5 +254,33 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity {
         lastSelectedPositionSOA = -1;
         HomeCareAttendanceChargesAdapter.chargesList.clear();
         lastSelectedPositionOfACA = -1;
+    }
+
+
+    @Override
+    public void onChargesDataChanged(String amount) {
+        if(spacialOffer<=0) {
+            tv_total_payable_amount.setText("₹" + amount);
+            chargeAmount = Integer.parseInt(amount);
+        }
+        else {
+            chargeAmount = Integer.parseInt(amount);
+            int chargeAmountWithSpacialOffer = chargeAmount - (chargeAmount*spacialOffer)/100;
+            tv_total_payable_amount.setText("₹"+chargeAmountWithSpacialOffer);
+        }
+
+    }
+
+    @Override
+    public void onSpacialOfferDataChange(String amount) {
+       if(chargeAmount>0) {
+           spacialOffer = Integer.parseInt(amount);
+          int chargeAmountWithSpacialOffer = chargeAmount - (chargeAmount*spacialOffer)/100;
+           tv_total_payable_amount.setText("₹"+chargeAmountWithSpacialOffer);
+
+       }
+       else {
+           Toast.makeText(mContext,"Please select any attendance charge!",Toast.LENGTH_LONG).show();
+       }
     }
 }

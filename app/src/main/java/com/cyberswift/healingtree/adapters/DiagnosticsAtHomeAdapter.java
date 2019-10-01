@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import com.cyberswift.healingtree.R;
+import com.cyberswift.healingtree.interfaces.OnChargesDataChangeListener;
 import com.cyberswift.healingtree.model.HCAC_Model;
 
 import java.util.ArrayList;
@@ -67,6 +68,7 @@ public class DiagnosticsAtHomeAdapter extends  RecyclerView.Adapter<DiagnosticsA
                 @Override
                 public void onClick(View v) {
                     lastSelectedPositionDAH = getAdapterPosition();
+                    ((OnChargesDataChangeListener)context).onChargesDataChanged(chargesList.get(lastSelectedPositionDAH).getHomeCareAttandanceCharges());
                     notifyDataSetChanged();
 
                 }

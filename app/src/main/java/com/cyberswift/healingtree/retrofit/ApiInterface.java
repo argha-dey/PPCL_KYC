@@ -46,6 +46,9 @@ public interface ApiInterface {
     Call<HelloHealthPackageCostResponseModel> getHelloHealthPackageCost(@Body Map<String, String> body);
 
 
+    @POST(Urls.HEALING_TREE_MEMBER_SHIP_CLUB_COST)
+    Call<MemberShipClubCostResponseModel> getMemberShipCost(@Body Map<String, String> body);
+
     @GET(Urls.HEALTH_LIBRARY)
     Call<HealthLibraryResponseDo> getHealthLibraryResponse();
 

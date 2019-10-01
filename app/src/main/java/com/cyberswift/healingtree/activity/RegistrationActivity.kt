@@ -193,7 +193,7 @@ class RegistrationActivity : Activity() {
             tv_address.error = "Required"
             Toast.makeText(applicationContext, "Address Required ", Toast.LENGTH_SHORT).show()
         }
-        else if (tv_hospital_id.text.toString().trim().isEmpty()) {
+        else if (rl_hospital_id.visibility == View.VISIBLE  && tv_hospital_id.text.toString().trim().isEmpty()) {
             tv_hospital_id.error = "Required"
             Toast.makeText(applicationContext, "Hospital Id Required ", Toast.LENGTH_SHORT).show()
         }

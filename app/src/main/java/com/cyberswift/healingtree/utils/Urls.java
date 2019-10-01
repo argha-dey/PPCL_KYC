@@ -33,4 +33,6 @@ public interface Urls {
 
     String HEALTH_LIBRARY = "awarnesslist/awarness_list";
     String AWARNESS_ARTICLE = "awarnesslist/awarness_link";
+
+    String HEALING_TREE_MEMBER_SHIP_CLUB_COST ="membership/membership_get_amount";
 }

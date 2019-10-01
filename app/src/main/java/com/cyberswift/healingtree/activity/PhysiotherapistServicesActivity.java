@@ -13,11 +13,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.adapters.HomeCareAttendanceChargesAdapter;
 import com.cyberswift.healingtree.adapters.MultiSelectionAdapter;
 import com.cyberswift.healingtree.interfaces.AlertDialogWithCancelAndRetryListener;
+import com.cyberswift.healingtree.interfaces.OnChargesDataChangeListener;
 import com.cyberswift.healingtree.model.HCAC_Model;
 import com.cyberswift.healingtree.model.HealthCareResponseModel;
 import com.cyberswift.healingtree.model.HomeCareAttendantDataPostResponseModel;
@@ -37,13 +39,15 @@ import java.util.Map;
 
 import static com.cyberswift.healingtree.adapters.HomeCareAttendanceChargesAdapter.lastSelectedPositionOfACA;
 
-public class PhysiotherapistServicesActivity extends AppCompatActivity {
+public class PhysiotherapistServicesActivity extends AppCompatActivity implements OnChargesDataChangeListener {
 private Context mContext;
 private RecyclerView rcv_type_of_injuries_disabilities;
 private RecyclerView rcv_physiotherapists_charges;
 
     private ArrayList<THCA_Model> physiotherapistInjuriesTypeList;
     private ArrayList<HCAC_Model> physiotherapistInjuriesChargeslist;
+
+    private TextView tv_total_payable_amount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +62,7 @@ private RecyclerView rcv_physiotherapists_charges;
         physiotherapistInjuriesChargeslist = new ArrayList<>();
         rcv_type_of_injuries_disabilities = findViewById(R.id.rcv_type_of_injuries_disabilities);
         rcv_physiotherapists_charges = findViewById(R.id.rcv_physiotherapists_charges);
+        tv_total_payable_amount = findViewById(R.id.tv_total_payable_amount);
     }
 
     public void onPhysiotherapistBackButtonClick(View view) {
@@ -210,5 +215,10 @@ private RecyclerView rcv_physiotherapists_charges;
         MultiSelectionAdapter.taineHomeCareAttendanceList.clear();
         HomeCareAttendanceChargesAdapter.chargesList.clear();
         lastSelectedPositionOfACA = -1;
+    }
+
+    @Override
+    public void onChargesDataChanged(String amount) {
+        tv_total_payable_amount.setText("₹"+amount);
     }
 }

@@ -86,10 +86,10 @@ public class DoctorTimeSlot extends AppCompatActivity {
         weeklyTimeSlotHashMap = new HashMap<>();
         tabDateArrayList = new ArrayList<>();
         final Map<String, Object> requestBody = new HashMap<>();
-        //   requestBody.put("doc_id", doctorDetails.getDocId());
-        //   requestBody.put("date", doctorDetails.getDate());
-        requestBody.put("doc_id","1");
-        requestBody.put("date","2019-09-18");
+          requestBody.put("doc_id", doctorDetails.getDocId());
+        requestBody.put("date", doctorDetails.getDate());
+     //  requestBody.put("doc_id","79");
+     //  requestBody.put("date","2019-09-30");
 
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
         System.out.println("request : "+new JSONObject(requestBody));

@@ -11,10 +11,12 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.adapters.DiagnosticsAtHomeAdapter;
 import com.cyberswift.healingtree.interfaces.AlertDialogWithCancelAndRetryListener;
+import com.cyberswift.healingtree.interfaces.OnChargesDataChangeListener;
 import com.cyberswift.healingtree.model.HCAC_Model;
 import com.cyberswift.healingtree.model.HealthCareResponseModel;
 import com.cyberswift.healingtree.model.HomeCareAttendantDataPostResponseModel;
@@ -33,10 +35,11 @@ import java.util.Map;
 
 import static com.cyberswift.healingtree.adapters.DiagnosticsAtHomeAdapter.lastSelectedPositionDAH;
 
-public class DiagnosticsAtHomeActivity extends AppCompatActivity {
+public class DiagnosticsAtHomeActivity extends AppCompatActivity  implements OnChargesDataChangeListener {
 private Context mContext;
     private ArrayList<HCAC_Model> homeCareAttendantChargeslist;
     private RecyclerView diagnostics_charges_RecyclerView;
+    private TextView tv_total_payable_amount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,7 @@ private Context mContext;
     private void initViews() {
         mContext = DiagnosticsAtHomeActivity.this;
         diagnostics_charges_RecyclerView = findViewById(R.id.diagnostics_charges_RecyclerView);
+        tv_total_payable_amount = findViewById(R.id.tv_total_payable_amount);
     }
 
 
@@ -178,5 +182,10 @@ private Context mContext;
     protected void resetData(){
         DiagnosticsAtHomeAdapter.chargesList.clear();
         lastSelectedPositionDAH = -1;
+    }
+
+    @Override
+    public void onChargesDataChanged(String amount) {
+        tv_total_payable_amount.setText("₹"+amount);
     }
 }

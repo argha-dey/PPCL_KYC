@@ -64,7 +64,7 @@
                     <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/diy"
+                            android:background="@drawable/nursing_care_level"
                             android:padding="10dp"/>
 
                 </LinearLayout>
@@ -78,7 +78,7 @@
                     <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/women"
+                            android:background="@drawable/nursing_care"
                             android:padding="10dp"/>
 
                 </LinearLayout>
@@ -169,7 +169,30 @@
                                 android:layout_height="wrap_content"/>
                     </LinearLayout>
 
+                    <LinearLayout
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp">
+                        <TextView
+                                android:textStyle="bold"
+                                android:textColor="@color/colorPrimary"
+                                android:gravity="center|right"
+                                android:text="Total Payable Amount : "
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="match_parent"/>
+                        <TextView
+                                android:id="@+id/tv_total_payable_amount"
+                                android:textColorHint="@color/colorPrimary"
+                                android:textColor="@color/colorPrimary"
+                                android:gravity="center"
+                                android:hint="₹0"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"/>
 
+                    </LinearLayout>
 
                     <LinearLayout
                             android:layout_marginTop="20dp"

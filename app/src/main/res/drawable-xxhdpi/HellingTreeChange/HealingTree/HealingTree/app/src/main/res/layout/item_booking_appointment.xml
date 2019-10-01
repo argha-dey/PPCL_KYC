@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/row_item_alarm"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/colorWhite"
+    android:paddingTop="10dp"
+    android:paddingBottom="0dp"
+    android:layout_marginBottom="10dp"
+    android:baselineAligned="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_dr_profile_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/profile_image"
+                app:civ_border_width="0dp"
+                app:civ_border_color="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/tv_dr_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Details"
+                android:textColor="@color/colorOrange"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:textAllCaps="false"
+                android:singleLine="true"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_dr_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dr Subimal Das"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:singleLine="true"/>
+
+                <TextView
+                    android:id="@+id/tv_dr_qualification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(MD)"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:textAllCaps="false"
+                    android:singleLine="true"
+                    android:layout_marginLeft="4dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_dr_department"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medicine"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:textAllCaps="false"
+                android:singleLine="true"/>
+
+            <TextView
+                android:id="@+id/tv_dr_experience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exp. 29 Yrs"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:textAllCaps="false"
+                android:singleLine="true"/>
+
+            <TextView
+                android:id="@+id/tv_dr_specialization"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Internal Medicine"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:textAllCaps="false"
+                android:singleLine="true"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TUESDAY"
+                android:textColor="@color/colorButtonText"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:textAllCaps="false"
+                android:singleLine="true"
+                android:background="@color/colorOrange"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"/>
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25/07/19"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:textAllCaps="false"
+                android:singleLine="true"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorStroke"/>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarThumbHorizontal="@android:color/transparent"
+            android:background="@color/colorGreyLight"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:id="@+id/tv_dr_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:00 AM - 12:30 PM,     1:00 PM - 3:00 PM,     3:00 PM - 5:30 PM"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:textAllCaps="false"
+                android:singleLine="true"
+                android:layout_gravity="center_vertical"
+                android:gravity="center" />
+
+            <!--<LinearLayout
+                android:id="@+id/timeScheduleLinLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            </LinearLayout>-->
+
+        </HorizontalScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorStroke"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_book_via_call"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Book via Call"
+            android:textColor="@color/colorGreen"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:textAllCaps="false"
+            android:singleLine="true"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorStroke"/>
+
+        <TextView
+            android:id="@+id/tv_book_via_app"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Book via App"
+            android:textColor="@color/colorOrange"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:textAllCaps="false"
+            android:singleLine="true"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorStroke"/>
+
+</LinearLayout>

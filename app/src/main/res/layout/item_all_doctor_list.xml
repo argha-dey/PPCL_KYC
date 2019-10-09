@@ -96,7 +96,6 @@
                         android:id="@+id/tv_dr_experience_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Exp : "
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="14sp"
                         android:textStyle="normal"
@@ -222,7 +221,7 @@
     </LinearLayout>
 
     <LinearLayout
-
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:orientation="horizontal">

@@ -10,6 +10,7 @@ import com.cyberswift.healingtree.R
 import com.cyberswift.healingtree.model.UserRegisterResponseModel
 import com.cyberswift.healingtree.retrofit.ApiInterfaceKot
 import com.cyberswift.healingtree.utils.Prefs
+import com.cyberswift.healingtree.utils.Utils
 import kotlinx.android.synthetic.main.activity_registration.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -201,9 +202,17 @@ class RegistrationActivity : Activity() {
             tv_password.error = "Required"
             Toast.makeText(applicationContext, "Password Required ", Toast.LENGTH_SHORT).show()
         }
+        else if (Utils.isValidPassword(tv_password.text.toString().trim())) {
+            tv_password.error = "Required Valid Password"
+            Toast.makeText(applicationContext, "Required Valid Password", Toast.LENGTH_SHORT).show()
+        }
         else if (tv_confirm_password.text.toString().trim().isEmpty()) {
             tv_confirm_password.error = "Required"
             Toast.makeText(applicationContext, "Confirm Password Required ", Toast.LENGTH_SHORT).show()
+        }
+        else if (tv_confirm_password.text.toString().trim() != tv_password.text.toString().trim()) {
+            tv_confirm_password.error = "Password Not Match"
+            Toast.makeText(applicationContext, "Confirm Password Not Match with actual password", Toast.LENGTH_SHORT).show()
         }
         else{
             DisplayProgressDialog()
@@ -236,14 +245,14 @@ class RegistrationActivity : Activity() {
                             pDialog.dismiss()
                         }
 
-                        Toast.makeText(applicationContext, "Registration Successfully Done ", Toast.LENGTH_LONG).show()
-                            goToHomePage()
+                             Toast.makeText(applicationContext, "Registration Successfully Done ", Toast.LENGTH_LONG).show()
+                             goToHomePage()
                     }
                         else{
                             if (pDialog != null && pDialog.isShowing()) {
                                 pDialog.dismiss()
                             }
-                            Toast.makeText(applicationContext, " Registration fail! ", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, ""+response.body()!!.message ,Toast.LENGTH_SHORT).show()
                         }
                 }else
                         Toast.makeText(applicationContext, " Registration fail! ", Toast.LENGTH_SHORT).show()
@@ -273,6 +282,7 @@ class RegistrationActivity : Activity() {
     override fun onBackPressed() {
 
     }
+
 }
 
 

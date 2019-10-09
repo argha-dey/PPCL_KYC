@@ -86,7 +86,7 @@ private TextView tv_total_payable_amount;
         }
     }
 
-    public  void  onBookViaAppForNursingCareServices(View view){
+    public  void  onBookForNursingCareServicesCallBack(View view){
         Toast.makeText(mContext,"Available Shortly",Toast.LENGTH_SHORT).show();
     }
 
@@ -196,7 +196,7 @@ private TextView tv_total_payable_amount;
                 requestBody.put("service_id", service_id_list);
                 requestBody.put("charges", chargesAmountId);
                 requestBody.put("offer", "");
-                requestBody.put("service_date", "20-09-2019");
+                requestBody.put("service_date", Utils.currentDate());
                 requestBody.put("marchant_name", "Admin");
                 requestBody.put("card_no", "41414141414141");
                 requestBody.put("date_of_expiry", "12-08-2025");

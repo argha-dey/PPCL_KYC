@@ -214,6 +214,7 @@
                                 android:layout_width="3dp"
                                 android:layout_height="match_parent"/>
                         <TextView
+                                android:onClick="onCallForNursingCareServices"
                                 android:gravity="center"
                                 android:background="@color/colorPrimary"
                                 android:textColor="@color/colorGreen"
@@ -226,6 +227,7 @@
                                 android:layout_width="3dp"
                                 android:layout_height="match_parent"/>
                         <TextView
+                                android:onClick="onBookForNursingCareServicesCallBack"
                                 android:gravity="center"
                                 android:background="@color/colorPrimary"
                                 android:textColor="@color/colorGreen"

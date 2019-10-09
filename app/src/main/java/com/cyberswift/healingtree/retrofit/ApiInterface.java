@@ -55,12 +55,17 @@ public interface ApiInterface {
     @POST(Urls.AWARNESS_ARTICLE)
     Call<AwarnessArticleResponseDo> getAwarnessArticle(@Body Map<String, String> requestBody);
 
+    @POST(Urls.HELLO_HEALTH_PACKAGE_BOOKING)
+    Call<HomeCarePackageBooking> getHelloHealthPackageBooking(@Body Map<String, String> body);
+
+    @POST(Urls.HELLO_HEALTH_CLUB_MEMBER_SHIP_BOOKING)
+    Call<HomeCarePackageBooking> getHelloHealthClubMemberShipBooking(@Body Map<String, String> body);
 
  /*   @POST("prescription/upload_prepcription/post")
     Call<PrescriptionUploadResponceModel> uploadMultiFile(@Body RequestBody file);*/
 
     @Multipart
-    @POST("prescription/upload_prepcription/post")
+    @POST("prescription/upload_prepcription")
     Call<ResponseBody> upload(
             @Part("user_id") RequestBody user_id,
             @Part("reamrks") RequestBody reamrks,

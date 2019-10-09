@@ -12,6 +12,7 @@ import com.cyberswift.healingtree.model.AppointmentListResponseModel;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.LocalModel;
+import com.cyberswift.healingtree.utils.Prefs;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,8 +45,8 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
     private void sendRequestToGetDoctorsBookingList() {
         LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         Map<String, String> requestBody = new HashMap<>();
-//        requestBody.put("user_id", new Prefs(this).getUserID());
-        requestBody.put("user_id", "4");
+        requestBody.put("user_id", new Prefs(this).getUserID());
+      //  requestBody.put("user_id", "4");
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
         Call<AppointmentListResponseModel> call = apiService.getAppointmentList(requestBody);
         call.enqueue(new Callback<AppointmentListResponseModel>() {

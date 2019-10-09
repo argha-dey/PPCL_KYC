@@ -20,6 +20,21 @@ public class PrescriptionListDataModel {
     @SerializedName("PP_FL_ARCHIVE")
     private String PP_FL_ARCHIVE;
 
+    @SerializedName("PP_REMARKS")
+    private String PP_REMARKS;
+
+    public String getPP_REMARKS() {
+        return PP_REMARKS;
+    }
+
+    public void setPP_REMARKS(String PP_REMARKS) {
+        this.PP_REMARKS = PP_REMARKS;
+    }
+
+
+
+
+
 
     public String getPP_ID() {
         return PP_ID;

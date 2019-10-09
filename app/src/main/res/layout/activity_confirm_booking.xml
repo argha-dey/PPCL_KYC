@@ -36,8 +36,16 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                android:text="Your booked is successfully done"
+                android:textSize="16sp"
+                android:text="Your request has been submitted successfully."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        <TextView
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:text="please wait for confirmation."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -48,7 +56,7 @@
     <LinearLayout
             android:onClick="onBookingDone"
             android:background="@color/colorPrimary"
-            android:layout_weight="0.8"
+            android:layout_weight="0.6"
             android:layout_width="match_parent"
             android:layout_height="0dp">
         <TextView

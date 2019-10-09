@@ -41,10 +41,9 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Utils {
 
@@ -216,7 +215,7 @@ public class Utils {
     /**
      * Check upper case, lower case, number & special character available or not
      * */
-    public static boolean isValidPassword(String newPassword) {
+/*    public static boolean isValidPassword(String newPassword) {
         int upper = 0, lower = 0, number = 0, special = 0;
         for(int i = 0; i < newPassword.length(); i++) {
             char ch = newPassword.charAt(i);
@@ -230,7 +229,7 @@ public class Utils {
                 special++;
         }
         return (upper > 0 && lower > 0 && number > 0 && special > 0);
-    }
+    }*/
 
 
     public static String getAppVersion(Context context) {
@@ -520,5 +519,17 @@ public class Utils {
         String outputDateStr = outputFormat.format(date);
 
         return outputDateStr;
+    }
+
+    public  static  String currentDate(){
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        String formattedDate = df.format(date);
+        return formattedDate;
+    }
+
+    public static boolean isValidPassword(String password) {
+        Matcher matcher = Pattern.compile("((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{6,20})").matcher(password);
+        return matcher.matches();
     }
 }

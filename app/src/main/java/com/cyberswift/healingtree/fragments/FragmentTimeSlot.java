@@ -61,6 +61,7 @@ public class FragmentTimeSlot extends Fragment {
 // Static Data Set End
 
         if (doctorListModels != null) {
+            prefs.setDoctorBookSelectDate(doctorListModels.get(0).getDate());
             timeSlotModelArrayList = doctorListModels.get(0).getTime_slot();
             setTimeSlotModelArrayList(timeSlotModelArrayList);
         }

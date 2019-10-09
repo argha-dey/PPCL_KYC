@@ -11,7 +11,16 @@ public class HCAC_Model {
     private String homeCareAttandanceDuration;
     @SerializedName("CGS_CHARGES")
     private String homeCareAttandanceCharges;
+    @SerializedName("CGS_Code")
+    private String CGS_Code;
 
+    public String getCGS_Code() {
+        return CGS_Code;
+    }
+
+    public void setCGS_Code(String CGS_Code) {
+        this.CGS_Code = CGS_Code;
+    }
 
     public String getHomeCareAttandanceChargeId() {
         return homeCareAttandanceChargeId;

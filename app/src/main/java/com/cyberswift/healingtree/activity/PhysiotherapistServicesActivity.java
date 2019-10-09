@@ -27,6 +27,7 @@ import com.cyberswift.healingtree.model.THCA_Model;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.Constants;
+import com.cyberswift.healingtree.utils.Prefs;
 import com.cyberswift.healingtree.utils.Utils;
 import org.json.JSONObject;
 import retrofit2.Call;
@@ -48,6 +49,7 @@ private RecyclerView rcv_physiotherapists_charges;
     private ArrayList<HCAC_Model> physiotherapistInjuriesChargeslist;
 
     private TextView tv_total_payable_amount;
+ private    Prefs mPrefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,7 @@ private RecyclerView rcv_physiotherapists_charges;
 
     private void initViews() {
         mContext = PhysiotherapistServicesActivity.this;
+        mPrefs = new Prefs(mContext);
         physiotherapistInjuriesTypeList = new ArrayList<>();
         physiotherapistInjuriesChargeslist = new ArrayList<>();
         rcv_type_of_injuries_disabilities = findViewById(R.id.rcv_type_of_injuries_disabilities);
@@ -83,7 +86,7 @@ private RecyclerView rcv_physiotherapists_charges;
             mContext.startActivity(callIntent);
         }
     }
-    public  void  onBookViaAppForPhysiotherapistService(View view){
+    public  void  onBookPhysiotherapistServiceCallRequest(View view){
         Toast.makeText(mContext,"Available Shortly",Toast.LENGTH_SHORT).show();
     }
 
@@ -177,12 +180,12 @@ private RecyclerView rcv_physiotherapists_charges;
         if (selectedTargetItemId.size()>0){
             if(!chargesAmountId.equals("")) {
                 final Map<String, String> requestBody = new HashMap<>();
-                requestBody.put("user_id", "4");
+                requestBody.put("user_id", mPrefs.getUserID());
                 requestBody.put("service_type_id",Constants.PHYSIOTHERAPIST_SERVICES);
                 requestBody.put("service_id", service_id_list);
                 requestBody.put("charges", chargesAmountId);
                 requestBody.put("offer", "");
-                requestBody.put("service_date", "20-09-2019");
+                requestBody.put("service_date",Utils.currentDate());
                 requestBody.put("marchant_name", "Admin");
                 requestBody.put("card_no", "41414141414141");
                 requestBody.put("date_of_expiry", "12-08-2025");

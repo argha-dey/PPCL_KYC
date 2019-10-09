@@ -39,7 +39,7 @@ public class DiagnosticsAtHomeAdapter extends  RecyclerView.Adapter<DiagnosticsA
     public void onBindViewHolder(DiagnosticsAtHomeAdapter.ViewHolder holder, int position) {
         HCAC_Model offersModel = chargesList.get(position);
         holder.item_name.setText(offersModel.getHomeCareAttandanceDuration());
-        holder.item_id.setText(offersModel.getHomeCareAttandanceChargeId());
+        holder.item_id.setText(offersModel.getCGS_Code());
         holder.charges_amount.setText("₹"+offersModel.getHomeCareAttandanceCharges());
         holder.selectionCharges.setChecked(lastSelectedPositionDAH == position);
     }

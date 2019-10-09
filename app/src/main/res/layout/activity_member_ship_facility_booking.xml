@@ -247,6 +247,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                            android:onClick="onClubMemberShipBooking"
                             android:layout_marginTop="40dp"
                             android:layout_marginBottom="15dp"
                             android:orientation="horizontal"

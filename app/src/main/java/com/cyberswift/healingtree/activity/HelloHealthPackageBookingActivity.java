@@ -1,21 +1,21 @@
 package com.cyberswift.healingtree.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.dropdown.DropDownViewForXML;
-import com.cyberswift.healingtree.model.HelloHealthPackageCost;
-import com.cyberswift.healingtree.model.HelloHealthPackageCostResponseModel;
-import com.cyberswift.healingtree.model.HelloHealthSubPackageTypeResponseModel;
-import com.cyberswift.healingtree.model.HelloSubPackageModel;
+import com.cyberswift.healingtree.model.*;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.LocalModel;
+import com.cyberswift.healingtree.utils.Prefs;
 import com.cyberswift.healingtree.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,8 +38,10 @@ public class HelloHealthPackageBookingActivity extends AppCompatActivity {
     private String packageDurationType ="";
     private String subPackageId ="";
     private String subPackageName ="";
+    private String packageCost = "";
     private ArrayList<HelloSubPackageModel> helloSubPackageList;
-    private ArrayList<HelloHealthPackageCost> helloHealthPackageCosts;
+    private ArrayList<HelloHealthPackageCost> helloHealthPackageCostsArrayList;
+    private Prefs mPrefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +89,7 @@ public class HelloHealthPackageBookingActivity extends AppCompatActivity {
                                     helloSubPackageList = subPackageListResponse.getSubPackageDetails();
 
                                     if(helloSubPackageList.get(0).getHHS_PACKAGE_TYPE().equals("Day")){
+                                        packageCost = helloSubPackageList.get(0).getHHS_PACKAGE_COST();
                                         tv_hello_health_package_amount.setText("₹"+helloSubPackageList.get(0).getHHS_PACKAGE_COST());
                                     }
                                     else {
@@ -111,6 +114,7 @@ public class HelloHealthPackageBookingActivity extends AppCompatActivity {
     }
 
     private void initHelloHealthBooking() {
+        mPrefs = new Prefs(mContext);
         dropDown_hello_health_packages_type = findViewById(R.id.dropDown_hello_health_packages_type);
         dropDown_hello_health_packages_sub_type = findViewById(R.id.dropDown_hello_health_packages_sub_type);
         tv_hello_health_package_name = findViewById(R.id.tv_hello_health_package_name);
@@ -139,20 +143,18 @@ public class HelloHealthPackageBookingActivity extends AppCompatActivity {
         dropDown_hello_health_packages_sub_type.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-          //      subPackageId = helloSubPackageList.get(position).g;
+                 subPackageId = helloSubPackageList.get(position).getHHS_ID();
                 subPackageName = helloSubPackageList.get(position).getHHS_PACKAGE_CATEGORY();//    DistrictName = districtArrayList.get(position).getDistrictName();
                 packageCostApiCall(subPackageName);
-
             }
         });
-
     }
 
     private void packageCostApiCall(String _subPackageName) {
         if(Utils.isOnline(mContext)){
             LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
             Map<String, String> request = new HashMap<>();
-            request.put("HLO_ID","HLO0000000001");
+            request.put("HLO_ID",helloHealthPackageId);
             request.put("HHS_PACKAGE_TYPE",packageDurationType);
             request.put("HHS_PACKAGE_CATEGORY",_subPackageName);
             ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
@@ -166,11 +168,14 @@ public class HelloHealthPackageBookingActivity extends AppCompatActivity {
                         if (packageCostResponse.isStatus()) {
                             if (packageCostResponse.getPackageCost() != null) {
                                 LocalModel.getInstance().cancelProgressDialog();
-                                helloHealthPackageCosts = packageCostResponse.getPackageCost();
-                                tv_hello_health_package_amount.setText("₹"+helloHealthPackageCosts.get(0).getHHS_PACKAGE_COST());
+                                helloHealthPackageCostsArrayList = packageCostResponse.getPackageCost();
+                                packageCost = helloHealthPackageCostsArrayList.get(0).getHHS_PACKAGE_COST();
+                                tv_hello_health_package_amount.setText("₹"+ helloHealthPackageCostsArrayList.get(0).getHHS_PACKAGE_COST());
                                 LocalModel.getInstance().cancelProgressDialog();
                             }
                         }
+                        else
+                            LocalModel.getInstance().cancelProgressDialog();
                     } else {
                         LocalModel.getInstance().cancelProgressDialog();
                     }
@@ -185,6 +190,7 @@ public class HelloHealthPackageBookingActivity extends AppCompatActivity {
         }
     }
 
+
     public void populateHelloHealthSubPackageList( ArrayList<HelloSubPackageModel> arrayList) {
         /**ArrayList of Object Shorting   By Name **/
         Collections.sort(arrayList, new Comparator<HelloSubPackageModel>() {
@@ -195,6 +201,7 @@ public class HelloHealthPackageBookingActivity extends AppCompatActivity {
             }
         });
 
+
         if (arrayList.size() > 0) {
             dropDown_hello_health_packages_sub_type.setEnabled(true);
             dropDown_hello_health_packages_sub_type.setHint("Select");
@@ -204,5 +211,47 @@ public class HelloHealthPackageBookingActivity extends AppCompatActivity {
             }
             dropDown_hello_health_packages_sub_type.setItems(corridorArray);
         }
+    }
+
+    public  void onHelloHealthPackageBooking(View view){
+        if(Utils.isOnline(mContext)){
+            LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
+            Map<String, String> request = new HashMap<>();
+            request.put("USR_USER_ID",mPrefs.getUserID());
+            request.put("HHS_PACKAGE_ID",helloHealthPackageId);
+            request.put("HHS_PACKAGE_TYPE",packageDurationType);
+            request.put("HHS_SUB_PACKAGE_TYPE",subPackageName);
+            request.put("HHS_SUB_PACKAGE_ID",subPackageId);
+            request.put("HHS_COST",packageCost);
+
+            ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
+            Call<HomeCarePackageBooking> call = apiService.getHelloHealthPackageBooking(request);
+            call.enqueue(new Callback<HomeCarePackageBooking>() {
+                @Override
+                public void onResponse(Call<HomeCarePackageBooking> call, Response<HomeCarePackageBooking> response) {
+
+                    if (response.body() != null) {
+                        HomeCarePackageBooking bookingResponse = response.body();
+                        if (bookingResponse.isStatus()) {
+                            Intent intentHome = new Intent(mContext, ConfirmationDoneActivity.class);
+                            startActivity(intentHome);
+                        }
+                        else
+                            LocalModel.getInstance().cancelProgressDialog();
+                    } else {
+                        LocalModel.getInstance().cancelProgressDialog();
+                    }
+                }
+
+
+                @Override
+                public void onFailure(Call<HomeCarePackageBooking> call, Throwable t) {
+                    LocalModel.getInstance().cancelProgressDialog();
+                }
+            });
+
+        }
+        else
+            Toast.makeText(mContext,"Please Wait for Internet connection!",Toast.LENGTH_LONG).show();
     }
 }

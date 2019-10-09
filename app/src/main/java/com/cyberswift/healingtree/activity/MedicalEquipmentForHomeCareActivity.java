@@ -73,7 +73,7 @@ private TextView tv_total_payable_amount;
         }
     }
 
-    public void onBookViaForMedicalEquipment(View view){
+    public void onBookForMedicalEquipmentForRequestCallBack(View view){
         Toast.makeText(mContext,"Available Shortly ",Toast.LENGTH_SHORT).show();
     }
 

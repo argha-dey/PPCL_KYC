@@ -1,18 +1,22 @@
 package com.cyberswift.healingtree.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.dropdown.DropDownViewForXML;
+import com.cyberswift.healingtree.model.HomeCarePackageBooking;
 import com.cyberswift.healingtree.model.MemberShipClubCostResponseModel;
 import com.cyberswift.healingtree.model.MemberShipCostModel;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.LocalModel;
+import com.cyberswift.healingtree.utils.Prefs;
 import com.cyberswift.healingtree.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +38,8 @@ public class MemberShipFacilityBookingActivity extends AppCompatActivity {
     private  String clubMemberShipDuration = "";
     private String memberShipClubName = "";
     private  String memberShipClubId = "";
+    private String clubMemberShipCost = "";
+    private Prefs mPrefs;
     private ArrayList<MemberShipCostModel> memberShipCostList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +56,12 @@ public class MemberShipFacilityBookingActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
                 memberShipClubName = extras.getString("MemberShipClubName");
-            //  memberShipClubId = extras.getString("HelloHealthPackageId");
+             //   memberShipClubId = extras.getString("HelloHealthPackageId");
         }
     }
 
     private void initViewMemberShip() {
-
+        mPrefs = new Prefs(mContext);
         dropDown_select_number_of_family_members = findViewById(R.id.dropDown_select_number_of_family_members);
         dropDown_duration_of_member_ship = findViewById(R.id.dropDown_duration_of_member_ship);
         tv_member_ship_amount = findViewById(R.id.tv_member_ship_amount);
@@ -107,6 +113,7 @@ public class MemberShipFacilityBookingActivity extends AppCompatActivity {
                             if (memberShipCostResponse.getMemberShipClubCostList() != null) {
                                 LocalModel.getInstance().cancelProgressDialog();
                                 memberShipCostList = memberShipCostResponse.getMemberShipClubCostList();
+                                clubMemberShipCost = memberShipCostList.get(0).getMember_subscription_amount();
                                 tv_member_ship_amount.setText("₹"+memberShipCostList.get(0).getMember_subscription_amount());
                                 LocalModel.getInstance().cancelProgressDialog();
                             }
@@ -141,5 +148,47 @@ public class MemberShipFacilityBookingActivity extends AppCompatActivity {
             dropDown_duration_of_member_ship.setHint("Select");
             dropDown_duration_of_member_ship.setItems(memberShipDurationArray);
         }
+    }
+
+    public  void onClubMemberShipBooking(View view){
+        if(Utils.isOnline(mContext)){
+            LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
+            Map<String, String> request = new HashMap<>();
+            request.put("USR_USER_ID",mPrefs.getUserID());
+            request.put("club_membership_name",memberShipClubName);
+            request.put("MMS_FACILITY",noOfFamilyMember);
+            request.put("MMS_SPAN",clubMemberShipDuration);
+            request.put("MMS_AMOUNT",clubMemberShipCost);
+
+
+            ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
+            Call<HomeCarePackageBooking> call = apiService.getHelloHealthClubMemberShipBooking(request);
+            call.enqueue(new Callback<HomeCarePackageBooking>() {
+                @Override
+                public void onResponse(Call<HomeCarePackageBooking> call, Response<HomeCarePackageBooking> response) {
+
+                    if (response.body() != null) {
+                        HomeCarePackageBooking bookingResponse = response.body();
+                        if (bookingResponse.isStatus()) {
+                            Intent intentHome = new Intent(mContext, ConfirmationDoneActivity.class);
+                            startActivity(intentHome);
+                        }
+                        else
+                            LocalModel.getInstance().cancelProgressDialog();
+                    } else {
+                        LocalModel.getInstance().cancelProgressDialog();
+                    }
+                }
+
+
+                @Override
+                public void onFailure(Call<HomeCarePackageBooking> call, Throwable t) {
+                    LocalModel.getInstance().cancelProgressDialog();
+                }
+            });
+
+        }
+        else
+            Toast.makeText(mContext,"Please Wait for Internet connection!",Toast.LENGTH_LONG).show();
     }
 }

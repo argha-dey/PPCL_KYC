@@ -7,8 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.cyberswift.healingtree.R;
+import com.cyberswift.healingtree.interfaces.CustomAlertDialogListener;
 import com.cyberswift.healingtree.model.TimeSlotModel;
+import com.cyberswift.healingtree.utils.Prefs;
+import com.cyberswift.healingtree.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -16,12 +20,13 @@ public class MorningTimeSlotAdapter extends  RecyclerView.Adapter<MorningTimeSlo
 
     private ArrayList<TimeSlotModel> timeSlotModels;
     private Context context;
-
+    private Prefs mPrefs;
     private int lastSelectedPosition = -1;
 
     public MorningTimeSlotAdapter(Context _context, ArrayList<TimeSlotModel> _spacialOffersList) {
         this.timeSlotModels = _spacialOffersList;
         context = _context;
+        mPrefs = new Prefs(context);
     }
 
     @Override
@@ -58,8 +63,23 @@ public class MorningTimeSlotAdapter extends  RecyclerView.Adapter<MorningTimeSlo
             selectionCharges.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    lastSelectedPosition = getAdapterPosition();
-                    notifyDataSetChanged();
+
+                    Utils.showCustomAlertDialog(context, true, "Appointment Booking Info!", true, "Are you sure to book appointment on this time slot?",
+                            true, "Yes", true, "No", true, new CustomAlertDialogListener() {
+                                @Override
+                                public void positiveButtonWork() {
+                                    lastSelectedPosition = getAdapterPosition();
+                                    mPrefs.setDoctorBookSelectTime(timeSlotModels.get(lastSelectedPosition).getTime());
+                                    Toast.makeText(context,"Your Selected Time Slot is "+timeSlotModels.get(lastSelectedPosition).getTime(),Toast.LENGTH_SHORT).show();
+                                    notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void negativeButtonWork() {
+
+                                }
+                            });
+
 
                 }
             });

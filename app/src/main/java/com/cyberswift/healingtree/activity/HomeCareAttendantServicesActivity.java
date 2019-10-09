@@ -27,6 +27,7 @@ import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.Constants;
 import com.cyberswift.healingtree.utils.LocalModel;
+import com.cyberswift.healingtree.utils.Prefs;
 import com.cyberswift.healingtree.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,6 +53,7 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity impleme
     private TextView tv_total_payable_amount;
    private int chargeAmount = 0;
    private int spacialOffer = 0;
+   private Prefs mPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,7 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity impleme
 
     private void initViews() {
         mContext = HomeCareAttendantServicesActivity.this;
+        mPrefs = new Prefs(mContext);
         home_care_attendants_charges_RecyclerView = findViewById(R.id.home_care_attendants_charges_RecyclerView);
         home_care_attendants_special_offers_RecyclerView = findViewById(R.id.home_care_attendants_special_offers_RecyclerView);
         home_care_attendants_help_RecyclerView = findViewById(R.id.rcv_home_care_attendants_help);
@@ -113,7 +116,7 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity impleme
         }
     }
 
-    public void onBookViaAppForHomeCareAttendantSeries(View view) {
+    public void onBookViaHomeCareAttendantSeriesCallBackRequest(View view) {
         Toast.makeText(mContext, "Available on Shortly ", Toast.LENGTH_SHORT).show();
     }
 
@@ -215,12 +218,12 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity impleme
         if (selectedTargetItemId.size()>0){
             if(!chargesAmountId.equals("")) {
                 final Map<String, String> requestBody = new HashMap<>();
-                requestBody.put("user_id", "4");
+                requestBody.put("user_id", mPrefs.getUserID());
                 requestBody.put("service_type_id",Constants.HOME_CARE_ATTENDANT);
                 requestBody.put("service_id", service_id_list);
                 requestBody.put("charges", chargesAmountId);
                 requestBody.put("offer", SpacialofferId);
-                requestBody.put("service_date", "20-09-2019");
+                requestBody.put("service_date", Utils.currentDate());
                 requestBody.put("marchant_name", "Admin");
                 requestBody.put("card_no", "41414141414141");
                 requestBody.put("date_of_expiry", "12-08-2025");

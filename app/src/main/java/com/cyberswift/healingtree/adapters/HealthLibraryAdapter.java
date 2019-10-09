@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.cyberswift.healingtree.R;
-import com.cyberswift.healingtree.activity.AwarnessArticleActivity;
+import com.cyberswift.healingtree.activity.AwarenessArticleActivity;
 import com.cyberswift.healingtree.model.AwarnessData;
 import com.squareup.picasso.Picasso;
 
@@ -61,6 +61,7 @@ public class HealthLibraryAdapter extends RecyclerView.Adapter<HealthLibraryAdap
         private TextView contentTextview;
         private ImageView arrowImageView;
         private RelativeLayout arrowImageRl;
+        private RelativeLayout rl_health_library;
         private URL url = null;
         private Bitmap bitmap = null;
 
@@ -72,7 +73,8 @@ public class HealthLibraryAdapter extends RecyclerView.Adapter<HealthLibraryAdap
 
         private void registerListenersToViews() {
 //            arrowImageView.setOnClickListener(this);
-            arrowImageRl.setOnClickListener(this);
+          //  arrowImageRl.setOnClickListener(this);
+            rl_health_library.setOnClickListener(this);
         }
 
         private void initViews() {
@@ -82,6 +84,7 @@ public class HealthLibraryAdapter extends RecyclerView.Adapter<HealthLibraryAdap
             contentTextview = (TextView) itemView.findViewById(R.id.content_tv);
             arrowImageView = (ImageView) itemView.findViewById(R.id.arrow_image);
             arrowImageRl = (RelativeLayout) itemView.findViewById(R.id.arrow_image_rl);
+            rl_health_library = itemView.findViewById(R.id.rl_health_library);
 
         }
 
@@ -103,18 +106,19 @@ public class HealthLibraryAdapter extends RecyclerView.Adapter<HealthLibraryAdap
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.arrow_image_rl:
+                case R.id.rl_health_library:
                     onClickOnArrowLayout();
                     break;
             }
         }
 
         private void onClickOnArrowLayout() {
-            Intent intent = new Intent(context, AwarnessArticleActivity.class);
+            Intent intent = new Intent(context, AwarenessArticleActivity.class);
             intent.putExtra(ARTICLE_ID_CONSTANTS, awarnessDataArrayList.get(getAdapterPosition()).getAwarnessID());
             context.startActivity(intent);
 
 
         }
     }
+
 }

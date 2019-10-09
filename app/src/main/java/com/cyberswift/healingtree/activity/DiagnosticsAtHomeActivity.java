@@ -23,6 +23,7 @@ import com.cyberswift.healingtree.model.HomeCareAttendantDataPostResponseModel;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.Constants;
+import com.cyberswift.healingtree.utils.Prefs;
 import com.cyberswift.healingtree.utils.Utils;
 import org.json.JSONObject;
 import retrofit2.Call;
@@ -40,6 +41,7 @@ private Context mContext;
     private ArrayList<HCAC_Model> homeCareAttendantChargeslist;
     private RecyclerView diagnostics_charges_RecyclerView;
     private TextView tv_total_payable_amount;
+    private Prefs mPrefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,7 @@ private Context mContext;
 
     private void initViews() {
         mContext = DiagnosticsAtHomeActivity.this;
+        mPrefs = new Prefs(mContext);
         diagnostics_charges_RecyclerView = findViewById(R.id.diagnostics_charges_RecyclerView);
         tv_total_payable_amount = findViewById(R.id.tv_total_payable_amount);
     }
@@ -74,7 +77,7 @@ private Context mContext;
         }
 
     }
-    public void onBookViaAppSampleCollectionService(View view){
+    public void onBookViaAppSampleCollectionRequestCallBack(View view){
         Toast.makeText(mContext,"Available Shortly ",Toast.LENGTH_SHORT).show();
     }
 
@@ -146,12 +149,12 @@ private Context mContext;
 
             if(!chargesAmountId.equals("")) {
                 final Map<String, String> requestBody = new HashMap<>();
-                requestBody.put("user_id", "4");
+                requestBody.put("user_id",mPrefs.getUserID() );
                 requestBody.put("service_type_id",Constants.DIAGNOSTICS_AT_HOME);
                 requestBody.put("service_id", "");
                 requestBody.put("charges", chargesAmountId);
                 requestBody.put("offer", "");
-                requestBody.put("service_date", "20-09-2019");
+                requestBody.put("service_date", Utils.currentDate());
                 requestBody.put("marchant_name", "Admin");
                 requestBody.put("card_no", "41414141414141");
                 requestBody.put("date_of_expiry", "12-08-2025");

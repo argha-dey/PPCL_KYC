@@ -455,18 +455,19 @@ public class OrderMedicineActivity extends BaseActivity {
             RequestBody description = RequestBody.create(okhttp3.MultipartBody.FORM, desc);
             RequestBody userId= RequestBody.create(okhttp3.MultipartBody.FORM, mPrefs.getUserID());
 
+
             // finally, execute the request
-            Call<ResponseBody> call = apiService.upload(userId,description, body);
+            Call<ResponseBody> call = apiService.upload(userId,description,body);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call,
                                        Response<ResponseBody> response) {
+                    if(response.body()!=null)
                     Log.v("Upload", "success");
                     imageDocFileList.clear();
                     delete_btn.setVisibility(View.GONE);
                     tv_no_file_chosen.setText("");
                     LocalModel.getInstance().cancelProgressDialog();
-
                     Utils.showCallBackMessageWithOkCancelCustomButton(mContext, "Your prescription is successfully uploaded", "OK", "", new AlertDialogCallBack() {
                         @Override
                         public void onSubmit() {

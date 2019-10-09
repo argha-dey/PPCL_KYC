@@ -14,6 +14,7 @@ import com.cyberswift.healingtree.model.PackageModel;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.LocalModel;
+import com.cyberswift.healingtree.utils.Prefs;
 import com.cyberswift.healingtree.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,7 +47,7 @@ public class HelloHealthActivity extends BaseActivity implements View.OnClickLis
         if(Utils.isOnline(mContext)){
             LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
             Map<String, String> requestBody = new HashMap<>();
-//        requestBody.put("USER_ID", new Prefs(this).getUserID());
+            requestBody.put("USER_ID", new Prefs(this).getUserID());
           //  requestBody.put("USER_ID", "4");
             ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
             Call<HelloHealthPackageResponseModel> call = apiService.getHelloHealthPackage(requestBody);

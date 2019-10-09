@@ -13,11 +13,14 @@ import android.view.View;
 import android.widget.EditText;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.adapters.DoctorDepartmentAdapter;
+import com.cyberswift.healingtree.interfaces.AlertDialogWithCancelAndRetryListener;
 import com.cyberswift.healingtree.model.DoctorDepartmentModel;
 import com.cyberswift.healingtree.model.DoctorDidDName;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
+import com.cyberswift.healingtree.utils.LocalModel;
 import com.cyberswift.healingtree.utils.Urls;
+import com.cyberswift.healingtree.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,36 +37,54 @@ public class SpecialitiesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-     //   setContentLayout(R.layout.activity_specialities);
+        //   setContentLayout(R.layout.activity_specialities);
         setContentView(R.layout.activity_specialities);
 
         initialViews();
 
-      //  getSupportActionBar().setTitle("");
-    //    checkedMenuItem = navView.getMenu().findItem(Constants.HOME_NAV_ID);
-     //   checkedMenuItem.setChecked(true);
+        //  getSupportActionBar().setTitle("");
+        //    checkedMenuItem = navView.getMenu().findItem(Constants.HOME_NAV_ID);
+        //   checkedMenuItem.setChecked(true);
+        if(Utils.isOnline(activity)) {
+            doctorDepartmentServiceCall();
+        }
+        else
+            Utils.showAlertDialogWithCancelAndRetry(activity, "Please Check your internet connection!", new AlertDialogWithCancelAndRetryListener() {
+                @Override
+                public void onCancelClick() {
 
-        doctorDepartmentServiceCall();
+                }
+
+                @Override
+                public void onRetryClick() {
+                    doctorDepartmentServiceCall();
+                }
+            });
+
     }
 
     private void doctorDepartmentServiceCall() {
+        LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         String categoryUrl = Urls.DEPARTMENT_LIST;
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
         Call<DoctorDepartmentModel> call = apiService.doctorDepartment(categoryUrl);
         call.enqueue(new Callback<DoctorDepartmentModel>() {
             @Override
             public void onResponse(Call<DoctorDepartmentModel> call, Response<DoctorDepartmentModel> response) {
-               DoctorDepartmentModel model = response.body();
+                DoctorDepartmentModel model = response.body();
                 doctorDidDNameArrayList = new ArrayList<>();
                 if(response.body().getStatus().equals("true")){
                     doctorDidDNameArrayList = model.getDoctorDidDNameList();
                     setDoctorDidDNameInList(doctorDidDNameArrayList);
+                    LocalModel.getInstance().cancelProgressDialog();
                 }
+                else
+                    LocalModel.getInstance().cancelProgressDialog();
             }
 
             @Override
             public void onFailure(Call<DoctorDepartmentModel> call, Throwable t) {
-
+                LocalModel.getInstance().cancelProgressDialog();
             }
         });
 
@@ -73,7 +94,7 @@ public class SpecialitiesActivity extends AppCompatActivity {
 
     private void initialViews() {
         activity = SpecialitiesActivity.this;
-     //   emergency_icon.setVisibility(View.VISIBLE);
+        //   emergency_icon.setVisibility(View.VISIBLE);
         et_department_search =   findViewById(R.id.et_department_search);
         specialistRecyclerView = (RecyclerView) findViewById(R.id.specialistRecyclerView);
         et_department_search.setText("");
@@ -112,18 +133,18 @@ public class SpecialitiesActivity extends AppCompatActivity {
             doctorDepartmentAdapter.updateList(temp);
         }
     }
-  //add icons
-  public void setDoctorDidDNameInList(ArrayList<DoctorDidDName> doctorDidDNameArray) {
-      specialistRecyclerView.setLayoutManager(new GridLayoutManager(activity, 4));
-      specialistRecyclerView.setItemAnimator(new DefaultItemAnimator());
-      doctorDepartmentAdapter = new DoctorDepartmentAdapter(activity, doctorDidDNameArray);
-      specialistRecyclerView.setAdapter(doctorDepartmentAdapter);
-  }
+    //add icons
+    public void setDoctorDidDNameInList(ArrayList<DoctorDidDName> doctorDidDNameArray) {
+        specialistRecyclerView.setLayoutManager(new GridLayoutManager(activity, 4));
+        specialistRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        doctorDepartmentAdapter = new DoctorDepartmentAdapter(activity, doctorDidDNameArray);
+        specialistRecyclerView.setAdapter(doctorDepartmentAdapter);
+    }
 
-public void onSpecialistDoctorBackButtonClick(View view){
-    Intent intentBack = new Intent(activity,HomeActivity.class);
-    intentBack.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    startActivity(intentBack);
-}
+    public void onSpecialistDoctorBackButtonClick(View view){
+        Intent intentBack = new Intent(activity,HomeActivity.class);
+        intentBack.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intentBack);
+    }
 
 }

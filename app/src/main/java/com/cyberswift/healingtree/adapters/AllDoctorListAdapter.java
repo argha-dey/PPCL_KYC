@@ -95,15 +95,15 @@ public class AllDoctorListAdapter extends RecyclerView.Adapter<AllDoctorListAdap
         } else
             holder.tv_date.setVisibility(View.GONE);
 
-      /*  if (doctorListModel.getTime() != null && !doctorListModel.getTime().equals("")) {
-            holder.tv_dr_schedule.setText(doctorListModel.getTime());
+        if (doctorListModel.getTime_slot() != null && !doctorListModel.getTime_slot().equals("")) {
+            holder.tv_dr_schedule.setText(doctorListModel.getTime_slot().toString());
             holder.tv_dr_schedule.setVisibility(View.VISIBLE);
         } else
-            holder.tv_dr_schedule.setVisibility(View.GONE);*/
+            holder.tv_dr_schedule.setVisibility(View.GONE);
 
         if (Utils.isSelectedDateBeforeCurrentDate(doctorListModel.getDate())) {
-            holder.btn_book_via_app.setEnabled(false);
-            holder.btn_book_via_app.setTextColor(mContext.getResources().getColor(R.color.colorGrey));
+            holder.btn_book_via_app.setEnabled(true);
+        //    holder.btn_book_via_app.setTextColor(mContext.getResources().getColor(R.color.colorGrey));
         } else
             holder.btn_book_via_app.setEnabled(true);
 

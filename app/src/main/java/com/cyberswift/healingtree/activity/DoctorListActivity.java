@@ -26,6 +26,7 @@ import com.cyberswift.healingtree.model.AllDoctorListResponceModel;
 import com.cyberswift.healingtree.model.DoctorListResponseModel;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
+import com.cyberswift.healingtree.utils.LocalModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,7 +58,7 @@ public class DoctorListActivity extends AppCompatActivity {
         getBundle();
         initializeViews();
         fetchDoctorListAll();
-        fetchDoctorListDay();
+     //   fetchDoctorListDay();
         setupViewPager(viewPager);
 
         et_search_doctors.addTextChangedListener(new TextWatcher() {
@@ -95,6 +96,7 @@ public class DoctorListActivity extends AppCompatActivity {
     }
 
     private void fetchDoctorListAll() {
+        LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("dept_id",departmentId);
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
@@ -105,15 +107,18 @@ public class DoctorListActivity extends AppCompatActivity {
                 if (response.body() != null) {
                     AllDoctorListResponceModel allDoctorListResponceModel = response.body();
                     if (allDoctorListResponceModel.isStatus()) {
-                        if (allDoctorListResponceModel.getDoctorListModel() != null && allDoctorListResponceModel.getDoctorListModel().size() > 0)
+                        if (allDoctorListResponceModel.getDoctorListModel() != null && allDoctorListResponceModel.getDoctorListModel().size() > 0) {
                             fragmentAllDoctorList.updateDrList(allDoctorListResponceModel.getDoctorListModel());
+                            LocalModel.getInstance().cancelProgressDialog();
+                        }
                     }
+                    LocalModel.getInstance().cancelProgressDialog();
                 }
             }
 
             @Override
             public void onFailure(Call<AllDoctorListResponceModel> call, Throwable t) {
-
+                LocalModel.getInstance().cancelProgressDialog();
             }
         });
     }
@@ -165,19 +170,20 @@ public class DoctorListActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());  // /*getFragmentManager*/getChildFragmentManager()
         fragmentAllDoctorList = new AllDoctorListFragment();
-        fragmentMonday = new FragmentMonday();
-        fragmentTuesday = new FragmentTuesday();
-        fragmentWednesday = new FragmentWednesday();
-        fragmentThursday = new FragmentThursday();
-        fragmentFriday = new FragmentFriday();
-        fragmentSaturday = new FragmentSaturday();
-        adapter.addFrag(fragmentAllDoctorList, "ALL");
-        adapter.addFrag(fragmentMonday, "MON");
-        adapter.addFrag(fragmentTuesday, "TUE");
-        adapter.addFrag(fragmentWednesday, "WED");
-        adapter.addFrag(fragmentThursday, "THU");
-        adapter.addFrag(fragmentFriday, "FRI");
-        adapter.addFrag(fragmentSaturday, "SAT");
+     //   fragmentMonday = new FragmentMonday();
+     //   fragmentTuesday = new FragmentTuesday();
+      //  fragmentWednesday = new FragmentWednesday();
+     //   fragmentThursday = new FragmentThursday();
+     //   fragmentFriday = new FragmentFriday();
+      //  fragmentSaturday = new FragmentSaturday();
+       adapter.addFrag(fragmentAllDoctorList, "All Doctor List");
+
+      //  adapter.addFrag(fragmentMonday, "MON");
+      //  adapter.addFrag(fragmentTuesday, "TUE");
+      //  adapter.addFrag(fragmentWednesday, "WED");
+     //   adapter.addFrag(fragmentThursday, "THU");
+      //  adapter.addFrag(fragmentFriday, "FRI");
+      //  adapter.addFrag(fragmentSaturday, "SAT");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         //tabLayout.setTag(this.viewPager);
@@ -194,7 +200,7 @@ public class DoctorListActivity extends AppCompatActivity {
                         case 0:
                             mAllDoctorListAdapter = fragmentAllDoctorList.getAdapterCurrentInstance();
                             break;
-                        case 1:
+                   /*     case 1:
                             mDoctorListAdapter = fragmentMonday.getAdapterCurrentInstance();
                             break;
                         case 2:
@@ -214,7 +220,7 @@ public class DoctorListActivity extends AppCompatActivity {
                             break;
                         default:
                             mDoctorListAdapter = fragmentMonday.getAdapterCurrentInstance();
-                            break;
+                            break;*/
                     }
                 }
 
@@ -258,6 +264,10 @@ public class DoctorListActivity extends AppCompatActivity {
             mFragmentTitleList.add(title);
         }
 
+        public void addFragWithOutHeader(Fragment fragment) {
+            mFragmentList.add(fragment);
+
+        }
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);

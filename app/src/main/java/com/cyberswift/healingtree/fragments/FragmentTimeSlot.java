@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.adapters.MorningTimeSlotAdapter;
 import com.cyberswift.healingtree.model.DoctorListModel;
@@ -25,6 +26,7 @@ public class FragmentTimeSlot extends Fragment {
     private ArrayList<DoctorListModel> doctorListModels;
     private LayoutInflater layoutInflater;
     private LinearLayout ll_time_slot_container;
+    private TextView tv_no_data_found;
     private Prefs prefs;
     private ArrayList<TimeSlotModel> timeSlotModelArrayList;
     private RecyclerView rcv_morningTimeSlot;
@@ -55,6 +57,7 @@ public class FragmentTimeSlot extends Fragment {
         activity = getActivity();
         prefs = new Prefs(activity);
         rcv_morningTimeSlot =v.findViewById(R.id.rcv_morningTimeSlot);
+        tv_no_data_found = v.findViewById(R.id.tv_no_data_found);
         //this.ll_time_slot_container = v.findViewById(R.id.ll_time_slot_container);
 
 
@@ -72,18 +75,23 @@ public class FragmentTimeSlot extends Fragment {
 
     // Set Home Care Attendance Trained Help Adapter
     private void setTimeSlotModelArrayList(ArrayList<TimeSlotModel> _morningTimeSlot) {
-        for(int pos =0 ; pos<_morningTimeSlot.size();pos++) {
-         /*   layoutInflater = (LayoutInflater) activity.getSystemService(LAYOUT_INFLATER_SERVICE);
+        /*     for(int pos =0 ; pos<_morningTimeSlot.size();pos++) {
+         *//*   layoutInflater = (LayoutInflater) activity.getSystemService(LAYOUT_INFLATER_SERVICE);
             View viewlayout = layoutInflater.inflate(R.layout.time_slot_row, null);
             TextView time_slot_button = viewlayout.findViewById(R.id.time_slot_button);
             time_slot_button.setText(""+_morningTimeSlot.get(pos).getTime());
-            ll_time_slot_container.addView(viewlayout);*/
+            ll_time_slot_container.addView(viewlayout);*//*
+        }*/
+        if(_morningTimeSlot.size()>0) {
+            tv_no_data_found.setVisibility(View.GONE);
+            rcv_morningTimeSlot.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+            rcv_morningTimeSlot.setItemAnimator(new DefaultItemAnimator());
+            MorningTimeSlotAdapter morningTimeSlotAdapter = new MorningTimeSlotAdapter(getActivity(), _morningTimeSlot);
+            rcv_morningTimeSlot.setAdapter(morningTimeSlotAdapter);
         }
-
-        rcv_morningTimeSlot.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        rcv_morningTimeSlot.setItemAnimator(new DefaultItemAnimator());
-        MorningTimeSlotAdapter morningTimeSlotAdapter = new MorningTimeSlotAdapter(getActivity(), _morningTimeSlot);
-        rcv_morningTimeSlot.setAdapter(morningTimeSlotAdapter);
+        else {
+            tv_no_data_found.setVisibility(View.VISIBLE);
+        }
 
     }
 }

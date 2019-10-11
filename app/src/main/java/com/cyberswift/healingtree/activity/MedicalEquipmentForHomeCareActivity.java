@@ -4,9 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.cyberswift.healingtree.R;
-import com.cyberswift.healingtree.adapters.HomeCareAttendanceChargesAdapter;
+import com.cyberswift.healingtree.adapters.MedicalEquipmentChargesAdapter;
 import com.cyberswift.healingtree.adapters.MultiSelectionAdapter;
 import com.cyberswift.healingtree.interfaces.AlertDialogWithCancelAndRetryListener;
 import com.cyberswift.healingtree.interfaces.OnChargesDataChangeListener;
@@ -136,7 +136,7 @@ private TextView tv_total_payable_amount;
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL); // set  VERTICAL Orientation
         rcv_medical_equipment_charges.setLayoutManager(linearLayoutManager);
         rcv_medical_equipment_charges.setItemAnimator(new DefaultItemAnimator());
-        HomeCareAttendanceChargesAdapter homeCareAdapter = new HomeCareAttendanceChargesAdapter(mContext, medicalEquipmentChargeslist);
+        MedicalEquipmentChargesAdapter homeCareAdapter = new MedicalEquipmentChargesAdapter(mContext, medicalEquipmentChargeslist);
         rcv_medical_equipment_charges.setAdapter(homeCareAdapter);
 
     }

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.LocationManager;
@@ -29,13 +31,21 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.interfaces.AlertDialogWithCancelAndRetryListener;
 import com.cyberswift.healingtree.interfaces.CustomAlertDialogListener;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -49,7 +59,7 @@ public class Utils {
 
     /**
      * launch a new activity
-     * */
+     */
     public static void launchActivity(Context context, Class<?> destinationClass) {
         Intent i = new Intent(context, destinationClass);
 //        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -59,18 +69,18 @@ public class Utils {
 
     /**
      * launch a new activity and finish current activity
-     * */
+     */
     public static void launchActivityWithFinish(Context context, Class<?> destinationClass) {
         Intent i = new Intent(context, destinationClass);
 //        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(i);
-        ((Activity)context).finish();
+        ((Activity) context).finish();
     }
 
 
     /**
      * Show log
-     * */
+     */
     public static void showLog(String tag, String value) {
         if (Constants.IS_DEVELOPMENT_MODE)
             Log.d("@@@ ", tag + "==> " + value);
@@ -79,7 +89,7 @@ public class Utils {
 
     /**
      * Show toasts
-     * */
+     */
     public static void showToast(Context context, String string, String length) {
         switch (length) {
             case Constants.SHORT:
@@ -114,7 +124,7 @@ public class Utils {
 
     /**
      * Check internet connected or not
-     * */
+     */
 
     public static boolean checkConnectivity(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -165,17 +175,17 @@ public class Utils {
 
     /**
      * Get current date and time
-     * */
+     */
     public static String getCurrentDateNTime(String input_format) {
         Date d = new Date();
-        CharSequence curr_datetime  = android.text.format.DateFormat.format(input_format, d.getTime());
+        CharSequence curr_datetime = android.text.format.DateFormat.format(input_format, d.getTime());
         return curr_datetime.toString();
     }
 
 
     /**
      * Change date and time format
-     * */
+     */
     public static String changeDateNTimeFormat(String inputDateTime, String inFormat, String outFormat) {
         String output_datetime = "";
         try {
@@ -189,14 +199,14 @@ public class Utils {
     }
 
 
-    public static void showSoftKeyboard(Context context, View view){
-        InputMethodManager imm =(InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(view,InputMethodManager.SHOW_FORCED);
+    public static void showSoftKeyboard(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
     }
 
 
-    public static void hideSoftKeyboard(Context context, View view){
-        InputMethodManager imm =(InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+    public static void hideSoftKeyboard(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
@@ -214,7 +224,7 @@ public class Utils {
 
     /**
      * Check upper case, lower case, number & special character available or not
-     * */
+     */
 /*    public static boolean isValidPassword(String newPassword) {
         int upper = 0, lower = 0, number = 0, special = 0;
         for(int i = 0; i < newPassword.length(); i++) {
@@ -230,8 +240,6 @@ public class Utils {
         }
         return (upper > 0 && lower > 0 && number > 0 && special > 0);
     }*/
-
-
     public static String getAppVersion(Context context) {
         String version = "0.0";
         try {
@@ -244,14 +252,9 @@ public class Utils {
     }
 
 
-
-
-
-
-
     /**
      * Show custom alert dialog
-     * */
+     */
     public static void showCustomAlertDialog(final Context mContext, final Boolean isTitileAllowed, final String title,
                                              final Boolean isMessageAllowed, final String message, final Boolean isPosBtnAllowed, final String posBtnName,
                                              final Boolean isNegBtnAllowed, final String negBtnName, final Boolean isDialogCancellable,
@@ -333,16 +336,18 @@ public class Utils {
 
     /**
      * Show custom alert dialog with ok button only. It does not perform any action on click
-     * */
+     */
     @SuppressLint("ResourceType")
     public static void showAlertDialogWithOkButton(Context context, String title, String msg) {
         Utils.showCustomAlertDialog(context, true, title, true, msg, true, "Ok",
                 false, "", true, new CustomAlertDialogListener() {
                     @Override
-                    public void positiveButtonWork() {}
+                    public void positiveButtonWork() {
+                    }
 
                     @Override
-                    public void negativeButtonWork() {}
+                    public void negativeButtonWork() {
+                    }
                 });
     }
 
@@ -416,6 +421,7 @@ public class Utils {
         }
         return dateSelected.before(dateCurrent);
     }
+
     // check internet connection
     public static boolean isOnline(Context mContext) {
         ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -425,12 +431,14 @@ public class Utils {
             return true;
         }*/
     }
+
     public static String getDefaultFilePathForImg() {
         File prntFile = new File(Environment.getExternalStorageDirectory().getPath() + "/HealingTreePatientDoc/Img/");
         prntFile.mkdirs();
-        String getDestinationFileFortakePic = prntFile.getAbsolutePath() + "/prescribing_" + System.currentTimeMillis() + ".jpg";
+        String getDestinationFileFortakePic = prntFile.getAbsolutePath() + "/HealingTree_" + System.currentTimeMillis() + ".jpg";
         return getDestinationFileFortakePic;
     }
+
 
 
     //check if choose file is image or video
@@ -466,6 +474,7 @@ public class Utils {
         }
         return type;
     }
+
     public static boolean isExist(String[] array, String val) {
 
         for (String s : array) {
@@ -477,6 +486,7 @@ public class Utils {
         return false;
 
     }
+
     public static void showCallBackMessageWithOkCancelCustomButton(final Context mContext, final String message,
                                                                    final String positiveButton, final String negativeButton, final AlertDialogCallBack callBack) {
         ((Activity) mContext).runOnUiThread(new Runnable() {
@@ -507,6 +517,7 @@ public class Utils {
             }
         });
     }
+
     public static String changeDateTimeWithMonthInStringFormat(String date) {
         DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
         DateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy");
@@ -521,7 +532,7 @@ public class Utils {
         return outputDateStr;
     }
 
-    public  static  String currentDate(){
+    public static String currentDate() {
         Date date = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String formattedDate = df.format(date);
@@ -532,4 +543,91 @@ public class Utils {
         Matcher matcher = Pattern.compile("((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{6,20})").matcher(password);
         return matcher.matches();
     }
+
+    public static boolean dateCompar(String myDate) {
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String getCurrentDateTime = sdf.format(c.getTime());
+        if (getCurrentDateTime.compareTo(myDate) < 0)
+            return true;
+        else
+            return false;
+    }
+    public static void filePreviewDialog(final Context context, String fileUrl) {
+        LocalModel.getInstance().showProgressDialog(context, context.getResources().getString(R.string.please_wait_msg), false);
+        final Dialog fileDitailsDialog = new Dialog(context, android.R.style.Theme_NoTitleBar_Fullscreen);
+        fileDitailsDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        fileDitailsDialog.setContentView(R.layout.file_preview_dialog_layout);
+        fileDitailsDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        fileDitailsDialog.getWindow().setGravity(Gravity.CENTER);
+        ImageView iv_close = (ImageView) fileDitailsDialog.findViewById(R.id.iv_close);
+        ImageView iv_image_viewer = (ImageView) fileDitailsDialog.findViewById(R.id.iv_image_viewer);
+        WebView webview_document = (WebView) fileDitailsDialog.findViewById(R.id.webview_document);
+        String fileType = fileUrl.substring(fileUrl.lastIndexOf('.') + 1);
+        if (fileType.equalsIgnoreCase("jpg") || fileType.equalsIgnoreCase("png")) {
+            webview_document.setVisibility(View.GONE);
+            iv_image_viewer.setVisibility(View.VISIBLE);
+            ImageLoader imageLoader = ImageLoader.getInstance();
+
+            imageLoader.setDefaultLoadingListener(new ImageLoadingListener() {
+                @Override
+                public void onLoadingStarted(String s, View view) {
+
+                }
+
+                @Override
+                public void onLoadingFailed(String s, View view, FailReason failReason) {
+                    LocalModel.getInstance().cancelProgressDialog();
+                }
+
+                @Override
+                public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+                    LocalModel.getInstance().cancelProgressDialog();
+                }
+
+                @Override
+                public void onLoadingCancelled(String s, View view) {
+                    LocalModel.getInstance().cancelProgressDialog();
+                }
+            });
+            imageLoader.displayImage(fileUrl, iv_image_viewer);
+
+        } else {
+            webview_document.setVisibility(View.VISIBLE);
+            iv_image_viewer.setVisibility(View.GONE);
+
+
+            webview_document.setWebViewClient(new WebViewClient() {
+                @Override
+                public void onPageStarted(WebView view, String url, Bitmap favicon) {
+
+                }
+
+
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    LocalModel.getInstance().cancelProgressDialog();
+
+                }
+            });
+            webview_document.getSettings().setJavaScriptEnabled(true);
+            webview_document.loadUrl("https://docs.google.com/viewer?url=" + fileUrl);
+
+        }
+
+
+        iv_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LocalModel.getInstance().cancelProgressDialog();
+                fileDitailsDialog.dismiss();
+            }
+        });
+
+
+        fileDitailsDialog.show();
+
+
+    }
+
 }

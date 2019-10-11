@@ -28,6 +28,21 @@ public class DoctorListModel implements Parcelable {
     private String day;
     @SerializedName("date")
     private String date;
+
+    public String getSub_dept_name() {
+        return sub_dept_name;
+    }
+
+    public void setSub_dept_name(String sub_dept_name) {
+        this.sub_dept_name = sub_dept_name;
+    }
+
+    public static Creator<DoctorListModel> getCREATOR() {
+        return CREATOR;
+    }
+
+    @SerializedName("sub_dept_name")
+    private String sub_dept_name;
     @SerializedName("time_slot")
     private ArrayList<TimeSlotModel> time_slot;
 

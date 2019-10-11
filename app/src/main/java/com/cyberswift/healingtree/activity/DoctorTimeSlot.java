@@ -61,7 +61,7 @@ public class DoctorTimeSlot extends AppCompatActivity {
 
     private void setData() {
 
-        doctorExp.setText(doctorDetails.getExperience());
+        doctorExp.setText("Exp: "+doctorDetails.getExperience());
         doctordepart.setText(doctorDetails.getDeptName());
         doctorName.setText(doctorDetails.getDocName());
         doctorSpl.setText(doctorDetails.getQualification());
@@ -69,15 +69,15 @@ public class DoctorTimeSlot extends AppCompatActivity {
 
     public void  onSelectDateFromCal(View view){
         final Calendar sCalendar = Calendar.getInstance();
-        DatePickerDialog sDatePickerDialog = new DatePickerDialog(activity,R.style.DatePickerDialogTheme,
+        DatePickerDialog sDatePickerDialog = new DatePickerDialog(activity,
                 new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         sCalendar.set(year, monthOfYear, dayOfMonth);
                         SimpleDateFormat df =  new SimpleDateFormat("yyyy-MM-dd");
                         String surveyDate = df.format(sCalendar.getTime());
-                        // tv_date.setText(surveyDate);
                     }
                 }, sCalendar.get(Calendar.YEAR), sCalendar.get(Calendar.MONTH), sCalendar.get(Calendar.DAY_OF_MONTH));
+        sDatePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
         sDatePickerDialog.show();
     }
 
@@ -87,7 +87,15 @@ public class DoctorTimeSlot extends AppCompatActivity {
         tabDateArrayList = new ArrayList<>();
         final Map<String, Object> requestBody = new HashMap<>();
            requestBody.put("doc_id", doctorDetails.getDocId());
-           requestBody.put("date", doctorDetails.getDate());
+           if(Utils.dateCompar(doctorDetails.getDate())){
+               requestBody.put("date", doctorDetails.getDate());
+           }
+           else {
+               Calendar c = Calendar.getInstance();
+               SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+               String getCurrentDateTime = sdf.format(c.getTime());
+               requestBody.put("date",getCurrentDateTime);
+           }
      //  requestBody.put("doc_id","79");
      //  requestBody.put("date","2019-09-30");
 
@@ -211,6 +219,7 @@ public class DoctorTimeSlot extends AppCompatActivity {
         }
 
     }
+
 }
 
 

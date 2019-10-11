@@ -5,19 +5,31 @@
                 android:layout_height="match_parent"
                 >
 
- <GridLayout
+ <!--<GridLayout
          android:layout_marginTop="10dp"
          android:id="@+id/ll_time_slot_container"
          android:layout_width="match_parent"
          android:layout_height="wrap_content">
 
- </GridLayout>
+ </GridLayout>-->
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/rcv_morningTimeSlot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>
-
+    <TextView
+            android:gravity="center"
+            android:id="@+id/tv_no_data_found"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Time Slot Not Available! "
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:textAllCaps="false"
+            android:singleLine="true"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
 
 </RelativeLayout>

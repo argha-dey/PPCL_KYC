@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="@color/colorPrimary"
-                android:textSize="10sp"/>
+                android:textSize="8sp"/>
 
         </LinearLayout>
 

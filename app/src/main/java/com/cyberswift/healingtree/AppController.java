@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
+import android.text.TextUtils;
 import android.widget.ImageView;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -20,6 +24,7 @@ public class AppController extends MultiDexApplication {
     private static final int EXTERNAL_STORAGE_PERMISSION_CONSTANT = 100;
     private static final int REQUEST_PERMISSION_SETTING = 101;
     private static AppController mInstance;
+    private RequestQueue mRequestQueue;
     /*    public DBHelper mDbHelper;
         private AsyncTaskGetNotification mAsyncTaskGetNotification;
         private AsyncTaskGetAnnouncement mAsyncTaskGetAnnouncement;
@@ -174,6 +179,18 @@ public class AppController extends MultiDexApplication {
 
         return options;
 
+    }
+
+    public <T> void addToRequestQueue(Request<T> req, String tag) {
+        // set the default tag if tag is empty
+        req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+        getRequestQueue().add(req);
+    }
+    public RequestQueue getRequestQueue() {
+        if (mRequestQueue == null) {
+            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
+        return mRequestQueue;
     }
 }
 

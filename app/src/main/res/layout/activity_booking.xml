@@ -7,7 +7,7 @@
         android:layout_height="match_parent">
 
     <LinearLayout
-            android:background="@color/colorWhite"
+            android:background="@color/design_default_color_primary_dark"
             android:orientation="horizontal"
             android:layout_weight="10"
             android:layout_width="match_parent"
@@ -15,18 +15,18 @@
         <ImageView
                 android:onClick="onBackConfirmClick"
                 android:layout_gravity="center"
-                android:src="@drawable/arrow_left"
+                android:src="@drawable/arrow_white"
                 android:background="?attr/selectableItemBackground"
                 android:layout_weight="1.3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
         <TextView
-
-                android:textColor="@color/colorPrimaryText"
-                android:textStyle="normal"
+android:layout_marginLeft="10dp"
+                android:textColor="@color/colorGreen"
+                android:textStyle="bold"
                 android:textAllCaps="false"
-                android:gravity="center"
+                android:gravity="center|left"
                 android:textSize="18sp"
                 android:text="Confirm Appointment"
                 android:layout_weight="9"
@@ -63,7 +63,7 @@
                     android:textStyle="bold"
                     android:textAllCaps="false"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorPrimary"
                     android:text="Dr.Bhalandu Vaisanav"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -278,7 +278,7 @@
     <LinearLayout
 
             android:orientation="horizontal"
-            android:background="@color/cardview_light_background"
+            android:background="@color/colorGreyMaxLight"
             android:layout_weight="15"
             android:layout_width="match_parent"
             android:layout_height="0dp">

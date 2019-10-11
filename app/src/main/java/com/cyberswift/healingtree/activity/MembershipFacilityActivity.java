@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import com.cyberswift.healingtree.R;
-import com.cyberswift.healingtree.document_download_manager.PdfDownloadManager;
+import com.cyberswift.healingtree.document_download_manager.PdfdownloadManagerForMemberShip;
 
 public class MembershipFacilityActivity extends BaseActivity implements View.OnClickListener {
 
@@ -137,8 +137,8 @@ public class MembershipFacilityActivity extends BaseActivity implements View.OnC
                         MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
             }
         } else {
-            String pdfDownloadUrl = "http://www.thehealingtree.org/assets/pdf/health_checkup_brochure.pdf";
-            PdfDownloadManager pdfDownloader = new PdfDownloadManager();
+            String pdfDownloadUrl = "http://182.74.36.11:8080/uat/healingtree/assets/files/membership/Healing_tree_club_membership.pdf";
+            PdfdownloadManagerForMemberShip pdfDownloader = new PdfdownloadManagerForMemberShip();
             pdfDownloader.showPDFUrl(this, pdfDownloadUrl);
         }
     }
@@ -146,8 +146,8 @@ public class MembershipFacilityActivity extends BaseActivity implements View.OnC
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        String pdfDownloadUrl = "http://www.thehealingtree.org/assets/pdf/health_checkup_brochure.pdf";
-        PdfDownloadManager pdfDownloader = new PdfDownloadManager();
+        String pdfDownloadUrl = "http://182.74.36.11:8080/uat/healingtree/assets/files/membership/Healing_tree_club_membership.pdf";
+        PdfdownloadManagerForMemberShip pdfDownloader = new PdfdownloadManagerForMemberShip();
         pdfDownloader.showPDFUrl(this, pdfDownloadUrl);
     }
 }

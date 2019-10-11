@@ -9,6 +9,7 @@ import android.widget.*
 import com.cyberswift.healingtree.R
 import com.cyberswift.healingtree.model.UserRegisterResponseModel
 import com.cyberswift.healingtree.retrofit.ApiInterfaceKot
+import com.cyberswift.healingtree.utils.AlertDialogCallBack
 import com.cyberswift.healingtree.utils.Prefs
 import com.cyberswift.healingtree.utils.Utils
 import kotlinx.android.synthetic.main.activity_registration.*
@@ -224,7 +225,7 @@ class RegistrationActivity : Activity() {
             requestBody.put("age",tv_age.text.toString())
             requestBody.put("zip_code", tv_Zip_code.text.toString())
             requestBody.put("phone1", tv_phone_one.text.toString())
-            requestBody.put("phone2", tv_phone_two.text.toString())
+            requestBody.put("phone2","")
             requestBody.put("state", statename)
             requestBody.put("city",cityname)
             requestBody.put("address",tv_address.text.toString())
@@ -245,8 +246,30 @@ class RegistrationActivity : Activity() {
                             pDialog.dismiss()
                         }
 
-                             Toast.makeText(applicationContext, "Registration Successfully Done ", Toast.LENGTH_LONG).show()
-                             goToHomePage()
+                     /*       Toast.makeText(applicationContext, "Registration Successfully Done." +
+                                    "Use your mobile number at the time of login", Toast.LENGTH_LONG).show()
+                         //   Utils.showAlertDialogWithOkButton(applicationContext,"Alert!","Use your mobile number at the time of login")
+                           // Utils.showCallBackMessageWithOkCancelCustomButton(applicationContext,"","OK","",new AlertDialogCallBack())*/
+
+                            Utils.showCallBackMessageWithOkCancelCustomButton(
+                                this@RegistrationActivity,
+                                "Registration Successfully Done." +"\n"+
+                                        "\n Kindly Use your mobile number at the time of login.",
+                                "OK",
+                                "",
+                                object : AlertDialogCallBack {
+                                    override fun onSubmit() {
+                                        goToHomePage()
+                                    }
+
+                                    override fun onCancel() {
+
+                                    }
+                                })
+
+
+
+
                     }
                         else{
                             if (pDialog != null && pDialog.isShowing()) {

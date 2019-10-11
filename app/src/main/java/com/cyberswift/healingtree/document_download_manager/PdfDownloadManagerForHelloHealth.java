@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
 
-public class PdfDownloadManager extends FileProvider {
+public class PdfDownloadManagerForHelloHealth extends FileProvider {
 
     private static final String TAG = "Logs PdfDownloadManager";
 
@@ -56,7 +56,7 @@ public class PdfDownloadManager extends FileProvider {
 //        final File tempFile = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), filename);
         // The place where the downloaded PDF file will be put
         File d = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS); // -> filename = maven.pdf
-        final File pdfFile = new File(d, "download.pdf");
+        final File pdfFile = new File(d, "health_checkup_brochure.pdf");
 
         Log.e(TAG, "File Path:" + pdfFile);
         if (pdfFile.exists()) {
@@ -134,7 +134,7 @@ public class PdfDownloadManager extends FileProvider {
     public boolean isPDFSupported(Context context) {
         Intent i = new Intent(Intent.ACTION_VIEW);
         File d = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS); // -> filename = maven.pdf
-        final File pdfFile = new File(d, "download.pdf");
+        final File pdfFile = new File(d, "health_checkup_brochure.pdf");
         Uri path = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".fileprovider", pdfFile);
         i.setDataAndType(path, PDF_MIME_TYPE);
         return context.getPackageManager().queryIntentActivities(i, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
@@ -156,7 +156,7 @@ public class PdfDownloadManager extends FileProvider {
                     String depoSplit[] = depo.split("filename=");
                     filename = depoSplit[1].replace("filename=", "").replace("\"", "").trim();
                 } else {
-                    filename = "download.pdf";
+                    filename = "health_checkup_brochure.pdf";
                 }
             } catch (MalformedURLException e1) {
                 e1.printStackTrace();

@@ -61,10 +61,12 @@ public interface Constants {
     String DATE_TIME_FORMAT_7 = "yyyyMMdd_HHmmss"; // 27 Nov 2018 10:30 AM
     String DATE_TIME_FORMAT_9 = "dd-MM-yyyy";
     String DATE_TIME_FORMAT_10 = "dd-MMM";
+    String DATE_TIME_FORMAT_11 = "yyyy-MM-dd HH:mm";
+    String DATE_TIME_FORMAT_12 = "KK:mm a";
 
     String DATE_TIME_FORMAT_8 = "MM/dd/yy";
     public static final String PERMISSION_STATUS = "PERMISSION_STATUS";
-    public static final String[] imageDocFileTypes = {"pdf", "doc", "docx", "xls", "xlsx", "txt", "csv", "jpg", "png", "gif"};
+    public static final String[] imageDocFileTypes = {"pdf", "doc", "docx", "xls", "xlsx", "txt", "csv", "jpg", "png", "gif","jpeg"};
     public static final String[] imageDocMimeTypes = {"application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/pdf", "image/jpeg", "image/png", "text/plain", "application/msword", "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"};
 
 

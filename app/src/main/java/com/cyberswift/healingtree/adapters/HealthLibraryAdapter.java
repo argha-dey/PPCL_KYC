@@ -95,7 +95,7 @@ public class HealthLibraryAdapter extends RecyclerView.Adapter<HealthLibraryAdap
 //            bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
 //            libraryImage.setImageBitmap(bitmap);
 
-         Picasso.with(context).load(awarnessDataArrayList.get(position).getAwarnessImageUrl()).into(libraryImage);
+            Picasso.with(context).load(awarnessDataArrayList.get(position).getAwarnessImageUrl()).into(libraryImage);
 
 
            // Picasso.with(context).load("http://192.168.1.88/healingtree/assets/files/awarness_image/32/Koala.jpg").into(libraryImage);

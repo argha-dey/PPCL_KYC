@@ -23,6 +23,7 @@ import com.cyberswift.healingtree.adapters.AllDoctorListAdapter;
 import com.cyberswift.healingtree.adapters.DoctorListAdapter;
 import com.cyberswift.healingtree.fragments.*;
 import com.cyberswift.healingtree.model.AllDoctorListResponceModel;
+import com.cyberswift.healingtree.model.DoctorListModel;
 import com.cyberswift.healingtree.model.DoctorListResponseModel;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
@@ -50,6 +51,7 @@ public class DoctorListActivity extends AppCompatActivity {
     public static DoctorListAdapter mDoctorListAdapter;
     public  static AllDoctorListAdapter mAllDoctorListAdapter;
     private String departmentId ="";
+    private String filterDate ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class DoctorListActivity extends AppCompatActivity {
         getBundle();
         initializeViews();
         fetchDoctorListAll();
-     //   fetchDoctorListDay();
+        //   fetchDoctorListDay();
         setupViewPager(viewPager);
 
         et_search_doctors.addTextChangedListener(new TextWatcher() {
@@ -99,6 +101,7 @@ public class DoctorListActivity extends AppCompatActivity {
         LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("dept_id",departmentId);
+        requestBody.put("date",filterDate);
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
         Call<AllDoctorListResponceModel> call = apiService.allDoctorList(requestBody);
         call.enqueue(new Callback<AllDoctorListResponceModel>() {
@@ -108,11 +111,16 @@ public class DoctorListActivity extends AppCompatActivity {
                     AllDoctorListResponceModel allDoctorListResponceModel = response.body();
                     if (allDoctorListResponceModel.isStatus()) {
                         if (allDoctorListResponceModel.getDoctorListModel() != null && allDoctorListResponceModel.getDoctorListModel().size() > 0) {
+                            filterDate ="";
                             fragmentAllDoctorList.updateDrList(allDoctorListResponceModel.getDoctorListModel());
                             LocalModel.getInstance().cancelProgressDialog();
                         }
                     }
-                    LocalModel.getInstance().cancelProgressDialog();
+                    else {
+                        filterDate ="";
+                        fragmentAllDoctorList.updateDrList(new ArrayList<DoctorListModel>());
+                        LocalModel.getInstance().cancelProgressDialog();
+                    }
                 }
             }
 
@@ -126,6 +134,7 @@ public class DoctorListActivity extends AppCompatActivity {
 
     // initializeViews
     private void initializeViews() {
+        filterDate = "";
         activity = DoctorListActivity.this;
         et_search_doctors = findViewById(R.id.et_search_doctors);
         viewPager = findViewById(R.id.viewpager);
@@ -146,20 +155,40 @@ public class DoctorListActivity extends AppCompatActivity {
 
 
     public void onCalendarClick(View view) {
-            final Calendar sCalendar = Calendar.getInstance();
-            DatePickerDialog sDatePickerDialog = new DatePickerDialog(activity,R.style.DatePickerDialogTheme,
-                    new DatePickerDialog.OnDateSetListener() {
-                        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                            sCalendar.set(year, monthOfYear, dayOfMonth);
-                            SimpleDateFormat df =  new SimpleDateFormat("yyyy-MM-dd");
-                            String surveyDate = df.format(sCalendar.getTime());
-                            // tv_date.setText(surveyDate);
-                        }
-                    }, sCalendar.get(Calendar.YEAR), sCalendar.get(Calendar.MONTH), sCalendar.get(Calendar.DAY_OF_MONTH));
-            sDatePickerDialog.show();
+        final Calendar sCalendar = Calendar.getInstance();
+          /*  DatePickerDialog sDatePickerDialog = new DatePickerDialog(activity,R.style.DatePickerDialogTheme,
+                    new DatePickerDialog.OnDateSetListener() {*/
+        DatePickerDialog sDatePickerDialog = new DatePickerDialog(activity,
+                new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        sCalendar.set(year, monthOfYear, dayOfMonth);
+                        SimpleDateFormat df =  new SimpleDateFormat("yyyy-MM-dd");
+                        filterDate = df.format(sCalendar.getTime());
+                        fetchDoctorListAll();
+
+                    }
+                }, sCalendar.get(Calendar.YEAR), sCalendar.get(Calendar.MONTH), sCalendar.get(Calendar.DAY_OF_MONTH));
+        sDatePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+        sDatePickerDialog.show();
 
     }
 
+/*    public void  OnIncidentDatePicker(View view){
+        final Calendar sCalendar = Calendar.getInstance();
+        DatePickerDialog sDatePickerDialog = new DatePickerDialog(mContext,
+                new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        sCalendar.set(year, monthOfYear, dayOfMonth);
+                        SimpleDateFormat df =  new SimpleDateFormat("yyyy-MM-dd");
+                        String surveyDate = df.format(sCalendar.getTime());
+                        tv_date.setText(surveyDate);
+                        tv_time.setText(" ");
+                    }
+                }, sCalendar.get(Calendar.YEAR), sCalendar.get(Calendar.MONTH), sCalendar.get(Calendar.DAY_OF_MONTH));
+        sDatePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        sDatePickerDialog.show();
+    }
+    */
 
     public void onFilterClick(View view) {
         Toast.makeText(activity, "Coming soon...", Toast.LENGTH_SHORT).show();
@@ -170,20 +199,20 @@ public class DoctorListActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());  // /*getFragmentManager*/getChildFragmentManager()
         fragmentAllDoctorList = new AllDoctorListFragment();
-     //   fragmentMonday = new FragmentMonday();
-     //   fragmentTuesday = new FragmentTuesday();
-      //  fragmentWednesday = new FragmentWednesday();
-     //   fragmentThursday = new FragmentThursday();
-     //   fragmentFriday = new FragmentFriday();
-      //  fragmentSaturday = new FragmentSaturday();
-       adapter.addFrag(fragmentAllDoctorList, "All Doctor List");
+        //   fragmentMonday = new FragmentMonday();
+        //   fragmentTuesday = new FragmentTuesday();
+        //  fragmentWednesday = new FragmentWednesday();
+        //   fragmentThursday = new FragmentThursday();
+        //   fragmentFriday = new FragmentFriday();
+        //  fragmentSaturday = new FragmentSaturday();
+        adapter.addFrag(fragmentAllDoctorList, "");
 
-      //  adapter.addFrag(fragmentMonday, "MON");
-      //  adapter.addFrag(fragmentTuesday, "TUE");
-      //  adapter.addFrag(fragmentWednesday, "WED");
-     //   adapter.addFrag(fragmentThursday, "THU");
-      //  adapter.addFrag(fragmentFriday, "FRI");
-      //  adapter.addFrag(fragmentSaturday, "SAT");
+        //  adapter.addFrag(fragmentMonday, "MON");
+        //  adapter.addFrag(fragmentTuesday, "TUE");
+        //  adapter.addFrag(fragmentWednesday, "WED");
+        //   adapter.addFrag(fragmentThursday, "THU");
+        //  adapter.addFrag(fragmentFriday, "FRI");
+        //  adapter.addFrag(fragmentSaturday, "SAT");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         //tabLayout.setTag(this.viewPager);
@@ -193,8 +222,6 @@ public class DoctorListActivity extends AppCompatActivity {
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                // called when tab selected
-                Log.d("@@@ Tab ", "selected postion==>" + String.valueOf(tab.getPosition()));
                 if (tab.isSelected()) {
                     switch (tab.getPosition()) {
                         case 0:
@@ -264,10 +291,7 @@ public class DoctorListActivity extends AppCompatActivity {
             mFragmentTitleList.add(title);
         }
 
-        public void addFragWithOutHeader(Fragment fragment) {
-            mFragmentList.add(fragment);
 
-        }
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);

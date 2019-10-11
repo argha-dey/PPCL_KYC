@@ -19,7 +19,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -31,22 +30,17 @@ import com.cyberswift.healingtree.AppController;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.document_download_manager.FilePath;
 import com.cyberswift.healingtree.document_download_manager.FileUtils;
+import com.cyberswift.healingtree.interfaces.MultipartPostCallback;
 import com.cyberswift.healingtree.model.FileDetails;
-import com.cyberswift.healingtree.retrofit.ApiClient;
-import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.*;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.cyberswift.healingtree.volley.VolleyTaskManager;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class OrderMedicineActivity extends BaseActivity {
     public static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 999;
@@ -64,6 +58,7 @@ public class OrderMedicineActivity extends BaseActivity {
     private ArrayList<FileDetails> imageDocFileList;
     private Prefs mPrefs;
     public AppController appController;
+    VolleyTaskManager mVollyTaskManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +72,7 @@ public class OrderMedicineActivity extends BaseActivity {
     private void initViews() {
         mContext = OrderMedicineActivity.this;
         mPrefs = new Prefs(mContext);
+        mVollyTaskManager = new VolleyTaskManager(mContext);
         appController = (AppController) getApplication();
         imageDocFileList = new ArrayList<FileDetails>();
         tv_no_file_chosen =  findViewById(R.id.tv_no_file_chosen);
@@ -220,7 +216,6 @@ public class OrderMedicineActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-
                 cameraImagePath = Utils.getDefaultFilePathForImg();
                 Intent cameraIntent;
                 cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -233,7 +228,6 @@ public class OrderMedicineActivity extends BaseActivity {
                   //  Uri path = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".fileprovider", pdfFile);
                 }
                 startActivityForResult(cameraIntent, cameraRequestCode);
-
 
 
             }
@@ -328,6 +322,10 @@ public class OrderMedicineActivity extends BaseActivity {
                     int actionType = Utils.checkFileExtension(mContext, Uri.parse(cameraImagePath));
                     FileDetails file = null;
                     try {
+
+                        Uri selectedFileUri = Uri.parse(cameraImagePath);
+                        String mimeType = getContentResolver().getType(selectedFileUri);
+
                         File img = new File(cameraImagePath);
                         InputStream input = getContentResolver().openInputStream(Uri.fromFile(img));
                         file = new FileDetails();
@@ -336,7 +334,7 @@ public class OrderMedicineActivity extends BaseActivity {
                         file.setSelectedFilePath(img.getAbsolutePath());
                         // file.setFileSize(img.length());
                         file.setInputStream(input);
-                        file.setMimeType("image/jpeg");
+                        file.setMimeType("image/jpg");
                         file.setActionType(actionType);
                         imageDocFileList.add(file);
                         // Add in File list Array
@@ -427,7 +425,8 @@ public class OrderMedicineActivity extends BaseActivity {
             String file_name = imageDocFileList.get(0).getFileName();
             File file = new File(file_path);
             if(!tv_description.getText().equals("")) {
-                uploadFile(file, tv_description.getText().toString());
+             //   uploadFile(file, tv_description.getText().toString());
+                UploadFileUsingMultiPart(imageDocFileList,tv_description.getText().toString());
             }
             else
                 Toast.makeText(mContext, "Please add any short description!", Toast.LENGTH_LONG).show();
@@ -437,9 +436,43 @@ public class OrderMedicineActivity extends BaseActivity {
        // new UploadVideoViaMultipartATask(file_path, file_name,"").execute();
     }
 
+    private void UploadFileUsingMultiPart( ArrayList<FileDetails> imageDocFileList, String desc){
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("user_id",mPrefs.getUserID());
+        map.put("reamrks",desc);
+        String _url = Urls.BASE_URL + Urls.UPLOAD_PREPCRIPTION;
+        mVollyTaskManager.doSaveImageDoc(mContext,  map,  _url, imageDocFileList, new MultipartPostCallback() {
+                    @Override
+                    public void onMultipartPost(String response) {
+                        try {
+                            JSONObject requestJsonObject = new JSONObject(response);
+                            if (requestJsonObject.optBoolean("status")) {
+                                Utils.showCallBackMessageWithOkCancelCustomButton(mContext, "Your prescription is successfully uploaded", "OK", "", new AlertDialogCallBack() {
+                                    @Override
+                                    public void onSubmit() {
+                                        finish();
+                                    }
+
+                                    @Override
+                                    public void onCancel() {
+
+                                    }
+                                });
+                            } else {
+                                Toast.makeText(mContext, "Error occurred while posting Data", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (Exception e) {
+                            Toast.makeText(mContext, "Error occurred while posting Data", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+    }
+}
 
 
-    private void uploadFile(File file, String desc) {
+
+  /*  private void uploadFile(File file, String desc) {
 
             // create upload service client
         LocalModel.getInstance().showProgressDialog(this, "Upload...", false);
@@ -490,7 +523,9 @@ public class OrderMedicineActivity extends BaseActivity {
                     Utils.showAlertDialogWithOkButton(mContext,"Alert!"," Fail to uploaded");
                 }
             });
-        }
+        }*/
+
+
 
 
 
@@ -509,7 +544,4 @@ public class OrderMedicineActivity extends BaseActivity {
     }*/
 
 
-
-
-}
 

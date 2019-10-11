@@ -25,6 +25,10 @@ public interface Urls {
 
     String HOME_CARE_ATTENDANCE = "health_care/lists";
     String HEALTH_RECORD="appointment/lists";
+    String MEDICINE_RECORD_LIST="prescription/prepcription_list";
+    String HOME_CARE_SERVICE_RECORD_LIST ="services/lists";
+    String HELLO_HEALTH_PACKAGE_RECORD_LIST ="hello_health/hello_health_service_lists";
+
     String HELLO_HEALTH_PACKAGE ="hello_health/package_master";
     String HELLO_HEALTH_PACKAGE_DETAILS ="hello_health/package_details";
 
@@ -39,4 +43,5 @@ public interface Urls {
     String HELLO_HEALTH_PACKAGE_BOOKING = "hello_health/hello_health_service_add";
 
     String  HELLO_HEALTH_CLUB_MEMBER_SHIP_BOOKING = "membership/membership_service_add";
+    String UPLOAD_PREPCRIPTION = "prescription/upload_prepcription";
 }

@@ -9,6 +9,7 @@
         tools:context=".activity.DoctorListActivity">
 
     <RelativeLayout
+            android:background="@color/design_default_color_primary_dark"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
            >
@@ -17,7 +18,7 @@
                 android:id="@+id/ibtn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/arrow_left"
+                android:src="@drawable/arrow_white"
                 android:background="?attr/selectableItemBackground"
                 android:padding="12dp"
                 android:layout_centerVertical="true"
@@ -27,9 +28,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Doctor List"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorGreen"
                 android:textSize="18sp"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 android:textAllCaps="false"
                 android:layout_centerInParent="true"/>
 
@@ -52,9 +53,9 @@
                 android:hint="Search Doctors..."
                 android:textColorHint="@color/colorGreen"
                 android:textSize="14sp"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorGreen"
                 android:textAllCaps="false"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 android:background="@color/colorPrimary"
                 android:drawableLeft="@drawable/search"
                 android:drawablePadding="12dp"
@@ -103,17 +104,18 @@
 
     </LinearLayout>
     <android.support.design.widget.TabLayout
+            android:visibility="gone"
             android:layout_marginTop="10dp"
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabGravity="fill"
             app:tabMode="scrollable"
-            app:tabIndicatorColor="@color/colorGreen"
+            app:tabIndicatorColor="@color/colorWhite"
             app:tabIndicatorHeight="2dp"
             app:tabTextAppearance="@style/TabLayoutStyle"
-            app:tabSelectedTextColor="@color/colorGreen"
-            app:tabTextColor="@color/colorPrimaryText"
+            app:tabSelectedTextColor="@color/colorWhite"
+            app:tabTextColor="@color/colorWhite"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:background="@color/colorWhite"/>
@@ -121,11 +123,10 @@
     <!--app:tabBackground="@drawable/bg_top_bottom_border"-->
 
     <android.support.v4.view.ViewPager
+            android:layout_marginTop="20dp"
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_height="match_parent"
           />
 
 

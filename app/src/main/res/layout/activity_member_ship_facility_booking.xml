@@ -64,7 +64,7 @@
                     <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/diy"
+                            android:background="@drawable/club_level"
                             android:padding="10dp"/>
 
                 </LinearLayout>
@@ -78,7 +78,7 @@
                     <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/women"
+                            android:background="@drawable/privilege_club"
                             android:padding="10dp"/>
 
                 </LinearLayout>

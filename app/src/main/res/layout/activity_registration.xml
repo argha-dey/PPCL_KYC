@@ -213,7 +213,7 @@
                         android:textCursorDrawable="@drawable/color_cursor"
                         android:maxLength="10"
                         android:inputType="phone"
-                        android:hint="Phone No.1*"
+                        android:hint="Mobile Number*"
                         android:background="@android:color/transparent"
                         android:id="@+id/tv_phone_one"
                         android:layout_width="match_parent"
@@ -228,6 +228,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                    android:visibility="gone"
                     android:id="@+id/rl_phone_two"
                     android:layout_marginTop="15dp"
                     android:layout_below="@+id/rl_phone_one"

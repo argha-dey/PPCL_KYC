@@ -36,6 +36,16 @@ public interface ApiInterface {
     @POST(Urls.HEALTH_RECORD)
     Call<AppointmentListResponseModel> getAppointmentList(@Body Map<String, String> body);
 
+    @POST(Urls.MEDICINE_RECORD_LIST)
+    Call<OrderMedicineHistoryResponceModel> getMedicineHistoryList(@Body Map<String, String> body);
+
+    @POST(Urls.HOME_CARE_SERVICE_RECORD_LIST)
+    Call<HomeCareRecordResponceModel> getHomeCareSeviceRecordList(@Body Map<String, String> body);
+
+    @POST(Urls.HELLO_HEALTH_PACKAGE_RECORD_LIST)
+    Call<HelloHealthPackageRecordResponceModel> getHelloHealthRecordList(@Body Map<String, String> body);
+
+
     @POST(Urls.HELLO_HEALTH_PACKAGE)
     Call<HelloHealthPackageResponseModel> getHelloHealthPackage(@Body Map<String, String> body);
 

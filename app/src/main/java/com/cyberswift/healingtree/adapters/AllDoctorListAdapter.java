@@ -40,7 +40,7 @@ public class AllDoctorListAdapter extends RecyclerView.Adapter<AllDoctorListAdap
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_all_doctor_list, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_doctor_list, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -57,7 +57,7 @@ public class AllDoctorListAdapter extends RecyclerView.Adapter<AllDoctorListAdap
             holder.tv_dr_name.setVisibility(View.GONE);
 
         if (doctorListModel.getQualification() != null && !doctorListModel.getQualification().equals("")) {
-            holder.tv_dr_qualification.setText(doctorListModel.getQualification());
+            holder.tv_dr_qualification.setText(" ("+doctorListModel.getQualification()+")");
             holder.tv_dr_qualification.setVisibility(View.VISIBLE);
         } else
             holder.tv_dr_qualification.setVisibility(View.GONE);
@@ -77,27 +77,27 @@ public class AllDoctorListAdapter extends RecyclerView.Adapter<AllDoctorListAdap
             holder.tv_dr_experience_title.setVisibility(View.GONE);
         }
 
-        if (doctorListModel.getSpecialization() != null && !doctorListModel.getSpecialization().equals("")) {
-            holder.tv_dr_specialization.setText(doctorListModel.getSpecialization());
+        if (doctorListModel.getSub_dept_name() != null && !doctorListModel.getSub_dept_name().equals("")) {
+            holder.tv_dr_specialization.setText(doctorListModel.getSub_dept_name());
             holder.tv_dr_specialization.setVisibility(View.VISIBLE);
         } else
             holder.tv_dr_specialization.setVisibility(View.GONE);
 
         if (doctorListModel.getDay() != null && !doctorListModel.getDay().equals("")) {
             holder.tv_day.setText(doctorListModel.getDay());
-            holder.tv_day.setVisibility(View.VISIBLE);
+            holder.tv_day.setVisibility(View.GONE);
         } else
             holder.tv_day.setVisibility(View.GONE);
 
         if (doctorListModel.getDate() != null && !doctorListModel.getDate().equals("")) {
             holder.tv_date.setText(Utils.changeDateNTimeFormat(doctorListModel.getDate(), Constants.DATE_TIME_FORMAT_1, Constants.DATE_TIME_FORMAT_8));
-            holder.tv_date.setVisibility(View.VISIBLE);
+            holder.tv_date.setVisibility(View.GONE);
         } else
             holder.tv_date.setVisibility(View.GONE);
 
         if (doctorListModel.getTime_slot() != null && !doctorListModel.getTime_slot().equals("")) {
             holder.tv_dr_schedule.setText(doctorListModel.getTime_slot().toString());
-            holder.tv_dr_schedule.setVisibility(View.VISIBLE);
+            holder.tv_dr_schedule.setVisibility(View.GONE);
         } else
             holder.tv_dr_schedule.setVisibility(View.GONE);
 

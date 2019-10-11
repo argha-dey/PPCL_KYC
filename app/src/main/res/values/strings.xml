@@ -57,7 +57,7 @@
     <string name="please_wait_msg">"Please Wait..."</string>
     <string name="platinum_membership_text">"Platinum Membership"</string>
     <string name="diamond_membership_text">"Diamond Membership"</string>
-    <string name="privilage_club_packages_button_text">"Privilege Club Packages"</string>
+    <string name="privilage_club_packages_button_text">">> View Privilege Club Packages"</string>
     <string name="privilage_explained_string">"For a small fee every year, we will take care of all your medical requirements. From priority appointments to home delivery of medicines, every aspect of treatment is looked after. And our coordinator will be available to you 24x7 for all your needs."
     </string>
 
@@ -65,4 +65,18 @@
         luxury accommodation in our Silver, Gold, Diamond or Platinum suites and also takes care of your meals the day
         before your check-up.</p>\n\nSign up and check in so you are well-rested and ready to take on the next day!"
     </string>
+
+
+
+    <string name="no_internet">No network connection found! Please check your network connection.</string>
+    <string name="no_internet_parse_data">No network connection found, So Unable to parse Form Data! Please check your network connection.</string>
+    <string name="response_timeout">Response time out error! Please check your internet connection and try again.</string>
+    <string name="auth_failure">Server authentication failed! Please try again.</string>
+    <string name="server_error">Server isn\'t responding! Please try again.</string>
+    <string name="network_error">Network not found! Please check your internet connection and try again.</string>
+    <string name="parse_error">Unable to parse Data! Please try again.</string>
+
+    <string name="time_label"><font fgcolor="#FF000000">Time:  </font></string>
+    <string name="remarks_label"><font fgcolor='#FF000000'>Remarks:  </font></string>
+
 </resources>

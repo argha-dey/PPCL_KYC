@@ -43,7 +43,10 @@ public interface ApiInterface {
     Call<HomeCareRecordResponceModel> getHomeCareSeviceRecordList(@Body Map<String, String> body);
 
     @POST(Urls.HELLO_HEALTH_PACKAGE_RECORD_LIST)
-    Call<HelloHealthPackageRecordResponceModel> getHelloHealthRecordList(@Body Map<String, String> body);
+    Call<HelloHealthPackageRecordResponseModel> getHelloHealthRecordList(@Body Map<String, String> body);
+
+    @POST(Urls.CLUB_MEMBER_SHIP_RECORD_LIST)
+    Call<ClubMemberShipRecordResponseModel> getClubMemberShipRecordList(@Body Map<String, String> body);
 
 
     @POST(Urls.HELLO_HEALTH_PACKAGE)

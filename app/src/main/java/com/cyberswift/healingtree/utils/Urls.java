@@ -28,6 +28,7 @@ public interface Urls {
     String MEDICINE_RECORD_LIST="prescription/prepcription_list";
     String HOME_CARE_SERVICE_RECORD_LIST ="services/lists";
     String HELLO_HEALTH_PACKAGE_RECORD_LIST ="hello_health/hello_health_service_lists";
+    String CLUB_MEMBER_SHIP_RECORD_LIST ="membership/membership_service_lists";
 
     String HELLO_HEALTH_PACKAGE ="hello_health/package_master";
     String HELLO_HEALTH_PACKAGE_DETAILS ="hello_health/package_details";

@@ -6,10 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 import com.cyberswift.healingtree.R;
-import com.cyberswift.healingtree.adapters.DoctorBookingRecyclerViewAdapter;
-import com.cyberswift.healingtree.adapters.HelloHealthRecordViewAdapter;
-import com.cyberswift.healingtree.adapters.HomeCareServiceRecordViewAdapter;
-import com.cyberswift.healingtree.adapters.OrderMedicineRecordRecyclerViewAdapter;
+import com.cyberswift.healingtree.adapters.*;
 import com.cyberswift.healingtree.model.*;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
@@ -28,14 +25,17 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
     private TextView mHomeCareTv;
     private TextView mMedicineTv;
     private  TextView hello_health_package_tv;
+    private  TextView  member_ship_club_text_view;
     private RecyclerView mDoctorBookingRv;
     private RecyclerView mHomeCareRv;
     private RecyclerView mMedicineRv;
     private  RecyclerView hello_health_package_recyclerview;
+    private  RecyclerView member_ship_club_recycler_view;
     private DoctorBookingRecyclerViewAdapter doctorBookingRecyclerViewAdapter;
     private OrderMedicineRecordRecyclerViewAdapter orderMedicineRecyclerViewAdapter;
     private HomeCareServiceRecordViewAdapter homeCareServiceRecordViewAdapter;
     private HelloHealthRecordViewAdapter helloHealthRecordViewAdapter;
+    private ClubMemberShipRecordViewAdapter clubMemberShipRecordViewAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
 
@@ -50,20 +50,61 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
         sentRequestToGetMedicineBookingHistory();
         sentHomeCareServiceBookingHistory();
         setHelloHealthPackageHistory();
+        setClubMemberShipHistory();
     }
+
+    private void setClubMemberShipHistory() {
+        //  LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("user_id", new Prefs(this).getUserID());
+        ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
+        Call<ClubMemberShipRecordResponseModel> call = apiService.getClubMemberShipRecordList(requestBody);
+        call.enqueue(new Callback<ClubMemberShipRecordResponseModel>() {
+            @Override
+            public void onResponse(Call<ClubMemberShipRecordResponseModel> call, Response<ClubMemberShipRecordResponseModel> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        ClubMemberShipRecordResponseModel clubMemberShipRecordResponse = response.body();
+                        if (clubMemberShipRecordResponse.isStatus()) {
+                            if (clubMemberShipRecordResponse.getClubMemberShipRecord() != null) {
+                                LocalModel.getInstance().cancelProgressDialog();
+                                ArrayList<ClubMemberShipRecord> clubMemberShipRecord = clubMemberShipRecordResponse.getClubMemberShipRecord();
+                                setAdapterClubMemberShipPackage(clubMemberShipRecord);
+
+                            }
+                        }
+                    } else {
+                        //     LocalModel.getInstance().cancelProgressDialog();
+                    }
+
+                } else {
+//                    Toast.makeText(this, "No", LENGTH_LONG).show();
+                    //  LocalModel.getInstance().cancelProgressDialog();
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<ClubMemberShipRecordResponseModel> call, Throwable t) {
+                //   LocalModel.getInstance().cancelProgressDialog();
+            }
+        });
+    }
+
+
 
     private void setHelloHealthPackageHistory() {
         //  LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("user_id", new Prefs(this).getUserID());
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
-        Call<HelloHealthPackageRecordResponceModel> call = apiService.getHelloHealthRecordList(requestBody);
-        call.enqueue(new Callback<HelloHealthPackageRecordResponceModel>() {
+        Call<HelloHealthPackageRecordResponseModel> call = apiService.getHelloHealthRecordList(requestBody);
+        call.enqueue(new Callback<HelloHealthPackageRecordResponseModel>() {
             @Override
-            public void onResponse(Call<HelloHealthPackageRecordResponceModel> call, Response<HelloHealthPackageRecordResponceModel> response) {
+            public void onResponse(Call<HelloHealthPackageRecordResponseModel> call, Response<HelloHealthPackageRecordResponseModel> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-                        HelloHealthPackageRecordResponceModel helloHealthResponseModel = response.body();
+                        HelloHealthPackageRecordResponseModel helloHealthResponseModel = response.body();
                         if (helloHealthResponseModel.isStatus()) {
                             if (helloHealthResponseModel.getHelloHealthPackageRecords() != null) {
                                 LocalModel.getInstance().cancelProgressDialog();
@@ -84,7 +125,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
 
 
             @Override
-            public void onFailure(Call<HelloHealthPackageRecordResponceModel> call, Throwable t) {
+            public void onFailure(Call<HelloHealthPackageRecordResponseModel> call, Throwable t) {
                 //   LocalModel.getInstance().cancelProgressDialog();
             }
         });
@@ -243,6 +284,13 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
 
     }
 
+    private void setAdapterClubMemberShipPackage(ArrayList<ClubMemberShipRecord> _clubMemberShipRecord) {
+        clubMemberShipRecordViewAdapter = new ClubMemberShipRecordViewAdapter(this, _clubMemberShipRecord);
+        layoutManager = new LinearLayoutManager(this);
+        member_ship_club_recycler_view.setLayoutManager(layoutManager);
+        member_ship_club_recycler_view.setAdapter(clubMemberShipRecordViewAdapter);
+    }
+
     private void setVisibilityToViews() {
         mDoctorBookingRv.setVisibility(View.GONE);
         mHomeCareRv.setVisibility(View.GONE);
@@ -255,6 +303,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
         mHomeCareTv.setOnClickListener(this);
         mMedicineTv.setOnClickListener(this);
         hello_health_package_tv.setOnClickListener(this);
+        member_ship_club_text_view.setOnClickListener(this);
     }
 
     private void initViews() {
@@ -262,11 +311,13 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
         mHomeCareTv = (TextView) findViewById(R.id.home_care_textview);
         mMedicineTv = (TextView) findViewById(R.id.medicine_textview);
         hello_health_package_tv = findViewById(R.id.hello_health_package_textview);
+        member_ship_club_text_view = findViewById(R.id.member_ship_club_text_view);
 
         mDoctorBookingRv = (RecyclerView) findViewById(R.id.doctors_booking_recyclerview);
         mHomeCareRv = (RecyclerView) findViewById(R.id.home_care_recyclerview);
         mMedicineRv = (RecyclerView) findViewById(R.id.medicine_recyclerview);
         hello_health_package_recyclerview = findViewById(R.id.hello_health_package_recyclerview);
+        member_ship_club_recycler_view =  findViewById(R.id.member_ship_club_recycler_view);
     }
 
     @Override
@@ -284,7 +335,19 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
             case R.id.hello_health_package_textview:
                 onClickOnHealthPackageTextview();
                 break;
+            case R.id.member_ship_club_text_view:
+                onClickOnClubMemberShipTextView();
+                break;
         }
+    }
+
+    private void onClickOnClubMemberShipTextView() {
+        mDoctorBookingRv.setVisibility(View.GONE);
+        mHomeCareRv.setVisibility(View.GONE);
+        mMedicineRv.setVisibility(View.GONE);
+        hello_health_package_recyclerview.setVisibility(View.GONE);
+        member_ship_club_recycler_view.setVisibility(View.VISIBLE);
+
     }
 
     private void onClickOnHealthPackageTextview() {
@@ -292,7 +355,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
         mHomeCareRv.setVisibility(View.GONE);
         mMedicineRv.setVisibility(View.GONE);
         hello_health_package_recyclerview.setVisibility(View.VISIBLE);
-
+        member_ship_club_recycler_view.setVisibility(View.GONE);
     }
 
     private void onClickOnMedicineTextview() {
@@ -301,6 +364,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
         mHomeCareRv.setVisibility(View.GONE);
         hello_health_package_recyclerview.setVisibility(View.GONE);
         mMedicineRv.setVisibility(View.VISIBLE);
+        member_ship_club_recycler_view.setVisibility(View.GONE);
 
     }
 
@@ -310,6 +374,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
         mHomeCareRv.setVisibility(View.VISIBLE);
         mMedicineRv.setVisibility(View.GONE);
         hello_health_package_recyclerview.setVisibility(View.GONE);
+        member_ship_club_recycler_view.setVisibility(View.GONE);
     }
 
     private void onClickOnDoctorsBookingTextview() {
@@ -317,5 +382,6 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
         mHomeCareRv.setVisibility(View.GONE);
         mMedicineRv.setVisibility(View.GONE);
         hello_health_package_recyclerview.setVisibility(View.GONE);
+        member_ship_club_recycler_view.setVisibility(View.GONE);
     }
 }

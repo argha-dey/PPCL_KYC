@@ -2,13 +2,12 @@ package com.cyberswift.healingtree.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.utils.Prefs;
 
-public class UserProfileActivity extends AppCompatActivity {
+public class UserProfileActivity extends BaseActivity{
     private EditText et_user_address;
     private EditText et_user_number;
     private EditText et_user_email;
@@ -18,7 +17,7 @@ public class UserProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentLayout(R.layout.activity_user_profile);
         initViews();
         setProfileData();
     }

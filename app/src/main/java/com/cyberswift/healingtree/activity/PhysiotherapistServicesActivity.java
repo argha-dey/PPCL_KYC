@@ -224,4 +224,6 @@ private RecyclerView rcv_physiotherapists_charges;
     public void onChargesDataChanged(String amount) {
         tv_total_payable_amount.setText("₹"+amount);
     }
+
+
 }

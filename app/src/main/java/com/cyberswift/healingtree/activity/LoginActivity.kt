@@ -4,12 +4,16 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
+import com.cyberswift.healingtree.AppController.TAG
 import com.cyberswift.healingtree.R
 import com.cyberswift.healingtree.model.UserLoginResponseModel
 import com.cyberswift.healingtree.retrofit.ApiInterfaceKot
 import com.cyberswift.healingtree.utils.Prefs
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,11 +21,27 @@ import java.util.*
 
 class LoginActivity : Activity() {
     private var prefs: Prefs? = null
+    private  var token: String? = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         initViews()
+        getToken()
     }
+
+    private fun getToken(){
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w(TAG, "getInstanceId failed", task.exception)
+                    return@OnCompleteListener
+                }
+                // Get new Instance ID token
+                 token = task.result?.token
+              //  Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+            })
+    }
+
 
     private fun initViews() {
         prefs = Prefs(this@LoginActivity)
@@ -72,6 +92,8 @@ class LoginActivity : Activity() {
      val requestBody = HashMap<String, String>()
      requestBody.put("user_id", et_username.text.toString())
      requestBody.put("password",et_password.text.toString())
+     requestBody.put("deviceToken",token.toString())
+     requestBody.put("deviceId","123456789")
         val apiService = ApiInterfaceKot.create()
         val call = apiService.loginApiCall(requestBody)
         call.enqueue(object : Callback<UserLoginResponseModel> {

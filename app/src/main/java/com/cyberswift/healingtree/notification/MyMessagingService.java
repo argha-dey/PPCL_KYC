@@ -18,11 +18,10 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.Map;
 
-public class MyFirebaseMessagingService extends FirebaseMessagingService {
+public class MyMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             sendNotification(remoteMessage.getData());
@@ -37,14 +36,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, getResources().getString(R.string.default_notification_channel_id))
-                        .setLargeIcon(largeIcon)
                         .setSmallIcon(R.drawable.maic_icon)
                         .setContentTitle(data.get("title"))
-                        .setContentText(data.get("body"))
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(data.get("body")))
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
                         .setContentIntent(pendingIntent)
                         .setAutoCancel(true);
+
+
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 

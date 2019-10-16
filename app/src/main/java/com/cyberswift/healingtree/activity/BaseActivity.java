@@ -91,7 +91,17 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         Menu menu = navView.getMenu();
         MenuItem home = menu.add(Menu.NONE, Constants.HOME_NAV_ID, Menu.NONE, Constants.HOME_NAV_NAME);
         home.setCheckable(true);
-        home.setIcon(R.drawable.ic_home_black_24dp);
+        home.setIcon(R.drawable.ic_house_blue);
+
+        MenuItem userProfile = menu.add(Menu.NONE, Constants.PROFILE_NAV_ID, Menu.NONE, Constants.PROFILE_NAV_NAME);
+        userProfile.setCheckable(true);
+        userProfile.setIcon(R.drawable.ic_user_profile_blue);
+        userProfile.setVisible(true);
+
+        MenuItem notifications = menu.add(Menu.NONE, Constants.NOTIFICATION_NAV_ID, Menu.NONE, Constants.NOTIFICATION_NAV_NAME);
+        notifications.setCheckable(true);
+        notifications.setIcon(R.drawable.ic_notification_blue);
+        notifications.setVisible(true);
 
 
         MenuItem logout = menu.add(1, Constants.LOGOUT_NAV_ID, Menu.NONE, Constants.LOGOUT_NAV_NAME);
@@ -107,9 +117,20 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getTitle().toString()) {
             case Constants.HOME_NAV_NAME:
-                Utils.launchActivity(activity, HomeActivity.class);
+                Utils.launchActivityWithFinish(activity, HomeActivity.class);
                 drawerLayout.closeDrawer(Gravity.START);  // Close drawer when item is tapped
                 break;
+
+            case Constants.PROFILE_NAV_NAME:
+                Utils.launchActivityWithFinish(activity, UserProfileActivity.class);
+                drawerLayout.closeDrawer(Gravity.START);  // Close drawer when item is tapped
+                break;
+
+            case Constants.NOTIFICATION_NAV_NAME:
+                Utils.launchActivityWithFinish(activity, NotificationActivity.class);
+                drawerLayout.closeDrawer(Gravity.START);  // Close drawer when item is tapped
+                break;
+
 
             case Constants.LOGOUT_NAV_NAME:
                 Utils.showCustomAlertDialog(activity, true, "Logout", true, "Are you sure you want to logout?",
@@ -149,6 +170,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 //TODO: now its disable
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

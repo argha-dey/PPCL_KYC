@@ -186,38 +186,13 @@ private TextView tv_total_payable_amount;
 
         }
 
-
-
         if (selectedTargetItemId.size()>0){
             if(!chargesAmountId.equals("")) {
-                final Map<String, String> requestBody = new HashMap<>();
-                requestBody.put("user_id", mPrefs.getUserID());
-                requestBody.put("service_type_id",Constants.NURSING_CARE);
-                requestBody.put("service_id", service_id_list);
-                requestBody.put("charges", chargesAmountId);
-                requestBody.put("offer", "");
-                requestBody.put("service_date", Utils.currentDate());
-                requestBody.put("marchant_name", "Admin");
-                requestBody.put("card_no", "41414141414141");
-                requestBody.put("date_of_expiry", "12-08-2025");
-                requestBody.put("cvv", "569");
-                System.out.println("response : "+new JSONObject(requestBody));
-                ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
-                Call<HomeCareAttendantDataPostResponseModel> call = apiService.getHomeCareAttandanceDataPost(requestBody);
-                call.enqueue(new Callback<HomeCareAttendantDataPostResponseModel>() {
-                    @Override
-                    public void onResponse(Call<HomeCareAttendantDataPostResponseModel> call, Response<HomeCareAttendantDataPostResponseModel> response) {
-                        Toast.makeText(mContext, "Booking Successfully Done.", Toast.LENGTH_SHORT).show();
-                        resetData();
-                        Intent intentHome = new Intent(mContext, ConfirmationDoneActivity.class);
-                        startActivity(intentHome);
-                    }
-
-                    @Override
-                    public void onFailure(Call<HomeCareAttendantDataPostResponseModel> call, Throwable t) {
-                        System.out.println("Failure  : ");
-                    }
-                });
+                if (Utils.isOnline(mContext)) {
+                    nursingCareServiceBookingApi(service_id_list,chargesAmountId);
+                }
+                else
+                    Utils.showAlertDialogWithOkButton(mContext,"Alert!","Please Check Internet Connection");
             }
             else
                 Utils.showAlertDialogWithOkButton(mContext,"Alert!","Please Select Any Charges");
@@ -234,5 +209,45 @@ private TextView tv_total_payable_amount;
     @Override
     public void onChargesDataChanged(String amount) {
         tv_total_payable_amount.setText("₹"+amount);
+    }
+
+
+
+    private  void nursingCareServiceBookingApi(String _service_id_list,String _chargesAmountId){
+        final Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("user_id", mPrefs.getUserID());
+        requestBody.put("service_type_id",Constants.NURSING_CARE);
+        requestBody.put("service_id", _service_id_list);
+        requestBody.put("charges", _chargesAmountId);
+        requestBody.put("offer", "");
+        requestBody.put("service_date", Utils.currentDate());
+        requestBody.put("marchant_name", "Admin");
+        requestBody.put("card_no", "41414141414141");
+        requestBody.put("date_of_expiry", "12-08-2025");
+        requestBody.put("cvv", "569");
+        System.out.println("response : "+new JSONObject(requestBody));
+        ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
+        Call<HomeCareAttendantDataPostResponseModel> call = apiService.getHomeCareAttandanceDataPost(requestBody);
+        call.enqueue(new Callback<HomeCareAttendantDataPostResponseModel>() {
+            @Override
+            public void onResponse(Call<HomeCareAttendantDataPostResponseModel> call, Response<HomeCareAttendantDataPostResponseModel> response) {
+                if(response.body().isStatus()) {
+                    resetData();
+                    LocalModel.getInstance().cancelProgressDialog();
+                    Intent intentHome = new Intent(mContext, ConfirmationDoneActivity.class);
+                    startActivity(intentHome);
+                }
+                else {
+                    LocalModel.getInstance().cancelProgressDialog();
+                    Utils.showAlertDialogWithOkButton(mContext, "Error Occur!", "Please try again.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HomeCareAttendantDataPostResponseModel> call, Throwable t) {
+                LocalModel.getInstance().cancelProgressDialog();
+                Utils.showAlertDialogWithOkButton(mContext,"Error Occur!","Please try again.");
+            }
+        });
     }
 }

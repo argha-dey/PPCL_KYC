@@ -62,7 +62,7 @@ public class Utils {
      */
     public static void launchActivity(Context context, Class<?> destinationClass) {
         Intent i = new Intent(context, destinationClass);
-//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(i);
     }
 
@@ -72,8 +72,8 @@ public class Utils {
      */
     public static void launchActivityWithFinish(Context context, Class<?> destinationClass) {
         Intent i = new Intent(context, destinationClass);
-//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        context.startActivity(i);
+          i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+         context.startActivity(i);
         ((Activity) context).finish();
     }
 

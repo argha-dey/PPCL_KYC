@@ -54,7 +54,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void setClubMemberShipHistory() {
-        //  LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
+      //    LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("user_id", new Prefs(this).getUserID());
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
@@ -70,7 +70,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
                                 LocalModel.getInstance().cancelProgressDialog();
                                 ArrayList<ClubMemberShipRecord> clubMemberShipRecord = clubMemberShipRecordResponse.getClubMemberShipRecord();
                                 setAdapterClubMemberShipPackage(clubMemberShipRecord);
-
+                         //       LocalModel.getInstance().cancelProgressDialog();
                             }
                         }
                     } else {
@@ -79,22 +79,20 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
 
                 } else {
 //                    Toast.makeText(this, "No", LENGTH_LONG).show();
-                    //  LocalModel.getInstance().cancelProgressDialog();
+                      LocalModel.getInstance().cancelProgressDialog();
                 }
             }
 
 
             @Override
             public void onFailure(Call<ClubMemberShipRecordResponseModel> call, Throwable t) {
-                //   LocalModel.getInstance().cancelProgressDialog();
+                 //  LocalModel.getInstance().cancelProgressDialog();
             }
         });
     }
 
-
-
     private void setHelloHealthPackageHistory() {
-        //  LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
+     //     LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("user_id", new Prefs(this).getUserID());
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
@@ -110,29 +108,29 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
                                 LocalModel.getInstance().cancelProgressDialog();
                                 ArrayList<HelloHealthPackageRecord> helloHealthPackageDataDos = helloHealthResponseModel.getHelloHealthPackageRecords();
                                 setAdapterHelloHealthPackage(helloHealthPackageDataDos);
-
+                           //     LocalModel.getInstance().cancelProgressDialog();
                             }
                         }
                     } else {
-                        //     LocalModel.getInstance().cancelProgressDialog();
+                         //    LocalModel.getInstance().cancelProgressDialog();
                     }
 
                 } else {
 //                    Toast.makeText(this, "No", LENGTH_LONG).show();
-                    //  LocalModel.getInstance().cancelProgressDialog();
+                 //     LocalModel.getInstance().cancelProgressDialog();
                 }
             }
 
 
             @Override
             public void onFailure(Call<HelloHealthPackageRecordResponseModel> call, Throwable t) {
-                //   LocalModel.getInstance().cancelProgressDialog();
+                   LocalModel.getInstance().cancelProgressDialog();
             }
         });
     }
 
     private void sentHomeCareServiceBookingHistory() {
-        //  LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
+       //   LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("user_id", new Prefs(this).getUserID());
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
@@ -148,11 +146,11 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
                                 LocalModel.getInstance().cancelProgressDialog();
                                 ArrayList<HomeCareServiceRecordList> historyDataDos = historyResponseModel.getHomeCareServiceRecordLists();
                                 setAdapterToHomeCare(historyDataDos);
-
+                             //   LocalModel.getInstance().cancelProgressDialog();
                             }
                         }
                     } else {
-                        //     LocalModel.getInstance().cancelProgressDialog();
+                         //    LocalModel.getInstance().cancelProgressDialog();
                     }
 
                 } else {
@@ -164,14 +162,14 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
 
             @Override
             public void onFailure(Call<HomeCareRecordResponceModel> call, Throwable t) {
-                //   LocalModel.getInstance().cancelProgressDialog();
+                   LocalModel.getInstance().cancelProgressDialog();
             }
         });
 
     }
 
     private void sentRequestToGetMedicineBookingHistory() {
-      //  LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
+     //   LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("user_id", new Prefs(this).getUserID());
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
@@ -187,11 +185,11 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
                                 LocalModel.getInstance().cancelProgressDialog();
                                 ArrayList<OrderMedicineHistoryListModel> historyDataDos = historyResponseModel.getOrderMedicineHistoryListModels();
                                 setAdapterToMedicine(historyDataDos);
-
+                            //    LocalModel.getInstance().cancelProgressDialog();
                             }
                         }
                     } else {
-                   //     LocalModel.getInstance().cancelProgressDialog();
+                       // LocalModel.getInstance().cancelProgressDialog();
                     }
 
                 } else {
@@ -203,7 +201,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
 
             @Override
             public void onFailure(Call<OrderMedicineHistoryResponceModel> call, Throwable t) {
-             //   LocalModel.getInstance().cancelProgressDialog();
+                LocalModel.getInstance().cancelProgressDialog();
             }
         });
 
@@ -213,7 +211,6 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
         LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("user_id", new Prefs(this).getUserID());
-      //  requestBody.put("user_id", "4");
         ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
         Call<AppointmentListResponseModel> call = apiService.getAppointmentList(requestBody);
         call.enqueue(new Callback<AppointmentListResponseModel>() {
@@ -227,7 +224,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
                                 LocalModel.getInstance().cancelProgressDialog();
                                 ArrayList<AppointmentDataDo> appointmentDataDos = appointListResponse.getData();
                                 setAdapterToDoctorBookingRecyclerView(appointmentDataDos);
-
+                                LocalModel.getInstance().cancelProgressDialog();
                             }
                         }
                     } else {
@@ -235,7 +232,6 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
                     }
 
                 } else {
-//                    Toast.makeText(this, "No", LENGTH_LONG).show();
                     LocalModel.getInstance().cancelProgressDialog();
                 }
             }
@@ -248,16 +244,15 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
         });
     }
 
+
+
     private void setAdapterToDoctorBookingRecyclerView(ArrayList<AppointmentDataDo> appointmentDataDos) {
         if (appointmentDataDos != null) {
             doctorBookingRecyclerViewAdapter = new DoctorBookingRecyclerViewAdapter(this, appointmentDataDos);
             layoutManager = new LinearLayoutManager(this);
             mDoctorBookingRv.setLayoutManager(layoutManager);
             mDoctorBookingRv.setAdapter(doctorBookingRecyclerViewAdapter);
-        //    setAdapterToHomeCare(appointmentDataDos);
-            onClickOnDoctorsBookingTextview();
-
-
+            onClickOnDoctorsBookingTextView();
         }
     }
 
@@ -290,6 +285,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
         member_ship_club_recycler_view.setLayoutManager(layoutManager);
         member_ship_club_recycler_view.setAdapter(clubMemberShipRecordViewAdapter);
     }
+
 
     private void setVisibilityToViews() {
         mDoctorBookingRv.setVisibility(View.GONE);
@@ -324,16 +320,16 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.doctors_booking_textview:
-                onClickOnDoctorsBookingTextview();
+                onClickOnDoctorsBookingTextView();
                 break;
             case R.id.home_care_textview:
-                onClickOnHomeCareTextview();
+                onClickOnHomeCareTextView();
                 break;
             case R.id.medicine_textview:
                 onClickOnMedicineTextview();
                 break;
             case R.id.hello_health_package_textview:
-                onClickOnHealthPackageTextview();
+                onClickOnHealthPackageTextView();
                 break;
             case R.id.member_ship_club_text_view:
                 onClickOnClubMemberShipTextView();
@@ -350,7 +346,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
 
     }
 
-    private void onClickOnHealthPackageTextview() {
+    private void onClickOnHealthPackageTextView() {
         mDoctorBookingRv.setVisibility(View.GONE);
         mHomeCareRv.setVisibility(View.GONE);
         mMedicineRv.setVisibility(View.GONE);
@@ -368,7 +364,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
 
     }
 
-    private void onClickOnHomeCareTextview() {
+    private void onClickOnHomeCareTextView() {
 
         mDoctorBookingRv.setVisibility(View.GONE);
         mHomeCareRv.setVisibility(View.VISIBLE);
@@ -377,7 +373,7 @@ public class HealthRecordActivity extends BaseActivity implements View.OnClickLi
         member_ship_club_recycler_view.setVisibility(View.GONE);
     }
 
-    private void onClickOnDoctorsBookingTextview() {
+    private void onClickOnDoctorsBookingTextView() {
         mDoctorBookingRv.setVisibility(View.VISIBLE);
         mHomeCareRv.setVisibility(View.GONE);
         mMedicineRv.setVisibility(View.GONE);

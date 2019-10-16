@@ -121,7 +121,6 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity impleme
     }
 
     public void fetchHomeCareData() {
-
         LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("HHC_ID", Constants.HOME_CARE_ATTENDANT);
@@ -203,9 +202,9 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity impleme
          service_id_list =   TextUtils.join(",", selectedTargetItemId);
 
 
-        String SpacialofferId = "";
+        String spacialOfferId = "";
         if(lastSelectedPositionSOA >= 0) {
-            SpacialofferId = HomeCareAttandanceSpacialOfferAdapter.spacialOffersList.get(lastSelectedPositionSOA).getHomeCareServiceSpacialId();
+            spacialOfferId = HomeCareAttandanceSpacialOfferAdapter.spacialOffersList.get(lastSelectedPositionSOA).getHomeCareServiceSpacialId();
         }
 
         String chargesAmountId = "";
@@ -217,33 +216,11 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity impleme
 
         if (selectedTargetItemId.size()>0){
             if(!chargesAmountId.equals("")) {
-                final Map<String, String> requestBody = new HashMap<>();
-                requestBody.put("user_id", mPrefs.getUserID());
-                requestBody.put("service_type_id",Constants.HOME_CARE_ATTENDANT);
-                requestBody.put("service_id", service_id_list);
-                requestBody.put("charges", chargesAmountId);
-                requestBody.put("offer", SpacialofferId);
-                requestBody.put("service_date", Utils.currentDate());
-                requestBody.put("marchant_name", "Admin");
-                requestBody.put("card_no", "41414141414141");
-                requestBody.put("date_of_expiry", "12-08-2025");
-                requestBody.put("cvv", "569");
-                ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
-                Call<HomeCareAttendantDataPostResponseModel> call = apiService.getHomeCareAttandanceDataPost(requestBody);
-                call.enqueue(new Callback<HomeCareAttendantDataPostResponseModel>() {
-                    @Override
-                    public void onResponse(Call<HomeCareAttendantDataPostResponseModel> call, Response<HomeCareAttendantDataPostResponseModel> response) {
-                        Toast.makeText(mContext, "Booking Successfully Done.", Toast.LENGTH_SHORT).show();
-                        resetData();
-                        Intent intentHome = new Intent(mContext, ConfirmationDoneActivity.class);
-                        startActivity(intentHome);
-                    }
-
-                    @Override
-                    public void onFailure(Call<HomeCareAttendantDataPostResponseModel> call, Throwable t) {
-                        System.out.println("Failure  : ");
-                    }
-                });
+                if(Utils.isOnline(mContext)) {
+                    homeCareAttendanceBookingApiCall(service_id_list, chargesAmountId, spacialOfferId);
+                }
+                else
+                    Utils.showAlertDialogWithOkButton(mContext,"Alert!","Please Check Internet Connection");
             }
             else
                 Utils.showAlertDialogWithOkButton(mContext,"Alert!","Please Select Any  Home Care Attendance Charges");
@@ -258,8 +235,6 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity impleme
         HomeCareAttendanceChargesAdapter.chargesList.clear();
         lastSelectedPositionOfACA = -1;
     }
-
-
     @Override
     public void onChargesDataChanged(String amount) {
         if(spacialOffer<=0) {
@@ -280,10 +255,46 @@ public class HomeCareAttendantServicesActivity extends AppCompatActivity impleme
            spacialOffer = Integer.parseInt(amount);
           int chargeAmountWithSpacialOffer = chargeAmount - (chargeAmount*spacialOffer)/100;
            tv_total_payable_amount.setText("₹"+chargeAmountWithSpacialOffer);
-
        }
        else {
            Toast.makeText(mContext,"Please select any attendance charge!",Toast.LENGTH_LONG).show();
        }
     }
+    private  void homeCareAttendanceBookingApiCall(String _service_id_list,String _chargesAmountId,String _spacialOfferId){
+        LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
+        final Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("user_id", mPrefs.getUserID());
+        requestBody.put("service_type_id",Constants.HOME_CARE_ATTENDANT);
+        requestBody.put("service_id", _service_id_list);
+        requestBody.put("charges", _chargesAmountId);
+        requestBody.put("offer", _spacialOfferId);
+        requestBody.put("service_date", Utils.currentDate());
+        requestBody.put("marchant_name", "Admin");
+        requestBody.put("card_no", "41414141414141");
+        requestBody.put("date_of_expiry", "12-08-2025");
+        requestBody.put("cvv", "569");
+        ApiInterface apiService = ApiClient.getRetrofit().create(ApiInterface.class);
+        Call<HomeCareAttendantDataPostResponseModel> call = apiService.getHomeCareAttandanceDataPost(requestBody);
+        call.enqueue(new Callback<HomeCareAttendantDataPostResponseModel>() {
+            @Override
+            public void onResponse(Call<HomeCareAttendantDataPostResponseModel> call, Response<HomeCareAttendantDataPostResponseModel> response) {
+                if(response.body().isStatus()) {
+                    resetData();
+                    LocalModel.getInstance().cancelProgressDialog();
+                    Intent intentHome = new Intent(mContext, ConfirmationDoneActivity.class);
+                    startActivity(intentHome);
+                }
+                else {
+                    LocalModel.getInstance().cancelProgressDialog();
+                    Utils.showAlertDialogWithOkButton(mContext,"Error Occur!","Please try again.");
+                }
+            }
+            @Override
+            public void onFailure(Call<HomeCareAttendantDataPostResponseModel> call, Throwable t) {
+                LocalModel.getInstance().cancelProgressDialog();
+                Utils.showAlertDialogWithOkButton(mContext,"Error Occur!","Please try again.");
+            }
+        });
+    }
+
 }

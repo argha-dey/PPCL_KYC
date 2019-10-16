@@ -5,13 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.cyberswift.healingtree.R;
 import com.cyberswift.healingtree.model.DoctorListModel;
 import com.cyberswift.healingtree.model.UserAppointmentResponceModel;
 import com.cyberswift.healingtree.retrofit.ApiClient;
 import com.cyberswift.healingtree.retrofit.ApiInterface;
 import com.cyberswift.healingtree.utils.Constants;
+import com.cyberswift.healingtree.utils.LocalModel;
 import com.cyberswift.healingtree.utils.Prefs;
 import com.cyberswift.healingtree.utils.Utils;
 import retrofit2.Call;
@@ -78,6 +78,7 @@ public class BookingActivity extends Activity {
     }
 
     private void appointmentApiCall() {
+        LocalModel.getInstance().showProgressDialog(this, this.getResources().getString(R.string.please_wait_msg), false);
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("user_id",prefs.getUserID());
         requestBody.put("doc_id",doctorDetails.getDocId());
@@ -92,21 +93,26 @@ public class BookingActivity extends Activity {
                     UserAppointmentResponceModel doctorListResponseModel = response.body();
                     if (doctorListResponseModel.isStatus()){
                         goToConfirmationPage();
-                        Toast.makeText(activity, "Booking Successfully Done", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(activity, "Booking Successfully Done", Toast.LENGTH_SHORT).show();
+                        LocalModel.getInstance().cancelProgressDialog();
                     }
-                    else
-                       Utils.showAlertDialogWithOkButton(activity,"Booking Info!",""+doctorListResponseModel.getMessage()+" Please select another time slot.");
+                    else {
+                        LocalModel.getInstance().cancelProgressDialog();
+                        Utils.showAlertDialogWithOkButton(activity, "Booking Info!", "" + doctorListResponseModel.getMessage() + " Please select another time slot.");
+                    }
 
                 }
                 else {
-                    Toast.makeText(activity, "Booking Failed ! please try Again.", Toast.LENGTH_SHORT).show();
+                    LocalModel.getInstance().cancelProgressDialog();
+                    Utils.showAlertDialogWithOkButton(activity, "Booking Info!", "Booking Failed ! please try Again.");
                 }
 
             }
 
             @Override
             public void onFailure(Call<UserAppointmentResponceModel> call, Throwable t) {
-
+                LocalModel.getInstance().cancelProgressDialog();
+                Utils.showAlertDialogWithOkButton(activity, "Booking Info!", "Booking Failed ! please try Again.");
             }
         });
     }

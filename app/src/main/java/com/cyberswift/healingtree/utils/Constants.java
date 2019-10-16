@@ -18,8 +18,11 @@ public interface Constants {
     int HOME_NAV_ID = 1;
     String HOME_NAV_NAME = "Home";
 
-    int PROFILE_NAV_ID = 5;
+    int PROFILE_NAV_ID = 2;
     String PROFILE_NAV_NAME = "Profile";
+
+    int NOTIFICATION_NAV_ID = 3;
+    String NOTIFICATION_NAV_NAME = "Notification";
 
     int LOGOUT_NAV_ID = 7;
     String LOGOUT_NAV_NAME = "Logout";

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                  >
+
+
+
+
+    <RelativeLayout
+            android:elevation="10dp"
+            android:background="@color/colorWhite"
+            android:id="@+id/rl_task_single_row_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+    >
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+
+            <RelativeLayout
+                    android:id="@+id/iv_remove_project_member_rl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp">
+
+
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                    android:padding="10dp"
+                    android:id="@+id/detail_rl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+            >
+
+                <RelativeLayout
+                        android:id="@+id/department_and_band_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:padding="5dp"
+                            android:background="@color/colorPrimary"
+                            android:id="@+id/tv_task_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:textColor="@color/colorGreen"
+                            android:textSize="12dp"
+                            android:gravity="center"
+                            android:textStyle="normal" />
+
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/department_and_band_ll"
+                        android:id="@+id/rl_check_in_check_out"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                    <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:orientation="horizontal">
+
+                        <Button
+                                android:id="@+id/btn_check_in"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="Check-In"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="16sp"
+                                android:textStyle="normal"
+                                android:textAllCaps="false"
+                                android:singleLine="true"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
+                                android:background="@color/colorGreen"/>
+
+                        <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorWhite"/>
+
+                        <Button
+                                android:id="@+id/btn_check_out"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="Check-Out"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="16sp"
+                                android:textStyle="normal"
+                                android:textAllCaps="false"
+                                android:singleLine="true"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
+                                android:background="@color/colorRed"/>
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+        <TextView
+                android:id="@+id/tv_number_of_day"
+                android:layout_width="55dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/bg_top_left_triangle"
+                android:paddingLeft="6dp"
+                android:paddingTop="3dp"
+                android:rotation="0"
+                android:text=""
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="8sp"
+                android:textStyle="normal" />
+
+    </RelativeLayout>
+
+</LinearLayout>

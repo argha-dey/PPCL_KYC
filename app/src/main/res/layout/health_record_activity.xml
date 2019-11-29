@@ -14,113 +14,201 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp">
 
+   <LinearLayout
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:background="@drawable/backgraound_for_headings"
+        android:id="@+id/ll_doctor_booking"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+            android:gravity="center"
+            android:id="@+id/doctors_booking_textview"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:background="@drawable/backgraound_for_headings"
+            android:text="Doctors Booking History"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp" />
 
-            <TextView
-                android:id="@+id/doctors_booking_textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/backgraound_for_headings"
-                android:gravity="center"
-                android:text="Doctors Booking History"
-                android:textColor="@color/colorWhite"
-                android:textSize="15dp" />
+    <ImageView
 
 
+            android:src="@drawable/plus"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/doctors_booking_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:layout_below="@+id/doctors_booking_textview"
+                android:layout_below="@+id/ll_doctor_booking"
                 android:background="@color/colorGreyMaxLight">
 
             </android.support.v7.widget.RecyclerView>
 
 
 
+            <LinearLayout
+                    android:layout_below="@+id/doctors_booking_recyclerview"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/backgraound_for_headings"
+                    android:id="@+id/ll_home_care"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:gravity="center"
+                        android:id="@+id/home_care_textview"
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/backgraound_for_headings"
+                        android:text="Home Care Service History"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="15dp" />
 
-            <TextView
-                android:id="@+id/home_care_textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/doctors_booking_recyclerview"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/backgraound_for_headings"
-                android:gravity="center"
-                android:text="Home Care History"
-                android:textColor="@color/colorWhite"
-                android:textSize="15dp" />
+                <ImageView
+
+
+                        android:src="@drawable/plus"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/home_care_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:layout_below="@+id/home_care_textview"
+                android:layout_below="@+id/ll_home_care"
                 android:background="@color/colorGreyMaxLight">
 
             </android.support.v7.widget.RecyclerView>
+            <LinearLayout
+                    android:layout_below="@+id/home_care_recyclerview"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/backgraound_for_headings"
+                    android:id="@+id/ll_medicine_booking"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:gravity="center"
+                        android:id="@+id/medicine_textview"
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/backgraound_for_headings"
+                        android:text="Medicine Booking History"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="15dp" />
+
+                <ImageView
 
 
+                        android:src="@drawable/plus"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
 
-            <TextView
-                android:id="@+id/medicine_textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/home_care_recyclerview"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/backgraound_for_headings"
-                android:gravity="center"
-                android:text="Medicine Booking History"
-                android:textColor="@color/colorWhite"
-                android:textSize="15dp" />
+            </LinearLayout>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/medicine_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:layout_below="@+id/medicine_textview"
+                android:layout_below="@+id/ll_medicine_booking"
                 android:layout_marginBottom="10dp"
                 android:background="@color/colorGreyMaxLight">
 
             </android.support.v7.widget.RecyclerView>
 
-            <TextView
-                    android:id="@+id/hello_health_package_textview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+            <LinearLayout
                     android:layout_below="@+id/medicine_recyclerview"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/backgraound_for_headings"
                     android:gravity="center"
-                    android:text="Hello Health History"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="15dp" />
+                    android:background="@drawable/backgraound_for_headings"
+                    android:id="@+id/ll_hello_health_booking"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:gravity="center"
+                        android:id="@+id/hello_health_package_textview"
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/backgraound_for_headings"
+                        android:text="Hello Health History"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="15dp" />
+
+                <ImageView
+
+
+                        android:src="@drawable/plus"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/hello_health_package_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
-                    android:layout_below="@+id/hello_health_package_textview"
+                    android:layout_below="@+id/ll_hello_health_booking"
                     android:layout_marginBottom="10dp"
                     android:background="@color/colorGreyMaxLight">
 
             </android.support.v7.widget.RecyclerView>
 
-
-
-            <TextView
-                    android:id="@+id/member_ship_club_text_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+            <LinearLayout
                     android:layout_below="@+id/hello_health_package_recyclerview"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/backgraound_for_headings"
                     android:gravity="center"
-                    android:text="Club Membership History"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="15dp" />
+                    android:background="@drawable/backgraound_for_headings"
+                    android:id="@+id/ll_club_member_booking"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:gravity="center"
+                        android:id="@+id/member_ship_club_text_view"
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/backgraound_for_headings"
+                        android:text="Club Membership History"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="15dp" />
+
+                <ImageView
+
+
+                        android:src="@drawable/plus"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/member_ship_club_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
-                    android:layout_below="@+id/member_ship_club_text_view"
+                    android:layout_below="@+id/ll_club_member_booking"
                     android:layout_marginBottom="10dp"
                     android:background="@color/colorGreyMaxLight">
 

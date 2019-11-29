@@ -99,8 +99,6 @@
                                 android:layout_height="64dp"
                                 android:background="@drawable/onehealingtree"
                                 android:padding="10dp"/>
-
-
                         <TextView
                                 android:textSize="13sp"
                                 android:layout_width="wrap_content"
@@ -127,6 +125,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
+
+
 
             <LinearLayout
                     android:orientation="horizontal"
@@ -222,11 +222,11 @@
                                 android:background="@drawable/border_green_box"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp">
-                        <ImageView
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:background="@drawable/oder_medicines"
-                        />
+                            <ImageView
+                                    android:layout_width="56dp"
+                                    android:layout_height="56dp"
+                                    android:background="@drawable/oder_medicines"
+                            />
                         </LinearLayout>
 
                         <TextView
@@ -260,12 +260,12 @@
                                 android:background="@drawable/border_green_box"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp">
-                        <ImageView
+                            <ImageView
 
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:background="@drawable/health_library"
-                        />
+                                    android:layout_width="56dp"
+                                    android:layout_height="56dp"
+                                    android:background="@drawable/health_library"
+                            />
                         </LinearLayout>
 
                         <TextView
@@ -309,11 +309,11 @@
                                 android:background="@drawable/border_green_box"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp">
-                        <ImageView
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:background="@drawable/hello_health"
-                        />
+                            <ImageView
+                                    android:layout_width="56dp"
+                                    android:layout_height="56dp"
+                                    android:background="@drawable/hello_health"
+                            />
                         </LinearLayout>
 
                         <TextView
@@ -321,7 +321,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Hello health"
+                                android:text="Hello health
+Package"
                                 android:padding="5dp"
                                 android:textColor="@color/colorPrimary"/>
 
@@ -347,11 +348,11 @@
                                 android:background="@drawable/border_green_box"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp">
-                        <ImageView
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:background="@drawable/privilege_club_membership"
-                        />
+                            <ImageView
+                                    android:layout_width="56dp"
+                                    android:layout_height="56dp"
+                                    android:background="@drawable/privilege_club_membership"
+                            />
                         </LinearLayout>
 
                         <TextView
@@ -385,12 +386,12 @@
                                 android:background="@drawable/border_green_box"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp">
-                        <ImageView
+                            <ImageView
 
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:background="@drawable/home_health_care"
-                        />
+                                    android:layout_width="56dp"
+                                    android:layout_height="56dp"
+                                    android:background="@drawable/home_health_care"
+                            />
                         </LinearLayout>
 
                         <TextView
@@ -412,6 +413,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="8dp"/>
 
+
             <LinearLayout
 
                     android:orientation="horizontal"
@@ -427,7 +429,7 @@
                     <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/diy"
+                            android:background="@drawable/landing_image_left"
                             android:padding="10dp"/>
 
                 </LinearLayout>
@@ -441,7 +443,7 @@
                     <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/women"
+                            android:background="@drawable/landing_banner"
                             android:padding="10dp"/>
 
                 </LinearLayout>
@@ -449,16 +451,64 @@
 
             </LinearLayout>
 
-
         </LinearLayout>
 
 
     </android.support.v4.widget.NestedScrollView>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:id="@+id/menu"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorWhite"
+                android:elevation="20dp"
+                android:orientation="horizontal">
+
+
+
+            <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clipChildren="false"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="Account"
+                        android:textColor="@color/colorPrimaryDark" />
+
+            </RelativeLayout>
 
 
 
 
+        </LinearLayout>
 
+    </RelativeLayout>
+
+    <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom|center">
+
+        <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="28dp"
+                android:gravity="center"
+                android:onClick="goToProfilePage"
+                android:src="@drawable/maic_icon" />
+
+    </LinearLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>

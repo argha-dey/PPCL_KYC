@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import com.cyberswift.healingtree.R;
-import com.cyberswift.healingtree.interfaces.OnSpacialOfferDataChange;
 import com.cyberswift.healingtree.model.SO_Model;
 
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class HomeCareAttandanceSpacialOfferAdapter  extends  RecyclerView.Adapte
         SO_Model offersModel = spacialOffersList.get(position);
         holder.chargesAmount.setText(offersModel.getHomeCareServiceSpacialCharges()+"%");
         holder.chargesDays.setText(offersModel.getHomeCareServiceSpacialDuration());
-        holder.selectionCharges.setChecked(lastSelectedPositionSOA == position);
+    //    holder.selectionCharges.setChecked(lastSelectedPositionSOA == position);
     }
 
     @Override
@@ -58,7 +57,7 @@ public class HomeCareAttandanceSpacialOfferAdapter  extends  RecyclerView.Adapte
             super(view);
             chargesAmount = (TextView) view.findViewById(R.id.charges_amount);
             chargesDays = (TextView) view.findViewById(R.id.charges_hour);
-            selectionCharges = (RadioButton) view.findViewById(R.id.charges_select);
+           /* selectionCharges = (RadioButton) view.findViewById(R.id.charges_select);
 
             selectionCharges.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -68,7 +67,7 @@ public class HomeCareAttandanceSpacialOfferAdapter  extends  RecyclerView.Adapte
                     notifyDataSetChanged();
 
                 }
-            });
+            });*/
         }
     }
 }

@@ -16,7 +16,7 @@
         <item name="android:textColor">@color/text_hint_color</item>
         <item name="android:textSize">11dp</item>
     </style>
-
+    <style name="Theme.Translucent.NoTitleBar" parent="AppTheme"/>
     <style name="LoginEditTextTheme">
         <item name="android:imeOptions">actionNext</item>
         <item name="android:singleLine">true</item>
@@ -27,9 +27,9 @@
     </style>
 
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <!--Tablayout style-->
     <style name="TabLayoutStyle" parent="Base.Widget.Design.TabLayout">
@@ -39,5 +39,9 @@
 
     <style name="DatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/colorOrange</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 </resources>

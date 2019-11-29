@@ -72,6 +72,7 @@ public class AppController extends MultiDexApplication {
     private void initComponent() {
         mInstance = AppController.this;
         MultiDex.install(mInstance);
+     //   FacebookSdk.sdkInitialize(getApplicationContext());
       //  i = new Intent(FOREST_NOTIFICATION_INTENT);
         mUniversalImageuploader = globalUniversalImageLoader(this);
     }

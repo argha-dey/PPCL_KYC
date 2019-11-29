@@ -10,8 +10,12 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
@@ -24,50 +28,71 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning"
             tools:targetApi="n">
-        <activity android:name=".activity.MemberShipFacilityBookingActivity">
+        <activity
+                android:name=".patientModuleActivity.FacebookTestingActivity"
+                android:label="@string/title_activity_facebook_testing"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".activity.HelloHealthPackageBookingActivity">
+        <activity android:name=".patientModuleActivity.MemberShipFacilityBookingActivity">
         </activity>
-        <activity android:name=".activity.UserProfileActivity">
+        <activity android:name=".patientModuleActivity.HelloHealthPackageBookingActivity">
         </activity>
-        <activity android:name=".activity.RegistrationActivity">
+        <activity android:name=".patientModuleActivity.UserProfileActivity">
+        </activity>
+        <activity android:name=".patientModuleActivity.RegistrationActivity">
         </activity>
         <activity
-                android:name=".activity.LoginActivity"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
-                android:name=".activity.BaseActivity"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
-                android:name=".activity.HomeActivity"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
-                android:name=".activity.SpecialitiesActivity"
+                android:name=".patientModuleActivity.LoginActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".activity.DoctorTimeSlot"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
-                android:name=".activity.ConfirmationDoneActivity"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
-                android:name=".activity.BookingActivity"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
-                android:name=".activity.DoctorListActivity"
+                android:name=".patientModuleActivity.BaseActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".activity.SplashScreen"
+                android:name=".patientModuleActivity.HomeActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+                android:name=".patientModuleActivity.SpecialitiesActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+                android:name=".patientModuleActivity.DoctorTimeSlot"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+                android:name=".patientModuleActivity.OrderMedicineActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+                android:name=".patientModuleActivity.FeedbackActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+                android:name=".patientModuleActivity.ConfirmationDoneActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+                android:name=".patientModuleActivity.BookingActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+                android:name=".patientModuleActivity.DoctorListActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+                android:name=".patientModuleActivity.SplashScreen"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait">
             <intent-filter>
@@ -81,38 +106,134 @@
                 android:name="org.apache.http.legacy"
                 android:required="false"/>
 
-        <activity android:name=".activity.HealingHomeCareActivity"/>
-        <activity android:name=".activity.HomeCareAttendantServicesActivity"/>
-        <activity android:name=".activity.DiagnosticsAtHomeActivity"/>
-        <activity android:name=".activity.MedicalEquipmentForHomeCareActivity"/>
-        <activity android:name=".activity.NursingCareServicesActivity"/>
-        <activity android:name=".activity.PhysiotherapistServicesActivity"/>
-        <activity android:name=".activity.MembershipFacilityActivity"/>
-        <activity android:name=".document_download_manager.PdfViewerActivity"/>
-        <activity android:name=".activity.OrderMedicineActivity"/>
-        <activity android:name=".activity.HealthRecordActivity"/>
-        <activity android:name=".activity.HelloHealthActivity"/>
-        <activity android:name=".activity.HealthLibraryActivity"/>
-        <activity android:name=".activity.AwarenessArticleActivity"/>
-        <activity android:name=".activity.NotificationActivity"/>
+        <activity
+                android:name=".patientModuleActivity.HealingHomeCareActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".patientModuleActivity.HomeCareAttendantServicesActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".patientModuleActivity.DiagnosticsAtHomeActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".patientModuleActivity.MedicalEquipmentForHomeCareActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".patientModuleActivity.NursingCareServicesActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".patientModuleActivity.PhysiotherapistServicesActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".patientModuleActivity.MembershipFacilityActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".document_download_manager.PdfViewerActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+
+        <activity
+                android:name=".patientModuleActivity.HealthRecordActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".patientModuleActivity.HelloHealthActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".patientModuleActivity.HealthLibraryActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".patientModuleActivity.AwarenessArticleActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".patientModuleActivity.NotificationActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".patientModuleActivity.ForgotPasswordActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".homeCareAttendanceModuleActivity.BaseAttendanceActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+                android:name=".homeCareAttendanceModuleActivity.AssignedTaskActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+                android:name=".homeCareAttendanceModuleActivity.TaskDetailsPageActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+                android:name=".homeCareAttendanceModuleActivity.AttendanceUserProfileActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+
+        <activity
+                android:name=".homeCareAttendanceModuleActivity.HistoryMedicineDeliveryActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+
+        <activity
+                android:name=".homeCareAttendanceModuleActivity.AttenderNotificationActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+                android:name=".homeCareAttendanceModuleActivity.MedicineDeliveryActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
 
         <provider
                 android:name="android.support.v4.content.FileProvider"
-                android:authorities="android.support.v4.fileprovider"
+                android:authorities="${applicationId}.provider"
                 android:exported="false"
                 android:grantUriPermissions="true">
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
                     android:resource="@xml/provider_paths"/>
-        </provider>
-
-
-        <!-- Firebase Notifications -->
+        </provider> <!-- Firebase Notifications -->
         <service android:name=".notification.MyMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
+        <!-- Face Book Integration -->
+
+        <activity
+                android:name="com.facebook.FacebookActivity"
+                android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+                android:label="@string/app_name" />
+        <activity
+                android:name="com.facebook.CustomTabActivity"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <meta-data
+                android:name="com.facebook.sdk.ApplicationId"
+                android:value="@string/facebook_app_id"/>
     </application>
 
 </manifest>

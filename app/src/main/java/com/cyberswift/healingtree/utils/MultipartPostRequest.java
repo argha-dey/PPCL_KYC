@@ -3,6 +3,7 @@ package com.cyberswift.healingtree.utils;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.webkit.MimeTypeMap;
 import com.cyberswift.healingtree.interfaces.MultipartPostCallback;
 import com.cyberswift.healingtree.model.FileDetails;
@@ -95,15 +96,42 @@ public class MultipartPostRequest extends AsyncTask<Void, Void, String> {
                 int i = 0, j = 0;
                 for (FileDetails value : fileList) {
                     if (value.getFileName() != null) {
-                        String mimeType = value.getMimeType();
-                        File file = new File(value.getSelectedFilePath());
-                        FileBody docFiles = new FileBody(file, mimeType);
-                        entity.addPart(multipartArrayTag + "[" + j + "]", docFiles);
-                        j++;
+                        if (value.getFromWhere().equals("FromFile")){
+                            String mimeType = value.getMimeType();
+                           File file = new File(value.getSelectedFilePath());
+                           FileBody docFiles = new FileBody(file,mimeType);
+                            entity.addPart(multipartArrayTag + "[" + j + "]", docFiles);
+                            j++;
+                    }
+                        else {
+
+                            String path = Environment.getExternalStorageDirectory()+ "/HT_ImageFolder/" + value.getFileName();
+                            File file = new File(path);
+                            if (file.exists()) {
+                                entity.addPart(multipartArrayTag + "[" + j + "]", new FileBody(file,value.getMimeType()));
+                            }
+                        }
+
                     }
                     i++;
                 }
             }
+
+    /*        if (fileList.size() > 0) {
+                int i = 0, j = 0;
+                for (FileDetails value : fileList) {
+                    if (value.getFileName() != null) {
+                            String mimeType = value.getMimeType();
+                            File file = new File(value.getSelectedFilePath());
+                            FileBody docFiles = new FileBody(file,mimeType);
+                            entity.addPart(multipartArrayTag + "[" + j + "]", docFiles);
+                            j++;
+                    }
+                    i++;
+                }
+            }*/
+
+
             for (String key : map.keySet()) {
                 entity.addPart(key, new StringBody(map.get(key)));
             }

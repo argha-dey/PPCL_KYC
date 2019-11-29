@@ -29,7 +29,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimary"
                 android:textSize="30sp"
-                android:text="Congratulation"
+                android:text="Congratulations"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         <TextView
@@ -56,7 +56,7 @@
     <LinearLayout
             android:onClick="onBookingDone"
             android:background="@color/colorPrimary"
-            android:layout_weight="0.6"
+            android:layout_weight="0.7"
             android:layout_width="match_parent"
             android:layout_height="0dp">
         <TextView

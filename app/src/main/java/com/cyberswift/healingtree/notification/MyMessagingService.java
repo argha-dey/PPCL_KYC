@@ -12,7 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import com.cyberswift.healingtree.R;
-import com.cyberswift.healingtree.activity.HomeActivity;
+import com.cyberswift.healingtree.patientModuleActivity.HomeActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 

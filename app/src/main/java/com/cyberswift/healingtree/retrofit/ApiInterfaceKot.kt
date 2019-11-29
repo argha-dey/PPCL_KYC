@@ -1,6 +1,7 @@
 package com.cyberswift.healingtree.retrofit
 
 import com.cyberswift.healingtree.model.CategoryResponse
+import com.cyberswift.healingtree.model.UserForgotPasswordResponseModel
 import com.cyberswift.healingtree.model.UserLoginResponseModel
 import com.cyberswift.healingtree.model.UserRegisterResponseModel
 import com.cyberswift.healingtree.utils.Urls
@@ -22,6 +23,8 @@ public interface ApiInterfaceKot {
     @POST(Urls.REGISTRATION_URL)
     abstract fun registrationApiCall(@Body body: Map<String, String>): Call<UserRegisterResponseModel>
 
+    @POST(Urls.FORGOT_PASSWORD_URL)
+    abstract fun forgotPasswordApiCall(@Body body: Map<String, String>): Call<UserForgotPasswordResponseModel>
 
     companion object Factory {
         fun create(): ApiInterfaceKot {

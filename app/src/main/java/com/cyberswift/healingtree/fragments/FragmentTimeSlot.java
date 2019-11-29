@@ -36,10 +36,16 @@ public class FragmentTimeSlot extends Fragment {
     public static FragmentTimeSlot newInstance(ArrayList<DoctorListModel> _doctorListModels) {
         FragmentTimeSlot f = new FragmentTimeSlot();
         Bundle b = new Bundle();
-        b.putParcelableArrayList("GET_TIME_SLOT_DATA_LIST", _doctorListModels);
+        if(_doctorListModels!=null &&_doctorListModels.size()>0) {
+            b.putParcelableArrayList("GET_TIME_SLOT_DATA_LIST", _doctorListModels);
+        }
+        else {
+            b.putParcelableArrayList("GET_TIME_SLOT_DATA_LIST",new ArrayList<DoctorListModel>() );
+        }
         f.setArguments(b);
         return f;
     }
+
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,10 +69,13 @@ public class FragmentTimeSlot extends Fragment {
 
 // Static Data Set End
 
-        if (doctorListModels != null) {
+        if (doctorListModels != null && doctorListModels.size()>0) {
             prefs.setDoctorBookSelectDate(doctorListModels.get(0).getDate());
             timeSlotModelArrayList = doctorListModels.get(0).getTime_slot();
             setTimeSlotModelArrayList(timeSlotModelArrayList);
+        }
+        else {
+            setTimeSlotModelArrayList( new ArrayList<TimeSlotModel>());
         }
     }
 
@@ -74,7 +83,7 @@ public class FragmentTimeSlot extends Fragment {
 
 
     // Set Home Care Attendance Trained Help Adapter
-    private void setTimeSlotModelArrayList(ArrayList<TimeSlotModel> _morningTimeSlot) {
+    public void setTimeSlotModelArrayList(ArrayList<TimeSlotModel> _morningTimeSlot) {
         /*     for(int pos =0 ; pos<_morningTimeSlot.size();pos++) {
          *//*   layoutInflater = (LayoutInflater) activity.getSystemService(LAYOUT_INFLATER_SERVICE);
             View viewlayout = layoutInflater.inflate(R.layout.time_slot_row, null);
@@ -94,6 +103,9 @@ public class FragmentTimeSlot extends Fragment {
         }
 
     }
+
+
+
 }
 
 

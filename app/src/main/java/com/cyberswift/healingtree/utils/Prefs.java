@@ -146,6 +146,14 @@ public class Prefs {
         setString(Constants.USER_EMAIL_ID, val);
     }
 
+    public String getZipCode() {
+        return getString(Constants.USER_ZIP_CODE, "");
+    }
+
+    public void setZipCode(String val) {
+        setString(Constants.USER_ZIP_CODE, val);
+    }
+
     public String getUserPhoneNumber() {
         return getString(Constants.USER_PHONE_NUMBER, "");
     }
@@ -162,6 +170,16 @@ public class Prefs {
 
     public void setPermissionStatus(boolean val) {
         setBoolean(Constants.PERMISSION_STATUS, false);
+    }
+
+
+
+    public String getUserRoleName() {
+        return getString(Constants.USER_ROLE_NAME, "");
+    }
+
+    public void setUserRoleName(String val) {
+        setString(Constants.USER_ROLE_NAME, val);
     }
 
 

@@ -1,57 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-    android:gravity="center">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
 
-   <!-- <android.support.v7.widget.CardView
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:padding="0dp"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:cardCornerRadius="15dp">-->
+    <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="0dp">
 
         <LinearLayout
-android:background="@android:color/transparent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="0dp">
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
 
-            <!--<ProgressBar-->
-            <!--android:id="@+id/progress_bar"-->
-            <!--android:layout_width="80dp"-->
-            <!--android:layout_height="80dp"-->
-            <!--android:indeterminate="true"-->
-            <!--android:indeterminateTint="@color/app_color"-->
-            <!--android:indeterminateTintMode="src_atop"/>-->
-     <!--       <pl.droidsonroids.gif.GifImageView
-                android:id="@+id/monkey_loading_gif"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/monkey" />-->
+            <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorAccent"
+            android:indeterminateTintMode="src_atop"/>
+       <!--     <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/monkey_loading_gif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/monkey" />-->
 
 
             <TextView
-                    android:background="@android:color/transparent"
-                android:id="@+id/loading_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:text="Please wait..."
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                android:textSize="20dp" />
+                    android:id="@+id/loading_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="normal"
+                    android:textSize="16sp" />
 
         </LinearLayout>
 
-  <!--  </android.support.v7.widget.CardView>-->
+    </android.support.v7.widget.CardView>
 
 
 </RelativeLayout>

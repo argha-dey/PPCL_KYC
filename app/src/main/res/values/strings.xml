@@ -67,16 +67,26 @@
     </string>
 
 
-
     <string name="no_internet">No network connection found! Please check your network connection.</string>
-    <string name="no_internet_parse_data">No network connection found, So Unable to parse Form Data! Please check your network connection.</string>
-    <string name="response_timeout">Response time out error! Please check your internet connection and try again.</string>
+    <string name="no_internet_parse_data">No network connection found, So Unable to parse Form Data! Please check your
+        network connection.
+    </string>
+    <string name="response_timeout">Response time out error! Please check your internet connection and try again.
+    </string>
     <string name="auth_failure">Server authentication failed! Please try again.</string>
     <string name="server_error">Server isn\'t responding! Please try again.</string>
     <string name="network_error">Network not found! Please check your internet connection and try again.</string>
     <string name="parse_error">Unable to parse Data! Please try again.</string>
 
-    <string name="time_label"><font fgcolor="#FF000000">Time:  </font></string>
-    <string name="remarks_label"><font fgcolor='#FF000000'>Remarks:  </font></string>
+    <string name="time_label">
+        <font fgcolor="#FF000000">Time:</font>
+    </string>
+    <string name="remarks_label">
+        <font fgcolor='#FF000000'>Remarks:</font>
+    </string>
+
+    <string name="facebook_app_id">538308757021410</string>
+    <string name="fb_login_protocol_scheme">fb538308757021410</string>
+    <string name="title_activity_facebook_testing">FacebookTestingActivity</string>
 
 </resources>

@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.cyberswift.healingtree.R;
-import com.cyberswift.healingtree.activity.DoctorTimeSlot;
+import com.cyberswift.healingtree.patientModuleActivity.DoctorTimeSlot;
 import com.cyberswift.healingtree.model.BookingAppointmentModel;
 import com.cyberswift.healingtree.utils.Utils;
 import de.hdodenhof.circleimageview.CircleImageView;

@@ -21,11 +21,24 @@ public interface Constants {
     int PROFILE_NAV_ID = 2;
     String PROFILE_NAV_NAME = "Profile";
 
+    int FEEDBACK_NAV_ID = 4;
+    String FEEDBACK_NAV_NAME = "Feedback";
+
     int NOTIFICATION_NAV_ID = 3;
     String NOTIFICATION_NAV_NAME = "Notification";
 
+    int HISTORY_NAV_ID = 5;
+    String HISTORY_NAV_NAME = "History";
+
     int LOGOUT_NAV_ID = 7;
     String LOGOUT_NAV_NAME = "Logout";
+
+
+    /**
+     * Attendance  Task  related constants
+     * */
+    int ASSIGNED_TASK_LIST_ID = 9;
+    String ASSIGNED_TASK_LIST_NAME = "Task List";
 
     /**
      * Session User manager related constants
@@ -35,7 +48,9 @@ public interface Constants {
     String USER_FIRST_NAME = "userFirstName";
     String USER_LAST_NAME = "userLastName";
     String USER_EMAIL_ID = "userEmailId";
+    String USER_ZIP_CODE = "userZipCode";
     String USER_ADDRESS = "userAddress";
+    String USER_ROLE_NAME = "userRoleName";
     String USER_PHONE_NUMBER = "userPhoneNumber";
     String DOCTOR_BOOKING_TIME = "doctorBookTime";
     String DOCTOR_BOOKING_DATE = "userBookDate";
@@ -75,5 +90,14 @@ public interface Constants {
 
 
     String ARTICLE_ID_CONSTANTS = "id";
+
+    // Role Type
+    String ROLE_PATIENT = "Patient";
+    String ROLE_PHYSIOTHERAPIST = "Physiotherapist";
+    String ROLE_NURSE = "Nurse";
+    String ROLE_ATTENDANT = "Attendant";
+    String ROLE_MEDICINE_DELIVERY = "Medicine Delivery Person";
+
+
 
 }

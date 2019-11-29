@@ -2,16 +2,15 @@ package com.cyberswift.healingtree.utils;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.*;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -19,7 +18,9 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -48,6 +49,8 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.io.File;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,7 +65,7 @@ public class Utils {
      */
     public static void launchActivity(Context context, Class<?> destinationClass) {
         Intent i = new Intent(context, destinationClass);
-         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+      //   i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(i);
     }
 
@@ -72,7 +75,7 @@ public class Utils {
      */
     public static void launchActivityWithFinish(Context context, Class<?> destinationClass) {
         Intent i = new Intent(context, destinationClass);
-          i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+          i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
          context.startActivity(i);
         ((Activity) context).finish();
     }
@@ -358,6 +361,7 @@ public class Utils {
         int locationPermission = ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE);
 //        int storagePermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 //        int cameraPermission = ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA);
+        int contactSavePermissionWrite = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_CONTACTS);
 
         List<String> listPermissionsNeeded = new ArrayList<>();
 
@@ -370,6 +374,10 @@ public class Utils {
         if (cameraPermission != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(android.Manifest.permission.CAMERA);
         }*/
+
+        if (contactSavePermissionWrite != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(android.Manifest.permission.WRITE_CONTACTS);
+        }
 
         if (!listPermissionsNeeded.isEmpty()) {
             ActivityCompat.requestPermissions((Activity) context, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), 121);
@@ -433,12 +441,11 @@ public class Utils {
     }
 
     public static String getDefaultFilePathForImg() {
-        File prntFile = new File(Environment.getExternalStorageDirectory().getPath() + "/HealingTreePatientDoc/Img/");
+        File prntFile = new File(Environment.getExternalStorageDirectory()+ "/HT_ImageFolder");
         prntFile.mkdirs();
         String getDestinationFileFortakePic = prntFile.getAbsolutePath() + "/HealingTree_" + System.currentTimeMillis() + ".jpg";
         return getDestinationFileFortakePic;
     }
-
 
 
     //check if choose file is image or video
@@ -538,6 +545,18 @@ public class Utils {
         String formattedDate = df.format(date);
         return formattedDate;
     }
+    public static String currentDateAsYYYYMMDD() {
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = df.format(date);
+        return formattedDate;
+    }
+    public static String currentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        String time = sdf.format(new Date());
+        return time;
+    }
+
 
     public static boolean isValidPassword(String password) {
         Matcher matcher = Pattern.compile("((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{6,20})").matcher(password);
@@ -553,9 +572,8 @@ public class Utils {
         else
             return false;
     }
-    public static void filePreviewDialog(final Context context, String fileUrl) {
-        LocalModel.getInstance().showProgressDialog(context, context.getResources().getString(R.string.please_wait_msg), false);
-        final Dialog fileDitailsDialog = new Dialog(context, android.R.style.Theme_NoTitleBar_Fullscreen);
+    public static void filePreviewDialog(final Context _context, String fileUrl) {
+        final Dialog fileDitailsDialog = new Dialog(_context, android.R.style.Theme_NoTitleBar_Fullscreen);
         fileDitailsDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         fileDitailsDialog.setContentView(R.layout.file_preview_dialog_layout);
         fileDitailsDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
@@ -565,14 +583,14 @@ public class Utils {
         WebView webview_document = (WebView) fileDitailsDialog.findViewById(R.id.webview_document);
         String fileType = fileUrl.substring(fileUrl.lastIndexOf('.') + 1);
         if (fileType.equalsIgnoreCase("jpg") || fileType.equalsIgnoreCase("png")) {
+
             webview_document.setVisibility(View.GONE);
             iv_image_viewer.setVisibility(View.VISIBLE);
             ImageLoader imageLoader = ImageLoader.getInstance();
-
             imageLoader.setDefaultLoadingListener(new ImageLoadingListener() {
                 @Override
                 public void onLoadingStarted(String s, View view) {
-
+                    LocalModel.getInstance().showProgressDialog(_context, _context.getResources().getString(R.string.please_wait_msg), false);
                 }
 
                 @Override
@@ -595,12 +613,10 @@ public class Utils {
         } else {
             webview_document.setVisibility(View.VISIBLE);
             iv_image_viewer.setVisibility(View.GONE);
-
-
             webview_document.setWebViewClient(new WebViewClient() {
                 @Override
                 public void onPageStarted(WebView view, String url, Bitmap favicon) {
-
+                    LocalModel.getInstance().showProgressDialog(_context, _context.getResources().getString(R.string.please_wait_msg), false);
                 }
 
 
@@ -628,6 +644,189 @@ public class Utils {
         fileDitailsDialog.show();
 
 
+    }
+
+  public static  void addContact(Context ctx, String displayname, String homenumber) {
+        String DisplayName = displayname;
+        String MobileNumber = homenumber;
+
+        ArrayList<ContentProviderOperation> contentProviderOperation = new
+                ArrayList<ContentProviderOperation>();
+
+        contentProviderOperation.add(ContentProviderOperation
+                .newInsert(ContactsContract.RawContacts.CONTENT_URI)
+                .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, null)
+                .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null)
+                .build());
+
+        // ------------------------------------------------------ Names
+        if (DisplayName != null) {
+            contentProviderOperation.add(ContentProviderOperation
+                    .newInsert(ContactsContract.Data.CONTENT_URI)
+                    .withValueBackReference(
+                            ContactsContract.Data.RAW_CONTACT_ID, 0)
+                    .withValue(
+                            ContactsContract.Data.MIMETYPE,
+                            ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+                    .withValue(
+                            ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME,
+                            DisplayName).build());
+        }
+
+        // ------------------------------------------------------ Mobile Number
+        if (MobileNumber != null) {
+            contentProviderOperation.add(ContentProviderOperation
+                    .newInsert(ContactsContract.Data.CONTENT_URI)
+                    .withValueBackReference(
+                            ContactsContract.Data.RAW_CONTACT_ID, 0)
+                    .withValue(
+                            ContactsContract.Data.MIMETYPE,
+                            ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+                    .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER,
+                            MobileNumber)
+                    .withValue(ContactsContract.CommonDataKinds.Phone.TYPE,
+                            ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)
+                    .build());
+        }
+
+
+        // Asking the Contact provider to create a new contact
+        try {
+            ctx.getContentResolver()
+                    .applyBatch(ContactsContract.AUTHORITY, contentProviderOperation);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //show exception in toast
+            Toast.makeText(ctx, "Exception: " + e.getMessage(),
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void showCallBackMessageWithOk(final Context mContext,
+                                                 final String message, final AlertDialogCallBack callBack) {
+        ((Activity) mContext).runOnUiThread(new Runnable() {
+
+            public void run() {
+                final AlertDialog.Builder alert = new AlertDialog.Builder(
+                        mContext);
+                alert.setTitle(R.string.app_name);
+                alert.setCancelable(false);
+                alert.setMessage(message);
+                alert.setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int whichButton) {
+                                callBack.onSubmit();
+                            }
+                        });
+                alert.setCancelable(false);
+                alert.show();
+            }
+        });
+    }
+
+    public static String getCountOfDays(String createdDateString, String expireDateString) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+
+        Date createdConvertedDate = null, expireCovertedDate = null, todayWithZeroTime = null;
+        try {
+            createdConvertedDate = dateFormat.parse(createdDateString);
+            expireCovertedDate = dateFormat.parse(expireDateString);
+
+            Date today = new Date();
+
+            todayWithZeroTime = dateFormat.parse(dateFormat.format(today));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        int cYear = 0, cMonth = 0, cDay = 0;
+
+        if (createdConvertedDate.after(todayWithZeroTime)) {
+            Calendar cCal = Calendar.getInstance();
+            cCal.setTime(createdConvertedDate);
+            cYear = cCal.get(Calendar.YEAR);
+            cMonth = cCal.get(Calendar.MONTH);
+            cDay = cCal.get(Calendar.DAY_OF_MONTH);
+
+        } else {
+            Calendar cCal = Calendar.getInstance();
+            cCal.setTime(todayWithZeroTime);
+            cYear = cCal.get(Calendar.YEAR);
+            cMonth = cCal.get(Calendar.MONTH);
+            cDay = cCal.get(Calendar.DAY_OF_MONTH);
+        }
+
+
+    /*Calendar todayCal = Calendar.getInstance();
+    int todayYear = todayCal.get(Calendar.YEAR);
+    int today = todayCal.get(Calendar.MONTH);
+    int todayDay = todayCal.get(Calendar.DAY_OF_MONTH);
+    */
+
+        Calendar eCal = Calendar.getInstance();
+        eCal.setTime(expireCovertedDate);
+
+        int eYear = eCal.get(Calendar.YEAR);
+        int eMonth = eCal.get(Calendar.MONTH);
+        int eDay = eCal.get(Calendar.DAY_OF_MONTH);
+
+        Calendar date1 = Calendar.getInstance();
+        Calendar date2 = Calendar.getInstance();
+
+        date1.clear();
+        date1.set(cYear, cMonth, cDay);
+        date2.clear();
+        date2.set(eYear, eMonth, eDay);
+
+        long diff = date2.getTimeInMillis() - date1.getTimeInMillis();
+
+        float dayCount = (float) diff / (24 * 60 * 60 * 1000);
+        dayCount = dayCount+1;
+        return ("" + (int) dayCount);
+    }
+
+    public static String getMobileDeviceID(final Context context) {
+        String device_ID = "";
+        try {
+            device_ID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        } catch (Exception e) {
+            Toast.makeText(context, "Device ID not available.", Toast.LENGTH_LONG).show();
+        }
+        return device_ID;
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+
+    public static String printKeyHash(Activity context) {
+        PackageInfo packageInfo;
+        String key = null;
+        try {
+            //getting application package name, as defined in manifest
+            String packageName = context.getApplicationContext().getPackageName();
+
+            //Retrieving package info
+            packageInfo = context.getPackageManager().getPackageInfo(packageName,
+                    PackageManager.GET_SIGNATURES);
+
+            Log.e("Package Name=", context.getApplicationContext().getPackageName());
+
+            for (Signature signature : packageInfo.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                key = Base64.getEncoder().encodeToString(md.digest());
+                Log.e("Key Hash=", key);
+            }
+        } catch (PackageManager.NameNotFoundException e1) {
+            Log.e("Name not found", e1.toString());
+        }
+        catch (NoSuchAlgorithmException e) {
+            Log.e("No such an algorithm", e.toString());
+        } catch (Exception e) {
+            Log.e("Exception", e.toString());
+        }
+
+        return key;
     }
 
 }

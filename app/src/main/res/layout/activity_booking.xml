@@ -45,13 +45,13 @@ android:layout_marginLeft="10dp"
         <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_gravity="center"
                 android:src="@drawable/profile_image"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:layout_width="70dp"
                 android:layout_height="70dp"/>
 
         <LinearLayout
                 android:gravity="center_vertical"
-                android:layout_weight="3"
+                android:layout_weight="8"
                 android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
@@ -112,12 +112,13 @@ android:layout_marginLeft="10dp"
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="20"
+            android:layout_weight="18"
             android:layout_width="match_parent"
             android:layout_height="0dp">
         <TextView
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="12sp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:text="Location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -125,7 +126,7 @@ android:layout_marginLeft="10dp"
                 android:layout_marginTop="2dp"
                 android:maxLines="2"
                 android:textColor="@color/colorBlack"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:text="Shree Krishna Hospital and Medical Research Center, Gokal Nagar, Karamsad - 388 325 Gujarat, INDIA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -140,12 +141,13 @@ android:layout_marginLeft="10dp"
             android:gravity="center"
             android:layout_marginLeft="10dp"
             android:orientation="vertical"
-            android:layout_weight="15"
+            android:layout_weight="13"
             android:layout_width="match_parent"
             android:layout_height="0dp">
         <TextView
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="12sp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:text="Time and Date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -175,10 +177,10 @@ android:layout_marginLeft="10dp"
 
         <TextView
                 android:layout_marginTop="10dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:text="Booking for"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -208,7 +210,7 @@ android:layout_marginLeft="10dp"
                         android:layout_marginLeft="15dp"
                         android:gravity="center|left"
                         android:textSize="14sp"
-                        android:text="ANUPAM DAS"
+
                         android:layout_weight="8"
                         android:layout_width="0dp"
                         android:layout_height="match_parent" />
@@ -233,7 +235,7 @@ android:layout_marginLeft="10dp"
                         android:layout_marginLeft="15dp"
                         android:gravity="center|left"
                         android:textSize="14sp"
-                        android:text="+91932065821"
+
                         android:layout_weight="8"
                         android:layout_width="0dp"
                         android:layout_height="match_parent" />
@@ -260,7 +262,7 @@ android:layout_marginLeft="10dp"
                         android:layout_marginLeft="15dp"
                         android:gravity="center|left"
                         android:textSize="14sp"
-                        android:text="das22@gmail.com"
+
                         android:layout_weight="8"
                         android:layout_width="0dp"
                         android:layout_height="match_parent" />
@@ -270,7 +272,32 @@ android:layout_marginLeft="10dp"
         </LinearLayout>
 
     </LinearLayout>
+<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"
+            android:text="Referred By"
+            android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+    <EditText
+            android:id="@+id/tv_referred_by_person"
 
+            android:paddingLeft="8dp"
+
+                        android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/border_green_box"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"/>
+
+</LinearLayout>
     <View android:background="@color/gray_color"
           android:layout_width="match_parent"
           android:layout_height="1dp"
@@ -279,7 +306,7 @@ android:layout_marginLeft="10dp"
 
             android:orientation="horizontal"
             android:background="@color/colorGreyMaxLight"
-            android:layout_weight="15"
+            android:layout_weight="12"
             android:layout_width="match_parent"
             android:layout_height="0dp">
 
@@ -302,7 +329,7 @@ android:layout_marginLeft="10dp"
                 android:src="@drawable/maic_icon"
                 android:layout_weight="2.5"
                 android:layout_width="4dp"
-                android:layout_height="56dp" />
+                android:layout_height="48dp" />
 
     </LinearLayout>
 
@@ -315,9 +342,10 @@ android:layout_marginLeft="10dp"
             android:layout_height="0dp">
         <TextView
                 android:gravity="center"
+                android:textStyle="bold"
                 android:text="CONFIRM BOOK"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
+                android:textColor="@color/colorGreen"
+                android:textSize="16sp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

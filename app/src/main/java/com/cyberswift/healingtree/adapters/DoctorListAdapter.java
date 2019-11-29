@@ -13,9 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.cyberswift.healingtree.R;
-import com.cyberswift.healingtree.activity.DoctorTimeSlot;
+import com.cyberswift.healingtree.patientModuleActivity.DoctorTimeSlot;
 import com.cyberswift.healingtree.model.DoctorListModel;
 import com.cyberswift.healingtree.utils.Constants;
 import com.cyberswift.healingtree.utils.Utils;
@@ -30,10 +31,12 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.My
     private ArrayList<DoctorListModel> arrList;
     private ArrayList<DoctorListModel> arrListCopy = new ArrayList<>();
 
+
     public DoctorListAdapter(Context context, ArrayList<DoctorListModel> wishCardList) {
         this.mContext = context;
         this.arrList = wishCardList;
         arrListCopy.addAll(arrList);
+
     }
 
 
@@ -133,6 +136,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.My
                 tv_dr_experience, tv_dr_specialization, tv_day, tv_date,
                 tv_dr_schedule, tv_dr_experience_title;
         private Button btn_book_via_call, btn_book_via_app;
+        private LinearLayout ll_doctor_details_view;
 
         MyViewHolder(View itemView) {
             super(itemView);
@@ -148,7 +152,9 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.My
             btn_book_via_call = itemView.findViewById(R.id.btn_book_via_call);
             btn_book_via_app = itemView.findViewById(R.id.btn_book_via_app);
             tv_dr_schedule = itemView.findViewById(R.id.tv_dr_schedule);
+
             tv_dr_experience_title = itemView.findViewById(R.id.tv_dr_experience_title);
+
         }
     }
 
@@ -178,7 +184,11 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.My
             }
         });
 
+
+
+
     }
+
 
     public void filter(CharSequence sequence) {
         arrList.clear();
@@ -208,5 +218,6 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.My
         arrList = list;
         notifyDataSetChanged();
     }
+
 
 }

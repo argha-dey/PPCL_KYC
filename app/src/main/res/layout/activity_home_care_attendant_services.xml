@@ -3,10 +3,10 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent" xmlns:numberpicker="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:background="@color/colorWhite"
-        tools:context=".activity.HealingHomeCareActivity">
+        tools:context=".patientModuleActivity.HealingHomeCareActivity">
     <RelativeLayout
             android:background="@color/design_default_color_primary_dark"
             android:id="@+id/home_care_header"
@@ -27,9 +27,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Home Care Attendant Services"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorGreen"
                 android:textSize="18sp"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 android:textAllCaps="false"
                 android:layout_centerInParent="true"/>
 
@@ -173,11 +173,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                         <TextView
+                                android:gravity="center"
+                                android:background="@color/colorPrimary"
                                 android:textStyle="bold"
-                                android:textColor="@color/colorPrimary"
-                                android:text="Special Offer:"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
+                                android:textColor="@color/colorWhite"
+                                android:text="Special Offer"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"/>
 
                         <android.support.v7.widget.RecyclerView
                                 android:layout_marginLeft="10dp"
@@ -186,24 +188,168 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
                     </LinearLayout>
+
+
+
+
                     <LinearLayout
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="15dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="4dp"
+                                    android:layout_weight="1"
+                                    android:foreground="?android:attr/selectableItemBackground"
+                                    android:lines="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp"
+                                    android:text="Start Date"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textStyle="bold" />
+
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="4dp"
+                                    android:layout_weight="1"
+                                    android:foreground="?android:attr/selectableItemBackground"
+                                    android:lines="1"
+                                    android:text="End Date"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+
+
+
+
+
+                        <LinearLayout
+                                android:weightSum="2"
+                                android:id="@+id/layout_show_data_by_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                            <RelativeLayout
+                                    android:background="@drawable/field_text_bg"
+                                    android:layout_width="0dp"
+                                    android:layout_height="38dp"
+                                    android:onClick="OnStartDatePickerForHCA"
+                                    android:layout_marginRight="4dp"
+                                    android:layout_weight="1">
+                                <TextView
+                                        android:id="@+id/tv_start_date"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:foreground="?android:attr/selectableItemBackground"
+                                        android:gravity="center"
+                                        android:lines="1"
+                                        android:textAllCaps="false"
+                                        android:paddingBottom="8dp"
+                                        android:paddingTop="8dp"
+                                        android:textColor="@color/colorPrimary"
+                                        android:textSize="15sp"
+                                        android:textStyle="normal" />
+                                <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:padding="8dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/cal" />
+                            </RelativeLayout>
+                            <RelativeLayout
+                                    android:background="@drawable/field_text_bg"
+                                    android:layout_width="0dp"
+                                    android:layout_height="38dp"
+                                    android:layout_marginRight="4dp"
+                                    android:onClick="OnEndDatePickerForHCA"
+                                    android:layout_weight="1">
+                                <TextView
+                                        android:id="@+id/tv_end_date"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:foreground="?android:attr/selectableItemBackground"
+                                        android:gravity="center"
+                                        android:lines="1"
+                                        android:textAllCaps="false"
+
+                                        android:textColor="@color/colorPrimary"
+                                        android:textSize="15sp"
+                                        android:textStyle="normal" />
+                                <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:padding="8dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/cal" />
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/ll_service_duration"
+                            android:layout_marginTop="15dp"
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="30dp">
                         <TextView
-                                android:textStyle="bold"
+                                android:textStyle="normal"
                                 android:textColor="@color/colorPrimary"
                                 android:gravity="center|right"
-                                android:text="Total Payable Amount : "
+                                android:text="Total Service Duration "
+                                android:layout_width="0dp"
+                                android:layout_weight="8"
+                                android:layout_height="match_parent"/>
+                        <TextView
+                                android:id="@+id/tv_total_number_of_days"
+                                android:textColorHint="@color/colorPrimary"
+                                android:textColor="@color/colorPrimary"
+                                android:gravity="center"
+                                android:hint="0"
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="match_parent"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                            android:layout_marginTop="15dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp">
+                        <TextView
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorPrimary"
+                                android:gravity="center|left"
+                                android:text="Total Payable Amount with discount : "
                                    android:layout_width="0dp"
-                                  android:layout_weight="2"
+                                  android:layout_weight="3"
                                   android:layout_height="match_parent"/>
                         <TextView
                                 android:id="@+id/tv_total_payable_amount"
                                 android:textColorHint="@color/colorPrimary"
                                 android:textColor="@color/colorPrimary"
-                                android:gravity="center"
+                                android:gravity="center|right"
                                 android:hint="₹0"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -253,6 +399,7 @@
                                 android:layout_weight="2"
                                 android:layout_height="match_parent"/>
                     </LinearLayout>
+
 
                 </LinearLayout>
 

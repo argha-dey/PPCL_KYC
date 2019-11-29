@@ -10,8 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.cyberswift.healingtree.R;
-import com.cyberswift.healingtree.activity.DoctorListActivity;
+import com.cyberswift.healingtree.patientModuleActivity.DoctorListActivity;
 import com.cyberswift.healingtree.model.DoctorDidDName;
 
 import java.util.ArrayList;
@@ -55,8 +56,13 @@ public class DoctorDepartmentAdapter extends RecyclerView.Adapter<DoctorDepartme
     }
 
     public void updateList(ArrayList<DoctorDidDName> list){
-        arrayList = list;
-        notifyDataSetChanged();
+        if(list.size()>0&&list!=null) {
+            arrayList = list;
+            notifyDataSetChanged();
+        }
+        else {
+            Toast.makeText(context, "Search result Not found !", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {

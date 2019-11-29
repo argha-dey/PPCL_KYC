@@ -1,5 +1,7 @@
 package com.cyberswift.healingtree.model;
 
+import android.net.Uri;
+
 import java.io.InputStream;
 import java.io.Serializable;
 
@@ -9,9 +11,49 @@ public class FileDetails implements Serializable {
     private int fileSize;
     private String fileName;
     private String filePath;
+
+    public Uri getFileUri() {
+        return fileUri;
+    }
+
+    public void setFileUri(Uri fileUri) {
+        this.fileUri = fileUri;
+    }
+
+    private Uri fileUri ;
+
+    public String getStringFileUri() {
+        return stringFileUri;
+    }
+
+    public void setStringFileUri(String stringFileUri) {
+        this.stringFileUri = stringFileUri;
+    }
+
+    private String stringFileUri;
     private int actionType;
     private String selectedFilePath;
     private String mimeType;
+
+    public String getFromWhere() {
+        return fromWhere;
+    }
+
+    public void setFromWhere(String fromWhere) {
+        this.fromWhere = fromWhere;
+    }
+
+    private String fromWhere;
+
+    public FileDetails(){
+
+    }
+    public FileDetails(String fileName, String filePath, String _stringFileUri) {
+        this.fileName = fileName;
+        this.filePath = filePath;
+        this.stringFileUri = _stringFileUri;
+
+    }
 
     public String getMimeType() {
         return mimeType;

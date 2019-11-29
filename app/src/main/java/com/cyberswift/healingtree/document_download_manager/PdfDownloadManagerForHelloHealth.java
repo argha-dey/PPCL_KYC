@@ -11,9 +11,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
-import android.support.v4.BuildConfig;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
+import com.cyberswift.healingtree.BuildConfig;
 
 import java.io.File;
 import java.io.IOException;
@@ -122,7 +122,7 @@ public class PdfDownloadManagerForHelloHealth extends FileProvider {
 
     public final void openPDF(Context context, File pdfFile) {
 
-        Uri path = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".fileprovider", pdfFile);
+        Uri path = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", pdfFile);
 
         Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
         pdfIntent.setDataAndType(path, "application/pdf");
@@ -135,7 +135,7 @@ public class PdfDownloadManagerForHelloHealth extends FileProvider {
         Intent i = new Intent(Intent.ACTION_VIEW);
         File d = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS); // -> filename = maven.pdf
         final File pdfFile = new File(d, "health_checkup_brochure.pdf");
-        Uri path = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".fileprovider", pdfFile);
+        Uri path = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", pdfFile);
         i.setDataAndType(path, PDF_MIME_TYPE);
         return context.getPackageManager().queryIntentActivities(i, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
     }

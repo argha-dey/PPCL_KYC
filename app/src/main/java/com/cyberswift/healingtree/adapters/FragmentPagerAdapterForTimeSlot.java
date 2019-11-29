@@ -1,14 +1,14 @@
 package com.cyberswift.healingtree.adapters;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import com.cyberswift.healingtree.fragments.FragmentTimeSlot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentPagerAdapterForTimeSlot extends FragmentPagerAdapter {
-    private final List<Fragment> mFragmentList = new ArrayList<>();
+    private final List<FragmentTimeSlot> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
 
     public FragmentPagerAdapterForTimeSlot(FragmentManager manager) {
@@ -16,7 +16,7 @@ public class FragmentPagerAdapterForTimeSlot extends FragmentPagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public FragmentTimeSlot getItem(int position) {
         return mFragmentList.get(position);
     }
 
@@ -25,7 +25,7 @@ public class FragmentPagerAdapterForTimeSlot extends FragmentPagerAdapter {
         return mFragmentList.size();
     }
 
-    public void addFragment(Fragment fragment, String title) {
+    public void addFragment(FragmentTimeSlot fragment, String title) {
         mFragmentList.add(fragment);
         mFragmentTitleList.add(title);
     }

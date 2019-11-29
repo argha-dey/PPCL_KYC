@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "256570953063",
-    "firebase_url": "https://healingtree-86fd6.firebaseio.com",
-    "project_id": "healingtree-86fd6",
-    "storage_bucket": "healingtree-86fd6.appspot.com"
+    "project_number": "849187923325",
+    "firebase_url": "https://healingtree-a3087.firebaseio.com",
+    "project_id": "healingtree-a3087",
+    "storage_bucket": "healingtree-a3087.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:256570953063:android:4df46da4fc6713a2",
+        "mobilesdk_app_id": "1:849187923325:android:e8bafc7e522ad51bf79814",
         "android_client_info": {
           "package_name": "com.cyberswift.healingtree"
         }
       },
       "oauth_client": [
         {
-          "client_id": "256570953063-k8bvsso1uqeskjsot52a2r0vcsfgvghv.apps.googleusercontent.com",
+          "client_id": "849187923325-bq0a91lehdtdd2lb7ute00o6mpl4ifnd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.cyberswift.healingtree",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "256570953063-0p1rvv8d7e8s1m6el7ak56ujujbnamam.apps.googleusercontent.com",
+          "client_id": "849187923325-3372m26uhlp9p30qgu4lb46tsle6nf04.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD1tCQmiqfooCdl5NutZAmDpR1myjhBLs0"
+          "current_key": "AIzaSyDE0A3d1BsGZUlX_K8_ChGY1ViUTWHijaM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "256570953063-0p1rvv8d7e8s1m6el7ak56ujujbnamam.apps.googleusercontent.com",
+              "client_id": "849187923325-3372m26uhlp9p30qgu4lb46tsle6nf04.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

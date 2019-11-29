@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/colorWhite"
-        tools:context=".activity.HealingHomeCareActivity">
+        tools:context=".patientModuleActivity.HealingHomeCareActivity">
     <RelativeLayout
             android:background="@color/design_default_color_primary_dark"
             android:id="@+id/home_care_header"
@@ -14,6 +14,7 @@
             android:layout_height="?attr/actionBarSize">
 
         <ImageButton
+                android:onClick="onClickBackClubMemberShipPackage"
                 android:id="@+id/ibtn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -26,10 +27,10 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hello Health Package"
-                android:textColor="@color/colorWhite"
+                android:text="Club Membership Package"
+                android:textColor="@color/colorGreen"
                 android:textSize="18sp"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 android:textAllCaps="false"
                 android:layout_centerInParent="true"/>
 
@@ -246,22 +247,41 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                            android:onClick="onClubMemberShipBooking"
-                            android:layout_marginTop="40dp"
-                            android:layout_marginBottom="15dp"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp">
-                        <TextView
 
-                                android:gravity="center"
-                                android:background="@color/colorPrimary"
-                                android:textColor="@color/colorGreen"
-                                android:text="Process"
+
+                    <LinearLayout
+                            android:layout_marginTop="40dp"
+                            android:id="@+id/button_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:orientation="horizontal">
+
+                        <Button
+                                android:onClick="onClubMemberShipBooking"
+                                android:id="@+id/hello_health_package_button"
                                 android:layout_width="0dp"
-                                android:layout_weight="1.2"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="3"
+                                android:background="@color/colorPrimary"
+                                android:text=" Book Club Membership Package"
+                                android:textAllCaps="false"
+                                android:textColor="@color/green_text_color"
+                                android:textSize="12dp" />
+
+                        <Button
+                                android:onClick="onTalkToUsForBookMembershipPackage"
+                                android:id="@+id/talk_to_us_button"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:layout_weight="2"
+                                android:background="@color/colorPrimary"
+                                android:text="Talk To Us"
+                                android:textAllCaps="false"
+                                android:textColor="@color/green_text_color"
+                                android:textSize="12dp" />
+
 
                     </LinearLayout>
 

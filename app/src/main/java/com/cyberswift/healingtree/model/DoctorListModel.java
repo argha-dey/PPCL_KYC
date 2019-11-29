@@ -28,6 +28,19 @@ public class DoctorListModel implements Parcelable {
     private String day;
     @SerializedName("date")
     private String date;
+    @SerializedName("DOC_FEES")
+    private String DOC_FEES;
+
+
+    public String getDOC_FEES() {
+        return DOC_FEES;
+    }
+
+    public void setDOC_FEES(String DOC_FEES) {
+        this.DOC_FEES = DOC_FEES;
+    }
+
+
 
     public String getSub_dept_name() {
         return sub_dept_name;
@@ -57,6 +70,7 @@ public class DoctorListModel implements Parcelable {
         docSchedule = in.readString();
         day = in.readString();
         date = in.readString();
+        DOC_FEES = in.readString();
     }
 
     public static final Creator<DoctorListModel> CREATOR = new Creator<DoctorListModel>() {
@@ -180,6 +194,7 @@ public class DoctorListModel implements Parcelable {
         dest.writeString(docSchedule);
         dest.writeString(day);
         dest.writeString(date);
+        dest.writeString(DOC_FEES);
     }
 
 }

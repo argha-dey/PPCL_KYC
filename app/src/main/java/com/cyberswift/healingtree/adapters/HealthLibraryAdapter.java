@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.cyberswift.healingtree.R;
-import com.cyberswift.healingtree.activity.AwarenessArticleActivity;
+import com.cyberswift.healingtree.patientModuleActivity.AwarenessArticleActivity;
 import com.cyberswift.healingtree.model.AwarnessData;
 import com.squareup.picasso.Picasso;
 

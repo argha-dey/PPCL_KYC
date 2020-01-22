@@ -199,7 +199,7 @@ android:layout_marginLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="0dp">
 
-                <com.cyberswift.healingtree.utils.CustomViewPager
+                <com.cyberswift.healingtreeorg.utils.CustomViewPager
                         android:id="@+id/viewpager_time_slot"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

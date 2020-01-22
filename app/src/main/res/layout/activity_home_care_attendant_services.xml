@@ -110,7 +110,7 @@
                         <TextView
                                 android:textStyle="bold"
                                 android:textColor="@color/colorPrimary"
-                                android:text="Trained Home Care Attendance can help in:"
+                                android:text="Trained Home Care Attendant can help in:"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
 
@@ -131,7 +131,7 @@
                         <TextView
                                 android:textStyle="bold"
                                 android:textColor="@color/colorPrimary"
-                                android:text="Home Care Attendance Charges:"
+                                android:text="Home Care Attendant Charges:"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
 <LinearLayout

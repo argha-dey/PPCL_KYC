@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:dist="http://schemas.android.com/apk/distribution"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.cyberswift.healingtree">
+          package="com.cyberswift.healingtreeorg">
 
     <dist:module dist:instant="true"/>
 
@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
-            android:name=".AppController"
+            android:name="com.cyberswift.healingtreeorg.AppController"
             android:allowBackup="false"
             android:icon="@mipmap/applogo"
             android:label="@string/app_name"
@@ -29,70 +29,70 @@
             tools:ignore="GoogleAppIndexingWarning"
             tools:targetApi="n">
         <activity
-                android:name=".patientModuleActivity.FacebookTestingActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.FacebookTestingActivity"
                 android:label="@string/title_activity_facebook_testing"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".patientModuleActivity.MemberShipFacilityBookingActivity">
+        <activity android:name="com.cyberswift.healingtreeorg.patientModuleActivity.MemberShipFacilityBookingActivity">
         </activity>
-        <activity android:name=".patientModuleActivity.HelloHealthPackageBookingActivity">
+        <activity android:name="com.cyberswift.healingtreeorg.patientModuleActivity.HelloHealthPackageBookingActivity">
         </activity>
-        <activity android:name=".patientModuleActivity.UserProfileActivity">
+        <activity android:name="com.cyberswift.healingtreeorg.patientModuleActivity.UserProfileActivity">
         </activity>
-        <activity android:name=".patientModuleActivity.RegistrationActivity">
+        <activity android:name="com.cyberswift.healingtreeorg.patientModuleActivity.RegistrationActivity">
         </activity>
         <activity
-                android:name=".patientModuleActivity.LoginActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.LoginActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".patientModuleActivity.BaseActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.BaseActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".patientModuleActivity.HomeActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.HomeActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".patientModuleActivity.SpecialitiesActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.SpecialitiesActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".patientModuleActivity.DoctorTimeSlot"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.DoctorTimeSlot"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".patientModuleActivity.OrderMedicineActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.OrderMedicineActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".patientModuleActivity.FeedbackActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.FeedbackActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".patientModuleActivity.ConfirmationDoneActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.ConfirmationDoneActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".patientModuleActivity.BookingActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.BookingActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".patientModuleActivity.DoctorListActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.DoctorListActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".patientModuleActivity.SplashScreen"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.SplashScreen"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait">
             <intent-filter>
@@ -107,96 +107,96 @@
                 android:required="false"/>
 
         <activity
-                android:name=".patientModuleActivity.HealingHomeCareActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.HealingHomeCareActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
         <activity
-                android:name=".patientModuleActivity.HomeCareAttendantServicesActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.HomeCareAttendantServicesActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
         <activity
-                android:name=".patientModuleActivity.DiagnosticsAtHomeActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.DiagnosticsAtHomeActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
         <activity
-                android:name=".patientModuleActivity.MedicalEquipmentForHomeCareActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.MedicalEquipmentForHomeCareActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
         <activity
-                android:name=".patientModuleActivity.NursingCareServicesActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.NursingCareServicesActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
         <activity
-                android:name=".patientModuleActivity.PhysiotherapistServicesActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.PhysiotherapistServicesActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
         <activity
-                android:name=".patientModuleActivity.MembershipFacilityActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.MembershipFacilityActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
         <activity
-                android:name=".document_download_manager.PdfViewerActivity"
+                android:name="com.cyberswift.healingtreeorg.document_download_manager.PdfViewerActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
 
         <activity
-                android:name=".patientModuleActivity.HealthRecordActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.HealthRecordActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
         <activity
-                android:name=".patientModuleActivity.HelloHealthActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.HelloHealthActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
         <activity
-                android:name=".patientModuleActivity.HealthLibraryActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.HealthLibraryActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
         <activity
-                android:name=".patientModuleActivity.AwarenessArticleActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.AwarenessArticleActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
         <activity
-                android:name=".patientModuleActivity.NotificationActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.NotificationActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
         <activity
-                android:name=".patientModuleActivity.ForgotPasswordActivity"
+                android:name="com.cyberswift.healingtreeorg.patientModuleActivity.ForgotPasswordActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden"/>
         <activity
-                android:name=".homeCareAttendanceModuleActivity.BaseAttendanceActivity"
+                android:name="com.cyberswift.healingtreeorg.homeCareAttendanceModuleActivity.BaseAttendanceActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".homeCareAttendanceModuleActivity.AssignedTaskActivity"
+                android:name="com.cyberswift.healingtreeorg.homeCareAttendanceModuleActivity.AssignedTaskActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".homeCareAttendanceModuleActivity.TaskDetailsPageActivity"
+                android:name="com.cyberswift.healingtreeorg.homeCareAttendanceModuleActivity.TaskDetailsPageActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".homeCareAttendanceModuleActivity.AttendanceUserProfileActivity"
-                android:screenOrientation="portrait"
-                android:windowSoftInputMode="stateHidden">
-        </activity>
-
-        <activity
-                android:name=".homeCareAttendanceModuleActivity.HistoryMedicineDeliveryActivity"
+                android:name="com.cyberswift.healingtreeorg.homeCareAttendanceModuleActivity.AttendanceUserProfileActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
 
         <activity
-                android:name=".homeCareAttendanceModuleActivity.AttenderNotificationActivity"
+                android:name="com.cyberswift.healingtreeorg.homeCareAttendanceModuleActivity.HistoryMedicineDeliveryActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+
+        <activity
+                android:name="com.cyberswift.healingtreeorg.homeCareAttendanceModuleActivity.AttenderNotificationActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-                android:name=".homeCareAttendanceModuleActivity.MedicineDeliveryActivity"
+                android:name="com.cyberswift.healingtreeorg.homeCareAttendanceModuleActivity.MedicineDeliveryActivity"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
@@ -210,7 +210,7 @@
                     android:name="android.support.FILE_PROVIDER_PATHS"
                     android:resource="@xml/provider_paths"/>
         </provider> <!-- Firebase Notifications -->
-        <service android:name=".notification.MyMessagingService">
+        <service android:name="com.cyberswift.healingtreeorg.notification.MyMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>

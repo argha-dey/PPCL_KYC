@@ -99,7 +99,7 @@ public class BookingAppointmentAdapter extends RecyclerView.Adapter<BookingAppoi
             @Override
             public void onClick(View v) {
                 if (Utils.checkAndRequestAllPermissions(mContext)) {
-                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
                     callIntent.setData(Uri.parse("tel:9876543210"));
                     mContext.startActivity(callIntent);
                 }

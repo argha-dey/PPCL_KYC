@@ -150,7 +150,7 @@
                                 android:layout_marginTop="8dp"
                                 android:background="@drawable/field_text_bg">
 
-                            <com.cyberswift.healingtree.dropdown.DropDownViewForXML
+                            <com.cyberswift.healingtreeorg.dropdown.DropDownViewForXML
                                     android:id="@+id/dropDown_select_number_of_family_members"
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
@@ -194,7 +194,7 @@
                                 android:layout_marginTop="8dp"
                                 android:background="@drawable/field_text_bg">
 
-                            <com.cyberswift.healingtree.dropdown.DropDownViewForXML
+                            <com.cyberswift.healingtreeorg.dropdown.DropDownViewForXML
                                     android:id="@+id/dropDown_duration_of_member_ship"
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"

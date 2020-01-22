@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "849187923325",
-    "firebase_url": "https://healingtree-a3087.firebaseio.com",
-    "project_id": "healingtree-a3087",
-    "storage_bucket": "healingtree-a3087.appspot.com"
+    "project_number": "291519483925",
+    "firebase_url": "https://healing-tree-aba91.firebaseio.com",
+    "project_id": "healing-tree-aba91",
+    "storage_bucket": "healing-tree-aba91.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:849187923325:android:e8bafc7e522ad51bf79814",
+        "mobilesdk_app_id": "1:291519483925:android:b5a4fd3c354410e5a37e1c",
         "android_client_info": {
-          "package_name": "com.cyberswift.healingtree"
+          "package_name": "com.cyberswift.healingtreeorg"
         }
       },
       "oauth_client": [
         {
-          "client_id": "849187923325-bq0a91lehdtdd2lb7ute00o6mpl4ifnd.apps.googleusercontent.com",
+          "client_id": "291519483925-8rkar4egcpsf57qc8cdv6lo7lthvm6f3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.cyberswift.healingtree",
-            "certificate_hash": "79378e96ad05a9640a8455c528cdd8c88d22c83e"
+            "package_name": "com.cyberswift.healingtreeorg",
+            "certificate_hash": "bc38e98ae73ae03fa2a4e48f3aa11fdee7b7904a"
           }
         },
         {
-          "client_id": "849187923325-3372m26uhlp9p30qgu4lb46tsle6nf04.apps.googleusercontent.com",
+          "client_id": "291519483925-gnag070bl2cfhtmq32so0t5ou3rorgg5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDE0A3d1BsGZUlX_K8_ChGY1ViUTWHijaM"
+          "current_key": "AIzaSyBk_psrmfQgS2bhpkjyYX-KAQVR32MNtBA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "849187923325-3372m26uhlp9p30qgu4lb46tsle6nf04.apps.googleusercontent.com",
+              "client_id": "291519483925-gnag070bl2cfhtmq32so0t5ou3rorgg5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

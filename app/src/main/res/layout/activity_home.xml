@@ -23,7 +23,7 @@
                 android:fitsSystemWindows="true"
                 app:contentScrim="?attr/colorPrimary"
 
-        >
+                >
 
             <LinearLayout
                     app:layout_collapseMode="parallax"
@@ -37,7 +37,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp">
                     <LinearLayout
-                            android:onClick="onHealthRecordHealingTree"
+
                             android:layout_marginBottom="20dp"
                             android:layout_weight="1"
                             android:layout_width="0dp"
@@ -45,6 +45,7 @@
                             android:orientation="vertical"
                             android:gravity="center|bottom">
                         <ImageView
+                                android:onClick="onHealthRecordHealingTree"
                                 android:layout_width="56dp"
                                 android:layout_height="56dp"
                                 android:background="@drawable/healthrecords"
@@ -52,6 +53,7 @@
 
 
                         <TextView
+
                                 android:textSize="13sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -63,7 +65,7 @@
 
                     </LinearLayout>
                     <LinearLayout
-                            android:onClick="onLocationHealingTree"
+
                             android:layout_marginBottom="20dp"
                             android:layout_weight="1"
                             android:layout_width="0dp"
@@ -71,6 +73,7 @@
                             android:orientation="vertical"
                             android:gravity="center|bottom">
                         <ImageView
+                                android:onClick="onLocationHealingTree"
                                 android:layout_width="56dp"
                                 android:layout_height="56dp"
                                 android:background="@drawable/located"
@@ -78,6 +81,7 @@
 
 
                         <TextView
+
                                 android:textSize="13sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -128,35 +132,31 @@
 
 
 
-            <LinearLayout
+            <RelativeLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                 <TextView
+                        android:id="@+id/tv_healing_tree"
+                        android:layout_marginLeft="20dp"
+                        android:textStyle="normal"
                         android:textColor="@color/text_color"
-                        android:textSize="15sp"
-                        android:gravity="center|right"
+                        android:textSize="14sp"
+                        android:gravity="center|left"
                         android:text="The Healing Tree world of "
-                        android:layout_width="0dp"
-                        android:layout_weight="6"
+                        android:layout_width="wrap_content"
                         android:layout_height="50dp"/>
                 <TextView
+                        android:layout_toRightOf="@+id/tv_healing_tree"
                         android:textStyle="bold"
                         android:textSize="18sp"
                         android:textColor="@color/colorPrimary"
                         android:gravity="center|left"
                         android:text="Care"
-                        android:layout_width="0dp"
-                        android:layout_weight="1.6"
+                        android:layout_width="wrap_content"
                         android:layout_height="50dp"/>
-                <ImageView
-
-                        android:layout_weight="4"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"/>
-
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                     android:clipToPadding="false"
@@ -189,14 +189,15 @@
                                     android:layout_width="56dp"
                                     android:layout_height="56dp"
                                     android:background="@drawable/book_appointent"
-                            />
+                                    />
                         </LinearLayout>
                         <TextView
+                                android:textSize="12sp"
                                 android:textStyle="bold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Book on
+                                android:text="Book an
                                 Appointment"
                                 android:padding="5dp"
                                 android:textColor="@color/colorPrimary"/>
@@ -226,10 +227,11 @@
                                     android:layout_width="56dp"
                                     android:layout_height="56dp"
                                     android:background="@drawable/oder_medicines"
-                            />
+                                    />
                         </LinearLayout>
 
                         <TextView
+                                android:textSize="12sp"
                                 android:textStyle="bold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -265,10 +267,11 @@
                                     android:layout_width="56dp"
                                     android:layout_height="56dp"
                                     android:background="@drawable/health_library"
-                            />
+                                    />
                         </LinearLayout>
 
                         <TextView
+                                android:textSize="12sp"
                                 android:textStyle="bold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -313,16 +316,17 @@
                                     android:layout_width="56dp"
                                     android:layout_height="56dp"
                                     android:background="@drawable/hello_health"
-                            />
+                                    />
                         </LinearLayout>
 
                         <TextView
+                                android:textSize="12sp"
                                 android:textStyle="bold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Hello health
-Package"
+                                android:text="Hello
+                                Health Package"
                                 android:padding="5dp"
                                 android:textColor="@color/colorPrimary"/>
 
@@ -352,10 +356,11 @@ Package"
                                     android:layout_width="56dp"
                                     android:layout_height="56dp"
                                     android:background="@drawable/privilege_club_membership"
-                            />
+                                    />
                         </LinearLayout>
 
                         <TextView
+                                android:textSize="12sp"
                                 android:textStyle="bold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -391,10 +396,11 @@ Package"
                                     android:layout_width="56dp"
                                     android:layout_height="56dp"
                                     android:background="@drawable/home_health_care"
-                            />
+                                    />
                         </LinearLayout>
 
                         <TextView
+                                android:textSize="12sp"
                                 android:textStyle="bold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -410,8 +416,8 @@ Package"
             </LinearLayout>
 
             <View android:background="@color/colorWhite"
-                  android:layout_width="match_parent"
-                  android:layout_height="8dp"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"/>
 
 
             <LinearLayout
@@ -438,7 +444,7 @@ Package"
                         android:layout_weight="6"
                         android:layout_height="170dp"
                         android:layout_margin="1dp"
-                >
+                        >
 
                     <ImageView
                             android:layout_width="match_parent"

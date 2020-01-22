@@ -12,12 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.cyberswift.pankaj.healingtree.R;
 import com.cyberswift.pankaj.healingtree.Utils;
 import com.cyberswift.pankaj.healingtree.models.BookingAppointmentModel;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class BookingAppointmentAdapter extends RecyclerView.Adapter<BookingAppointmentAdapter.MyViewHolder> {
